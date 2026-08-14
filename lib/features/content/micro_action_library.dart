@@ -1,0 +1,68 @@
+import '../assessment/assessment_models.dart';
+
+final List<MicroAction> microActions = [
+  MicroAction(
+    id: 'act_glass_water',
+    titleKey: 'act_glass_water_title',
+    descriptionKey: 'act_glass_water_desc',
+    domain: QuestionModule.lifestyle,
+    estimatedMinutes: 1,
+    type: ContentLibraryType.action,
+  ),
+  MicroAction(
+    id: 'act_deep_breath_3',
+    titleKey: 'act_deep_breath_title',
+    descriptionKey: 'act_deep_breath_desc',
+    domain: QuestionModule.stress,
+    estimatedMinutes: 2,
+    type: ContentLibraryType.action,
+  ),
+  MicroAction(
+    id: 'act_write_emotion',
+    titleKey: 'act_write_emotion_title',
+    descriptionKey: 'act_write_emotion_desc',
+    domain: QuestionModule.emotions,
+    estimatedMinutes: 5,
+    type: ContentLibraryType.action,
+  ),
+  MicroAction(
+    id: 'act_call_friend',
+    titleKey: 'act_call_friend_title',
+    descriptionKey: 'act_call_friend_desc',
+    domain: QuestionModule.relationship,
+    estimatedMinutes: 10,
+    type: ContentLibraryType.action,
+  ),
+  MicroAction(
+    id: 'act_gratitude_list',
+    titleKey: 'act_gratitude_list_title',
+    descriptionKey: 'act_gratitude_list_desc',
+    domain: QuestionModule.selfEsteem,
+    estimatedMinutes: 5,
+    type: ContentLibraryType.action,
+  ),
+  MicroAction(
+    id: 'act_sunlight',
+    titleKey: 'act_sunlight_title',
+    descriptionKey: 'act_sunlight_desc',
+    domain: QuestionModule.lifestyle,
+    estimatedMinutes: 10,
+    type: ContentLibraryType.action,
+  ),
+  MicroAction(
+    id: 'act_tidy',
+    titleKey: 'act_tidy_title',
+    descriptionKey: 'act_tidy_desc',
+    domain: QuestionModule.behavioral,
+    estimatedMinutes: 5,
+    type: ContentLibraryType.action,
+  ),
+  MicroAction(
+    id: 'act_stretch',
+    titleKey: 'act_stretch_title',
+    descriptionKey: 'act_stretch_desc',
+    domain: QuestionModule.stress,
+    estimatedMinutes: 1,
+    type: ContentLibraryType.action,
+  ),
+];

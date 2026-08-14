@@ -1,0 +1,37 @@
+# Task Management
+
+- [x] Phase 3: Advanced Administration & Global Management
+	- [x] Research & Planning
+		- [x] Audit existing Admin module
+		- [x] Draft implementation plan
+		- [x] Update plan based on feedback
+	- [x] Core Models & Infrastructure
+		- [x] Create `SecurityLog` model and adapter
+		- [x] Implement `SecurityLogRepository` and `MockSecurityLogService`
+		- [x] Implement `AdminRepository` for statistics (using persisted records)
+	- [x] Admin Dashboard & Management Screens
+		- [x] Enhance `AdminDashboard` with statistics cards
+		- [x] Implement `ProfessionalManagementScreen` (List/Filters)
+		- [x] Implement `ProfessionalDetailScreen` (Review/Approve)
+		- [x] Implement `UserManagementScreen` (List/Metadata)
+		- [x] Implement `UserDetailScreen` (Account metadata only)
+		- [x] Implement `SecurityLogsScreen`
+		- [x] Implement `AdminSettingsScreen`
+	- [x] Clinical Report PDF Export
+		- [x] Add `pdf`, `printing`, `path_provider` dependencies
+		- [x] Create PDF font assets (Noto Sans Arabic)
+		- [x] Implement `PdfReportGenerator` (FR/AR, RTL, Unicode)
+		- [x] Update `ClinicalReportScreen` with PDF export button
+	- [x] Routing & Security
+		- [x] Update `GoRouter` with new admin routes
+		- [x] Strengthen guards (Guest, User, Psychologist, Admin, Pending Pro)
+	- [x] Internationalization & RTL
+		- [x] Add strings to `app_fr.arb` and `app_ar.arb`
+		- [x] Update `l10n_helper.dart`
+	- [x] Verification & Tests
+		- [x] Unit tests for `AdminRepository` and `SecurityLogRepository`
+		- [x] Unit tests for PDF generation (Unicode/RTL)
+		- [x] Widget tests for routing guards matrix
+		- [x] Manual verification of full admin workflow
+		- [x] Manual verification of PDF layout in FR/AR
+	- [x] Final Report & Cleanup

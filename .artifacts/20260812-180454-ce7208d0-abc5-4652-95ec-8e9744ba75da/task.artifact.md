@@ -1,0 +1,40 @@
+# Tasks
+
+- [/] Research & Planning
+    - [x] Audit existing codebase and dependencies
+    - [x] Create implementation plan
+- [ ] Milestone 1: Design System & Tokens
+    - [ ] Add dependencies (`flutter_animate`, `lucide_icons`, `animations`)
+    - [ ] Implement color tokens
+    - [ ] Implement typography tokens
+    - [ ] Implement layout tokens (spacing, radii, shadows)
+    - [ ] Update `AppTheme` with new tokens
+- [ ] Milestone 2: Core Components
+    - [ ] Create `SindButton` (Primary, Secondary, Tertiary)
+    - [ ] Create `SindCard` and `SindGlassCard`
+    - [ ] Create `SindProgressBar`
+    - [ ] Create `SindAnswerOption`
+- [x] Milestone 3: Entry Experience
+    - [x] Implement `SplashScreen` with organic animation
+    - [x] Implement 4-step `OnboardingScreen`
+    - [x] Refactor `LoginScreen` and `RegisterScreen`
+- [x] Milestone 4: Main Application
+    - [x] Redesign `UserDashboard` (Hero, Quick Actions, Check-in)
+    - [x] Redesign `AssessmentScreen` (Card-based, Transitions)
+    - [x] Implement `FinalMessagePage`
+    - [x] Redesign `ResultsScreen` (Needs cards, Priority visualization)
+- [x] Milestone 5: Wellness & Support Modules
+    - [x] Implement `BreathingScreen`
+    - [x] Implement `SpiritualScreen`
+    - [x] Implement `Plan7DaysScreen`
+    - [x] Implement `ConfidenceModule` (Journal/Successes)
+    - [x] Redesign `ResourcesScreen` (Support/Directory)
+- [x] Milestone 6: Profile & Settings
+    - [x] Implement `ProfilePage`
+    - [x] Implement `SettingsPage` (Language, Theme, Privacy)
+- [x] Milestone 7: Polish & Verification
+    - [x] Ensure RTL support across all new screens
+    - [x] Verify Dark Mode implementation
+    - [x] Document Design System
+    - [x] Implement `SafetyScreen` and Emergency UI
+    - [x] Final audit and tests
