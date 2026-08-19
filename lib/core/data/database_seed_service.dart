@@ -1,24 +1,34 @@
 import 'package:hive/hive.dart';
 import 'package:projetmascara/core/auth/user_role.dart';
 import 'package:projetmascara/core/models/user_model.dart';
-import 'package:projetmascara/features/assessment/assessment_record.dart';
 import 'package:projetmascara/features/professional/models/access_request.dart';
 import 'package:projetmascara/core/data/hive_config.dart';
 import 'package:projetmascara/core/services/logger_service.dart';
+import 'package:uuid/uuid.dart';
 
 class DatabaseSeedService {
   static Future<void> seed() async {
     try {
       final encryptionCipher = await HiveConfig.getEncryptionCipher();
-      
-      final usersBox = await Hive.openBox<UserModel>('users_box', encryptionCipher: encryptionCipher);
-      
+
+      final usersBox = await Hive.openBox<UserModel>(
+        'users_box',
+        encryptionCipher: encryptionCipher,
+      );
+
       if (usersBox.isEmpty) {
         logger.i('Seeding database with initial data...');
-        
+
         // 1. Seed Users
+        final uuidGen = Uuid();
+
+        final adminId = uuidGen.v4();
+        final psyId = uuidGen.v4();
+        final patientId = uuidGen.v4();
+        final pendingPsyId = uuidGen.v4();
+
         final admin = UserModel(
-          id: 'admin_1',
+          id: adminId,
           email: 'admin@neurosync.com',
           role: UserRole.admin,
           status: 'active',
@@ -29,9 +39,9 @@ class DatabaseSeedService {
           hasCompletedInitialAssessment: true,
           name: 'Administrateur SIND',
         );
-        
+
         final psy = UserModel(
-          id: 'psy_1',
+          id: psyId,
           email: 'psy@neurosync.com',
           role: UserRole.psychologist,
           status: 'approved',
@@ -42,9 +52,9 @@ class DatabaseSeedService {
           hasCompletedInitialAssessment: true,
           name: 'Dr. Expert',
         );
-        
+
         final patient = UserModel(
-          id: 'patient_1',
+          id: patientId,
           email: 'patient@neurosync.com',
           role: UserRole.user,
           status: 'active',
@@ -57,7 +67,7 @@ class DatabaseSeedService {
         );
 
         final pendingPsy = UserModel(
-          id: 'psy_pending',
+          id: pendingPsyId,
           email: 'new_psy@neurosync.com',
           role: UserRole.psychologist,
           status: 'pending',
@@ -68,35 +78,27 @@ class DatabaseSeedService {
           hasCompletedInitialAssessment: false,
           name: 'Candidat Psy',
         );
-        
+
         await usersBox.put(admin.id, admin);
         await usersBox.put(psy.id, psy);
         await usersBox.put(patient.id, patient);
         await usersBox.put(pendingPsy.id, pendingPsy);
 
-        // 2. Seed Assessment for Patient
-        final assessmentsBox = await Hive.openBox<AssessmentRecord>('assessments', encryptionCipher: encryptionCipher);
-        final assessment = AssessmentRecord(
-          id: 'record_1',
-          userId: 'patient_1',
-          answers: {'q_phq_anxiety': 3, 'q_stress_tension': 8},
-          safetyAnswers: {'q_safety_immediate_harm': false},
-          createdAt: DateTime.now().subtract(const Duration(days: 1)),
+        // 2. Seed Access Request
+        final requestsBox = await Hive.openBox<AccessRequest>(
+          'access_requests',
+          encryptionCipher: encryptionCipher,
         );
-        await assessmentsBox.put(assessment.id, assessment);
-
-        // 3. Seed Access Request
-        final requestsBox = await Hive.openBox<AccessRequest>('access_requests', encryptionCipher: encryptionCipher);
         final request = AccessRequest(
-          id: 'request_1',
-          userId: 'patient_1',
-          professionalId: 'psy_1',
+          id: uuidGen.v4(),
+          userId: patientId,
+          professionalId: psyId,
           status: AccessRequestStatus.pending,
           createdAt: DateTime.now(),
           message: "Demande de suivi pour stress élevé.",
         );
         await requestsBox.put(request.id, request);
-        
+
         logger.i('Database seeding completed successfully.');
       } else {
         logger.i('Database already contains data, skipping seed.');
