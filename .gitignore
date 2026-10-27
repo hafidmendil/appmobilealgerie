@@ -43,3 +43,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Artifacts, logs, temp scripts and sensitive accounts
+.artifacts/
+*.log
+accounts_list.md
+wilaya_psychologues_accounts.txt
+analyze_*.txt
+build_log.txt
+run_log.txt
+only_errors.txt
+

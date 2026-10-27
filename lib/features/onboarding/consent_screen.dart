@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projetmascara/generated/l10n/app_localizations.dart';
-import 'package:projetmascara/features/assessment/assessment_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:projetmascara/generated/l10n/app_localizations.dart';
 
 class ConsentScreen extends StatelessWidget {
   const ConsentScreen({super.key});
@@ -33,9 +34,7 @@ class ConsentScreen extends StatelessWidget {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => const AssessmentScreen()),
-                  );
+                  context.pushReplacement('/assessment');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(56),

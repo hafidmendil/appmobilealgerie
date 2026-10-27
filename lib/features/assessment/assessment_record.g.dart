@@ -23,13 +23,14 @@ class AssessmentRecordAdapter extends TypeAdapter<AssessmentRecord> {
       safetyAnswers: (fields[3] as Map).cast<String, bool>(),
       createdAt: fields[4] as DateTime,
       syncStatus: fields[5] as String,
+      finalMessage: fields[6] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AssessmentRecord obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class AssessmentRecordAdapter extends TypeAdapter<AssessmentRecord> {
       ..writeByte(4)
       ..write(obj.createdAt)
       ..writeByte(5)
-      ..write(obj.syncStatus);
+      ..write(obj.syncStatus)
+      ..writeByte(6)
+      ..write(obj.finalMessage);
   }
 
   @override

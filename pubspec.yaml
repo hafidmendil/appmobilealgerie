@@ -52,6 +52,10 @@ dependencies:
   pdf: ^3.11.1
   printing: ^5.13.2
   path_provider: ^2.1.5
+  url_launcher: ^6.3.2
+  http: ^1.6.0
+  crypto: ^3.0.2
+  fl_chart: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -59,12 +63,14 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   hive_generator: ^2.0.1
   build_runner: ^2.4.6
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
   flutter_launcher_icons: ^0.13.1
 
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/images/logo.svg"
+  image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
 
 flutter:
@@ -72,6 +78,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.svg
+    - assets/images/logo.png
+    - assets/images/app_icon.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

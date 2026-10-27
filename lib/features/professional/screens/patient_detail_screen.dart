@@ -1,11 +1,20 @@
+import '../../../core/localization/l10n_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projetmascara/features/professional/professional_provider.dart';
-import 'package:projetmascara/core/models/user_model.dart';
-import 'package:projetmascara/features/assessment/assessment_record.dart';
-import 'package:projetmascara/generated/l10n/app_localizations.dart';
-import 'package:intl/intl.dart';
-import 'package:projetmascara/features/results/professional_clinical_report_screen.dart';
+import '../professional_provider.dart';
+import '../../../core/models/user_model.dart';
+import '../../dashboard/widgets/patient_trend_chart.dart';
+import '../../../core/theme/tokens/app_colors.dart';
+import '../../../core/theme/tokens/app_spacing.dart';
+import '../../../core/widgets/sind_components.dart';
+import '../../adaptive_assessment/domain/engines/clinical_report_engine.dart';
+import '../../adaptive_assessment/domain/engines/scoring_engine.dart';
+import '../../adaptive_assessment/domain/engines/orientation_engine.dart';
+import '../../adaptive_assessment/domain/models/assessment_result.dart';
+import '../../adaptive_assessment/domain/models/assessment_axis.dart';
+import '../../assessment/assessment_record.dart';
+import '../../../generated/l10n/app_localizations.dart';
+import 'package:projetmascara/features/messaging/chat_page.dart';
 
 class PatientDetailScreen extends ConsumerWidget {
   final String patientId;
@@ -16,150 +25,227 @@ class PatientDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final patientAsync = ref.watch(patientDetailProvider(patientId));
     final assessmentsAsync = ref.watch(patientAssessmentsProvider(patientId));
-    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.patientDetail),
-      ),
+      appBar: AppBar(title: Text(context.l10n.auto_dossier_patient)),
       body: patientAsync.when(
-        data: (patient) {
-          if (patient == null) {
-            return Center(child: Text(l10n.deniedAccess));
-          }
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildInfoCard(context, patient),
-                const SizedBox(height: 24),
-                Text(
-                  l10n.assessmentHistory,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        data: (user) => user == null
+            ? Center(child: Text(context.l10n.auto_patient_introuvable))
+            : SingleChildScrollView(
+                padding: const EdgeInsets.all(AppSpacing.lg),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildPatientHeader(user),
+                    const SizedBox(height: 24),
+
+                    // Visual Trend Analysis
+                    SindGlassCard(
+                      color: Colors.white,
+                      child: assessmentsAsync.when(
+                        data: (records) => PatientTrendChart(records: records),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (e, _) =>
+                            Text("Erreur lors du chargement des bilans: $e"),
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
+                    const Text(
+                      "Observation Clinique",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _buildAIObservationCard(context, assessmentsAsync),
+
+                    const SizedBox(height: 24),
+                    const Text(
+                      "Actions Recommandées",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _buildActionButtons(context),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                assessmentsAsync.when(
-                  data: (assessments) => assessments.isEmpty
-                      ? Center(child: Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Text(l10n.noAssessmentsYet),
-                        ))
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: assessments.length,
-                          itemBuilder: (context, index) {
-                            final record = assessments[index];
-                            return _AssessmentRecordTile(record: record);
-                          },
-                        ),
-                  loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (e, st) => Text("${l10n.error_occurred}: $e"),
-                ),
-              ],
-            ),
-          );
-        },
+              ),
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, st) => Center(child: Text("${l10n.error_occurred}: $e")),
+        error: (e, _) => Center(child: Text("Erreur: $e")),
       ),
     );
   }
 
-  Widget _buildInfoCard(BuildContext context, UserModel patient) {
-    final l10n = AppLocalizations.of(context)!;
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-        side: BorderSide(color: Colors.grey.shade200),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
+  Widget _buildPatientHeader(UserModel user) {
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 40,
+          backgroundColor: AppColors.softOlive,
+          child: const Icon(
+            Icons.person,
+            size: 40,
+            color: AppColors.oliveGreen,
+          ),
+        ),
+        const SizedBox(width: 16),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              user.name ?? "Patient Anonyme",
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            Text(user.email, style: const TextStyle(color: Colors.grey)),
+            const SizedBox(height: 4),
             Row(
               children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.blueAccent.withOpacity(0.1),
-                  child: Text(
-                    patient.email.substring(0, 1).toUpperCase(),
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueAccent),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        patient.email,
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        "${l10n.status_label}: ${l10n.authorizedAccess}",
-                        style: const TextStyle(color: Colors.green),
-                      ),
-                    ],
-                  ),
-                ),
+                _buildStatusChip("Suivi Actif", Colors.green),
+                const SizedBox(width: 8),
+                if (user.wilayaId != null)
+                  _buildStatusChip("Wilaya ${user.wilayaId}", Colors.blue),
               ],
             ),
-            const Divider(height: 32),
-            _infoRow(l10n.user_label + " ID", patient.id),
-            _infoRow(l10n.status_label, patient.status),
           ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildStatusChip(String label, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: color.withAlpha(25),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: color.withAlpha(50)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: color,
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
   }
 
-  Widget _infoRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget _buildAIObservationCard(
+    BuildContext context,
+    AsyncValue<List<AssessmentRecord>> assessments,
+  ) {
+    final l10n = AppLocalizations.of(context)!;
+    return SindGlassCard(
+      color: AppColors.softBlue,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(color: Colors.blueGrey)),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.w500)),
+          Row(
+            children: [
+              const Icon(Icons.auto_awesome, color: AppColors.info, size: 20),
+              const SizedBox(width: 8),
+              Text(
+                context.l10n.auto_analyse_assiste_style_textstyle,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          assessments.when(
+            data: (records) {
+              if (records.isEmpty) {
+                return Text(context.l10n.auto_analyse_indisponible);
+              }
+              final lastRecord = records.last;
+              final result = _mapRecordToResult(lastRecord);
+              return Text(
+                ClinicalReportEngine().generateSynthesis(result, l10n),
+                style: const TextStyle(fontSize: 14, height: 1.4),
+              );
+            },
+            loading: () => const CircularProgressIndicator(),
+            error: (_, __) => Text(context.l10n.auto_analyse_indisponible),
+          ),
         ],
       ),
     );
   }
-}
 
-class _AssessmentRecordTile extends StatelessWidget {
-  final AssessmentRecord record;
+  AssessmentResult _mapRecordToResult(AssessmentRecord record) {
+    final needs = ScoringEngine().calculateAxisNeeds(
+      record.answers.map((key, value) => MapEntry(key, value)),
+    );
+    final orientation = OrientationEngine().determineLevel(
+      record.answers.map((key, value) => MapEntry(key, value)),
+      needs,
+    );
 
-  const _AssessmentRecordTile({required this.record});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final dateStr = DateFormat.yMMMd(Localizations.localeOf(context).languageCode).add_Hm().format(record.createdAt);
-    
-    // We should ideally use DecisionEngine to show the summary here
-    // but for now let's just show the date and a "view" button
-    
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        leading: const Icon(Icons.assignment_outlined, color: Colors.blueAccent),
-        title: Text("${l10n.assessmentTitle} - $dateStr"),
-        subtitle: Text("${l10n.status_label}: ${record.syncStatus}"),
-        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProfessionalClinicalReportScreen(record: record),
-            ),
-          );
-        },
+    return AssessmentResult(
+      sessionId: record.id,
+      axisNeeds: needs,
+      orientationLevel: orientation,
+      identifiedThemes: OrientationEngine().getJustifications(
+        needs,
+        orientation,
       ),
+      recommendationIds: [],
+      exerciseIds: [],
+      spiritualContentIds: [],
+      createdAt: record.createdAt,
+    );
+  }
+
+  Widget _buildActionButtons(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: OutlinedButton.icon(
+            onPressed: () {
+              // open chat with this patient
+              final otherId = patientId;
+              final otherName = 'Patient';
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      ChatPage(otherId: otherId, otherName: otherName),
+                ),
+              );
+            },
+            icon: const Icon(Icons.chat_bubble_outline),
+            label: Text(context.l10n.auto_message),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: ElevatedButton.icon(
+            onPressed: () {
+              // open chat as placeholder for teleconsult
+              final otherId = patientId;
+              final otherName = 'Patient';
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      ChatPage(otherId: otherId, otherName: otherName),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.oliveGreen,
+              foregroundColor: Colors.white,
+            ),
+            icon: const Icon(Icons.videocam_outlined),
+            label: Text(context.l10n.auto_tlconsult),
+          ),
+        ),
+      ],
     );
   }
 }

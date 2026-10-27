@@ -18,19 +18,19 @@ enum AccessRequestStatus {
 class AccessRequest extends HiveObject {
   @HiveField(0)
   final String id;
-  
+
   @HiveField(1)
   final String userId;
-  
+
   @HiveField(2)
   final String professionalId;
-  
+
   @HiveField(3)
   final AccessRequestStatus status;
-  
+
   @HiveField(4)
   final DateTime createdAt;
-  
+
   @HiveField(5)
   final String? message;
 

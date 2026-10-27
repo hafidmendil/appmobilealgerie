@@ -8,7 +8,8 @@ class RecommendationBank {
       titleFr: "Pause respiratoire",
       titleAr: "استراحة تنفس",
       titleDarja: "ريح شوية واتنفس",
-      descriptionFr: "Prends 5 minutes pour fermer les yeux et respirer profondément.",
+      descriptionFr:
+          "Prends 5 minutes pour fermer les yeux et respirer profondément.",
       descriptionAr: "خذ 5 دقائق لإغلاق عينيك والتنفس بعمق.",
       descriptionDarja: "غمض عينيك وريح 5 دقايق واتنفس بالعقل.",
       axis: AssessmentAxis.stressAnxiety,

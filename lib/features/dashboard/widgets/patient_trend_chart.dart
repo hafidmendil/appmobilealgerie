@@ -1,3 +1,4 @@
+import '../../../core/localization/l10n_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../assessment/assessment_record.dart';
@@ -12,7 +13,7 @@ class PatientTrendChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (records.isEmpty) {
-      return const Center(child: Text("Pas assez de données pour l'analyse."));
+      return Center(child: Text(context.l10n.auto_pas_assez_donnes_pour));
     }
 
     final sortedRecords = List<AssessmentRecord>.from(records)
@@ -40,7 +41,8 @@ class PatientTrendChart extends StatelessWidget {
                   sideTitles: SideTitles(
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
-                      if (value.toInt() < 0 || value.toInt() >= sortedRecords.length) {
+                      if (value.toInt() < 0 ||
+                          value.toInt() >= sortedRecords.length) {
                         return const SizedBox.shrink();
                       }
                       final date = sortedRecords[value.toInt()].createdAt;
@@ -54,8 +56,12 @@ class PatientTrendChart extends StatelessWidget {
                     },
                   ),
                 ),
-                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles: const AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                topTitles: const AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
               ),
               borderData: FlBorderData(show: false),
               lineBarsData: [
@@ -73,7 +79,10 @@ class PatientTrendChart extends StatelessWidget {
                 // Anxiety Line
                 LineChartBarData(
                   spots: sortedRecords.asMap().entries.map((e) {
-                    final anxietyScore = _calculateScore(e.value, ['anx', 'gad']);
+                    final anxietyScore = _calculateScore(e.value, [
+                      'anx',
+                      'gad',
+                    ]);
                     return FlSpot(e.key.toDouble(), anxietyScore.toDouble());
                   }).toList(),
                   isCurved: true,
@@ -107,7 +116,9 @@ class PatientTrendChart extends StatelessWidget {
         count++;
       }
     });
-    return count > 0 ? (total / count) * 10 : 0.0; // Normalized to 0-30 scale aprox
+    return count > 0
+        ? (total / count) * 10
+        : 0.0; // Normalized to 0-30 scale aprox
   }
 
   Widget _buildLegend(Color color, String label) {

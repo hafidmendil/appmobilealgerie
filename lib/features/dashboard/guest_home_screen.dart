@@ -1,3 +1,4 @@
+import '../../core/localization/l10n_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
@@ -9,14 +10,15 @@ import '../../core/theme/tokens/app_colors.dart';
 import '../../core/theme/tokens/app_spacing.dart';
 import '../../core/theme/tokens/app_radii.dart';
 import '../../core/widgets/sind_components.dart';
+import '../adaptive_assessment/presentation/providers/assessment_provider.dart';
 
-class GuestHomeScreen extends StatelessWidget {
+class GuestHomeScreen extends ConsumerWidget {
   const GuestHomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -33,17 +35,30 @@ class GuestHomeScreen extends StatelessWidget {
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(l10n.guestTitle, style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+              title: Text(
+                l10n.guestTitle,
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               background: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [AppColors.softOlive.withOpacity(0.2), AppColors.warmBeige],
+                    colors: [
+                      AppColors.softOlive.withOpacity(0.2),
+                      AppColors.warmBeige,
+                    ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                   ),
                 ),
                 child: Center(
-                  child: const Icon(LucideIcons.leaf, size: 60, color: AppColors.oliveGreen).animate().scale().fadeIn(),
+                  child: const Icon(
+                    LucideIcons.leaf,
+                    size: 60,
+                    color: AppColors.oliveGreen,
+                  ).animate().scale().fadeIn(),
                 ),
               ),
             ),
@@ -54,20 +69,17 @@ class GuestHomeScreen extends StatelessWidget {
               delegate: SliverChildListDelegate([
                 Text(
                   l10n.welcomeGuest,
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ).animate().fadeIn().slideX(),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
                   l10n.guestSubtitle,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
                 ).animate().fadeIn(delay: 200.ms),
-                _FeatureCard(
-                  title: "Mon Historique",
-                  description: "Retrouvez vos précédentes évaluations enregistrées localement.",
-                  icon: LucideIcons.history,
-                  color: AppColors.deepOlive,
-                  onTap: () => context.push('/history'),
-                ).animate().fadeIn(delay: 600.ms).slideY(begin: 0.1, end: 0),
 
                 const SizedBox(height: AppSpacing.xl),
 
@@ -76,28 +88,23 @@ class GuestHomeScreen extends StatelessWidget {
                   description: l10n.assessmentDesc,
                   icon: LucideIcons.clipboard_check,
                   color: AppColors.oliveGreen,
-                  onTap: () => context.push('/assessment'),
+                  onTap: () {
+                    ref.read(assessmentProvider.notifier).startSession("guest");
+                    context.push('/assessment');
+                  },
                 ).animate().fadeIn(delay: 400.ms).slideY(begin: 0.1, end: 0),
 
                 _FeatureCard(
-                  title: "Bibliothèque de ressources",
-                  description: "Accédez à nos conseils, versets et hadiths inspirants.",
+                  title: l10n.resources,
+                  description: l10n.resourcesDesc,
                   icon: LucideIcons.book_open,
                   color: AppColors.skyBlue,
                   onTap: () => context.push('/resources'),
                 ).animate().fadeIn(delay: 500.ms).slideY(begin: 0.1, end: 0),
 
                 _FeatureCard(
-                  title: "Ma Progression",
-                  description: "Suivez vos micro-actions et vos moments de réflexion.",
-                  icon: LucideIcons.award,
-                  color: AppColors.softOlive,
-                  onTap: () => context.push('/progress'),
-                ).animate().fadeIn(delay: 600.ms).slideY(begin: 0.1, end: 0),
-
-                _FeatureCard(
-                  title: "Mon Historique",
-                  description: "Retrouvez vos précédentes évaluations enregistrées localement.",
+                  title: l10n.history,
+                  description: l10n.noAssessmentsYet,
                   icon: LucideIcons.history,
                   color: AppColors.deepOlive,
                   onTap: () => context.push('/history'),
@@ -105,12 +112,15 @@ class GuestHomeScreen extends StatelessWidget {
 
                 const SizedBox(height: AppSpacing.xl),
                 _DailyAdviceCard(l10n: l10n).animate().fadeIn(delay: 800.ms),
-                
+
                 const SizedBox(height: AppSpacing.xxl),
-                
+
                 TextButton(
                   onPressed: () => context.push('/privacy'),
-                  child: Text(l10n.privacyPolicy, style: const TextStyle(color: AppColors.textMuted)),
+                  child: Text(
+                    l10n.privacyPolicy,
+                    style: const TextStyle(color: AppColors.textMuted),
+                  ),
                 ),
               ]),
             ),
@@ -163,17 +173,25 @@ class _FeatureCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       description,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                   ],
                 ),
               ),
-              const Icon(LucideIcons.chevron_right, color: AppColors.textMuted, size: 20),
+              const Icon(
+                LucideIcons.chevron_right,
+                color: AppColors.textMuted,
+                size: 20,
+              ),
             ],
           ),
         ),
@@ -196,9 +214,19 @@ class _DailyAdviceCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(LucideIcons.sparkles, color: AppColors.oliveGreen, size: 20),
+              const Icon(
+                LucideIcons.sparkles,
+                color: AppColors.oliveGreen,
+                size: 20,
+              ),
               const SizedBox(width: AppSpacing.sm),
-              Text(l10n.adviceTitle, style: const TextStyle(fontWeight: FontWeight.bold, color: AppColors.oliveGreen)),
+              Text(
+                l10n.adviceTitle,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.oliveGreen,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: AppSpacing.md),
@@ -215,19 +243,14 @@ class _LanguageSwitcher extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(localeProvider);
-    
+
     return PopupMenuButton<Locale>(
       icon: const Icon(LucideIcons.languages, color: AppColors.textPrimary),
-      onSelected: (locale) => ref.read(localeProvider.notifier).setLocale(locale),
+      onSelected: (locale) =>
+          ref.read(localeProvider.notifier).setLocale(locale),
       itemBuilder: (context) => [
-        const PopupMenuItem(
-          value: Locale('fr'),
-          child: Text("Français"),
-        ),
-        const PopupMenuItem(
-          value: Locale('ar'),
-          child: Text("العربية"),
-        ),
+        PopupMenuItem(value: const Locale('fr'), child: Text(context.l10n.auto_franais)),
+        PopupMenuItem(value: const Locale('ar'), child: Text(context.l10n.auto_auto_text_0)),
       ],
     );
   }

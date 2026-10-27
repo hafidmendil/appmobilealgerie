@@ -5,7 +5,7 @@ class WhatsAppService {
   /// Converts Algerian local format (0XXXXXXXX) to international (+213XXXXXXXX).
   Future<void> openWhatsApp(String phoneNumber) async {
     String formattedNumber = phoneNumber.trim().replaceAll(' ', '');
-    
+
     // Convert 06 to +2136, 05 to +2135, 07 to +2137
     if (formattedNumber.startsWith('0')) {
       formattedNumber = '+213${formattedNumber.substring(1)}';
@@ -15,7 +15,7 @@ class WhatsAppService {
     }
 
     final Uri whatsappUri = Uri.parse("https://wa.me/$formattedNumber");
-    
+
     if (await canLaunchUrl(whatsappUri)) {
       await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
     } else {

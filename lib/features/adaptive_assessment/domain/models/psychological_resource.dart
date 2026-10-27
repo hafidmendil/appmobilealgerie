@@ -1,11 +1,6 @@
 import 'assessment_axis.dart';
 
-enum ResourceCategory {
-  psychological,
-  practical,
-  spiritual,
-  educational,
-}
+enum ResourceCategory { psychological, practical, spiritual, educational }
 
 class PsychologicalResource {
   final String id;

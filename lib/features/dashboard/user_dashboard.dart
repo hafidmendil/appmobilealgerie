@@ -9,6 +9,7 @@ import '../../core/theme/tokens/app_colors.dart';
 import '../../core/theme/tokens/app_spacing.dart';
 import '../../core/theme/tokens/app_radii.dart';
 import '../../generated/l10n/app_localizations.dart';
+import '../progress/providers/gamification_provider.dart';
 
 class UserDashboard extends ConsumerWidget {
   const UserDashboard({super.key});
@@ -22,6 +23,15 @@ class UserDashboard extends ConsumerWidget {
     final userName = user != null ? user.email.split('@').first : "Visiteur";
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => context.push('/protection'),
+        backgroundColor: Colors.redAccent,
+        icon: const Icon(LucideIcons.shield_alert, color: Colors.white),
+        label: Text(
+          l10n.prot_danger_now,
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -29,10 +39,15 @@ class UserDashboard extends ConsumerWidget {
             floating: true,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              titlePadding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: AppSpacing.md),
+              titlePadding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.lg,
+                vertical: AppSpacing.md,
+              ),
               title: Text(
                 "${l10n.greeting} $userName 👋",
-                style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               centerTitle: false,
             ),
@@ -50,10 +65,12 @@ class UserDashboard extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Hero Card
-                  _HeroCard(l10n: l10n).animate().fadeIn().slideY(begin: 0.1, end: 0),
-                  
+                  _HeroCard(
+                    l10n: l10n,
+                  ).animate().fadeIn().slideY(begin: 0.1, end: 0),
+
                   const SizedBox(height: AppSpacing.xl),
-                  
+
                   // Daily Check-in
                   Text(
                     l10n.how_feel_today,
@@ -61,9 +78,9 @@ class UserDashboard extends ConsumerWidget {
                   ).animate().fadeIn(delay: 200.ms),
                   const SizedBox(height: AppSpacing.md),
                   _DailyCheckIn(l10n: l10n).animate().fadeIn(delay: 300.ms),
-                  
+
                   const SizedBox(height: AppSpacing.xl),
-                  
+
                   // Quick Actions
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,30 +97,40 @@ class UserDashboard extends ConsumerWidget {
                   ).animate().fadeIn(delay: 400.ms),
                   const SizedBox(height: AppSpacing.md),
                   _QuickActionsGrid(l10n: l10n).animate().fadeIn(delay: 500.ms),
-                  
+
                   const SizedBox(height: AppSpacing.xl),
-                  
+
                   // Advice of the day
                   SindGlassCard(
                     color: AppColors.softBlue,
                     child: Row(
                       children: [
-                        const Icon(LucideIcons.sparkles, color: AppColors.info, size: 32),
+                        const Icon(
+                          LucideIcons.sparkles,
+                          color: AppColors.info,
+                          size: 32,
+                        ),
                         const SizedBox(width: AppSpacing.md),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(l10n.adviceTitle, style: theme.textTheme.titleMedium),
+                              Text(
+                                l10n.adviceTitle,
+                                style: theme.textTheme.titleMedium,
+                              ),
                               const SizedBox(height: 4),
-                              Text(l10n.dailyAdvice, style: theme.textTheme.bodyMedium),
+                              Text(
+                                l10n.dailyAdvice,
+                                style: theme.textTheme.bodyMedium,
+                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
                   ).animate().fadeIn(delay: 600.ms),
-                  
+
                   const SizedBox(height: AppSpacing.xxl),
                 ],
               ),
@@ -167,12 +194,12 @@ class _HeroCard extends StatelessWidget {
   }
 }
 
-class _DailyCheckIn extends StatelessWidget {
+class _DailyCheckIn extends ConsumerWidget {
   final AppLocalizations l10n;
   const _DailyCheckIn({required this.l10n});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final moods = [
       {'icon': '🙂', 'label': l10n.mood_ok},
       {'icon': '😐', 'label': l10n.mood_neutral},
@@ -186,15 +213,33 @@ class _DailyCheckIn extends StatelessWidget {
         return Expanded(
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
-                padding: const EdgeInsets.all(AppSpacing.md),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: AppRadii.mediumRadius,
-                  border: Border.all(color: AppColors.textMuted.withOpacity(0.1)),
+              InkWell(
+                borderRadius: AppRadii.mediumRadius,
+                onTap: () async {
+                  await ref
+                      .read(gamificationProvider.notifier)
+                      .recordMood(mood['icon']!);
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(l10n.action_success)),
+                    );
+                  }
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+                  padding: const EdgeInsets.all(AppSpacing.md),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: AppRadii.mediumRadius,
+                    border: Border.all(
+                      color: AppColors.textMuted.withOpacity(0.1),
+                    ),
+                  ),
+                  child: Text(
+                    mood['icon']!,
+                    style: const TextStyle(fontSize: 24),
+                  ),
                 ),
-                child: Text(mood['icon']!, style: const TextStyle(fontSize: 24)),
               ),
               const SizedBox(height: AppSpacing.xs),
               Text(
@@ -248,6 +293,18 @@ class _QuickActionsGrid extends StatelessWidget {
           color: AppColors.info,
           onTap: () => context.push('/spiritual'),
         ),
+        _QuickActionCard(
+          title: 'Orientation',
+          icon: LucideIcons.map_pinned,
+          color: AppColors.info,
+          onTap: () => context.push('/orientation/network'),
+        ),
+        _QuickActionCard(
+          title: 'Protection',
+          icon: LucideIcons.shield,
+          color: Colors.deepOrange,
+          onTap: () => context.push('/protection'),
+        ),
       ],
     );
   }
@@ -280,10 +337,7 @@ class _QuickActionCard extends StatelessWidget {
             children: [
               Icon(icon, color: color, size: 32),
               const SizedBox(height: AppSpacing.sm),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
+              Text(title, style: Theme.of(context).textTheme.titleSmall),
             ],
           ),
         ),

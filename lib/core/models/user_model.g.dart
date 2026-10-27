@@ -27,13 +27,15 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       prefSpiritual: fields[7] as bool,
       hasCompletedInitialAssessment: fields[8] as bool,
       name: fields[9] as String?,
+      mfaRequired: fields[10] as bool? ?? false,
+      mustChangePassword: fields[11] as bool? ?? false,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +55,11 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(8)
       ..write(obj.hasCompletedInitialAssessment)
       ..writeByte(9)
-      ..write(obj.name);
+      ..write(obj.name)
+      ..writeByte(10)
+      ..write(obj.mfaRequired)
+      ..writeByte(11)
+      ..write(obj.mustChangePassword);
   }
 
   @override

@@ -1,0 +1,641 @@
+SPECIFICATION DE LA VERSION FINALE TESTABLE
+Projet Mascara - Prevention, signalement et orientation face a la violence interpersonnelle
+Version du document : 1.0
+Date : 25/08/2026
+
+======================================================================
+1. OBJET DU DOCUMENT
+======================================================================
+
+Ce document definit le travail a realiser pour transformer le prototype
+actuel en une version finale testable du projet Mascara.
+
+La version visee doit permettre a une personne de :
+- reconnaitre des signes de danger ou de violence ;
+- demander de l'aide de maniere simple et confidentielle ;
+- declarer une situation de violence, avec ou sans identification ;
+- evaluer le caractere immediat du danger ;
+- recevoir une orientation adaptee ;
+- consulter des ressources et des professionnels verifies ;
+- suivre l'etat de sa demande lorsqu'elle a accepte un accompagnement.
+
+La version visee ne doit pas :
+- etablir un diagnostic medical ou psychologique ;
+- declarer une personne coupable ;
+- remplacer la police, la justice, les urgences, un medecin ou un service
+  social ;
+- transmettre automatiquement un signalement a une autorite sans base
+  legale, consentement ou regle d'urgence clairement validee ;
+- exposer les donnees sensibles a un utilisateur non autorise.
+
+Le present document est une specification fonctionnelle et technique de
+travail. Les numeros d'urgence, les procedures d'alerte et les references
+juridiques doivent etre verifies avec les sources officielles algeriennes
+avant une mise en production.
+
+======================================================================
+2. ETAT ACTUEL DU PROJET
+======================================================================
+
+Le projet Flutter dispose deja de plusieurs fondations reutilisables :
+
+- evaluation adaptative des besoins et moteur de securite ;
+- niveaux d'orientation existants ;
+- ecran d'aide urgente ;
+- catalogue de ressources et de professionnels ;
+- relation patient-psychologue et messagerie ;
+- espaces patient, psychologue et administrateur ;
+- stockage local Hive chiffre ;
+- gestion du consentement et ecrans de confidentialite ;
+- internationalisation francaise et arabe ;
+- tests unitaires du moteur de securite.
+
+Limites actuelles a traiter :
+
+- absence d'un dossier de signalement dedie a la violence ;
+- absence d'un historique structure des faits et menaces ;
+- absence d'une evaluation de risque propre a la violence ;
+- absence d'un workflow complet signalement, verification, orientation et
+  suivi ;
+- absence de statuts de dossier et de plan de securite ;
+- absence de permissions specialisees pour les donnees de protection ;
+- stockage principalement local, sans backend de production ;
+- tests actuels du moteur de securite a verifier et a completer ;
+- certaines informations sensibles ne doivent pas etre envoyees dans les
+  journaux techniques.
+
+======================================================================
+3. PERIMETRE DE LA VERSION FINALE TESTABLE
+======================================================================
+
+3.1 Fonctionnalites incluses
+
+A. Acces rapide a la securite
+- bouton visible depuis le tableau de bord ;
+- action "Je suis en danger maintenant" ;
+- appel vers un numero officiellement configure ;
+- contact d'une personne de confiance ;
+- acces aux ressources locales ;
+- possibilite de quitter rapidement un ecran sensible ;
+- message clair indiquant que l'application ne remplace pas les secours.
+
+B. Signalement d'une situation
+- formulaire guide et progressif ;
+- choix du type de violence ;
+- choix du lieu ou contexte ;
+- indication de la frequence ;
+- indication de la date ou de la periode ;
+- description libre facultative ;
+- choix du niveau d'anonymat ;
+- choix du type d'aide souhaite ;
+- affichage du consentement avant tout partage ;
+- confirmation locale de l'enregistrement.
+
+C. Evaluation de la securite
+- questions courtes sur le danger immediat ;
+- menace de mort ou de blessure grave ;
+- arme ou moyen dangereux ;
+- blessures ou besoin medical ;
+- auteur present, proche ou en contact ;
+- impossibilite de se mettre a l'abri ;
+- presence d'un enfant ou d'une personne dependante ;
+- escalade ou repetition des faits ;
+- controle economique, isolement ou surveillance ;
+- menaces numeriques, chantage ou diffusion de contenu.
+
+D. Orientation
+- urgence et mise a l'abri ;
+- service de sante ;
+- psychologue ;
+- assistant social ;
+- association ou structure locale ;
+- accompagnement juridique, lorsque le service est confirme ;
+- suivi ulterieur et nouvelle evaluation.
+
+E. Suivi du dossier
+- statut lisible pour la personne ;
+- date de creation et de mise a jour ;
+- historique minimal des actions ;
+- professionnel ou service destinataire, si partage autorise ;
+- possibilite de retirer un partage futur ;
+- cloture avec motif et date.
+
+F. Espaces professionnels
+- reception des dossiers autorises ;
+- tri par niveau de priorite ;
+- consultation des informations strictement necessaires ;
+- verification humaine ;
+- ajout d'une orientation ;
+- planification d'un suivi ;
+- ajout de notes professionnelles separees des donnees utilisateur ;
+- interdiction de modifier le recit original sans trace.
+
+G. Administration
+- validation des professionnels ;
+- gestion des ressources et numeros verifies ;
+- gestion des categories et regles d'orientation ;
+- visualisation de statistiques anonymisees ;
+- consultation des journaux d'acces ;
+- gestion des versions de consentement ;
+- aucun acces general et non justifie au contenu des dossiers.
+
+3.2 Fonctionnalites exclues de la premiere version testable
+
+- decision automatique de placement ou de retrait d'un enfant ;
+- transmission automatique aux autorites sans validation juridique ;
+- diagnostic de trouble mental ou de dangerosite d'une personne ;
+- reconnaissance faciale, surveillance generale ou analyse clandestine ;
+- analyse automatique des conversations privees ;
+- geolocalisation permanente ;
+- promesse de reponse humaine 24 heures sur 24 ;
+- statistiques publiques permettant d'identifier une victime ;
+- remplacement d'un service d'urgence reel.
+
+======================================================================
+4. PARCOURS UTILISATEUR PRINCIPAL
+======================================================================
+
+4.1 Parcours urgence
+
+1. L'utilisateur appuie sur "Je suis en danger maintenant".
+2. L'application affiche un message court et non culpabilisant.
+3. L'utilisateur peut appeler le numero configure.
+4. L'utilisateur peut contacter une personne de confiance.
+5. L'utilisateur peut consulter les ressources disponibles.
+6. L'application ne demande pas un long formulaire avant de proposer
+   l'action urgente.
+7. L'action et le message affiches doivent rester utilisables hors ligne.
+
+4.2 Parcours signalement
+
+1. L'utilisateur choisit "Signaler une situation".
+2. L'application explique ce qui sera conserve et ce qui pourra etre
+   partage.
+3. L'utilisateur choisit anonyme, identifie ou partage ulterieur.
+4. L'utilisateur selectionne le ou les types de violence.
+5. L'utilisateur renseigne le contexte, la repetition et le danger actuel.
+6. L'application pose les questions de securite prioritaires.
+7. Le moteur calcule une priorite indicative.
+8. L'utilisateur relit le resume avant enregistrement.
+9. Le dossier est chiffre et enregistre.
+10. L'application propose une orientation adaptee.
+11. Le partage avec un professionnel exige un consentement explicite,
+    sauf procedure d'urgence legalement validee et documentee.
+
+4.3 Parcours professionnel
+
+1. Le professionnel se connecte avec un compte approuve.
+2. Il voit uniquement les dossiers qui lui sont attribues ou partages.
+3. Il consulte le niveau de priorite et les indicateurs necessaires.
+4. Il verifie la situation avec l'utilisateur lorsque cela est possible.
+5. Il choisit une action : contacter, orienter, proteger, surveiller ou
+   cloturer.
+6. Chaque action est enregistree dans un journal d'audit.
+7. Les notes internes ne sont jamais visibles par un autre role sans droit
+   explicite.
+
+4.4 Parcours administrateur
+
+1. L'administrateur gere les comptes professionnels.
+2. Il gere les ressources verifiees et leur date de verification.
+3. Il gere les regles, libelles et versions de consentement.
+4. Il consulte des indicateurs agreges et anonymises.
+5. Il consulte les acces aux dossiers en cas de controle autorise.
+6. Il ne consulte pas automatiquement le recit detaille des victimes.
+
+======================================================================
+5. CATEGORIES DE VIOLENCE A PREVOIR
+======================================================================
+
+Les categories doivent etre presentes dans l'interface en francais et en
+arabe. Elles doivent rester compréhensibles et permettre plusieurs choix :
+
+- violence physique ;
+- violence psychologique ou verbale ;
+- violence sexuelle ;
+- violence economique ou patrimoniale ;
+- violence familiale ou conjugale ;
+- harcelement scolaire ou professionnel ;
+- violence de quartier ou menace de groupe ;
+- violence numerique : menace, chantage, diffusion, usurpation ou
+  harcelement en ligne ;
+- negligence ou maltraitance d'un enfant ;
+- exploitation ou traite, uniquement avec orientation humaine specialisee.
+
+La selection d'une categorie ne doit pas produire de conclusion juridique.
+Elle sert a adapter les questions et l'orientation.
+
+======================================================================
+6. MODELE DE DONNEES PROPOSE
+======================================================================
+
+6.1 ViolenceReport
+
+Champs obligatoires :
+- id ;
+- createdAt ;
+- updatedAt ;
+- reporterMode : anonymous, identified, deferred ;
+- violenceTypes ;
+- contextType ;
+- occurrencePattern ;
+- riskAssessmentId ;
+- status ;
+- consentVersion ;
+- confidentialityLevel.
+
+Champs optionnels :
+- userId, uniquement si l'utilisateur est identifie ;
+- approximateDate ;
+- approximateLocation, sans adresse exacte par defaut ;
+- description ;
+- victimAgeGroup ;
+- relationshipToAuthor ;
+- preferredReferralType ;
+- attachmentReferences, desactivees par defaut ;
+- assignedProfessionalId ;
+- closedAt ;
+- closureReason.
+
+6.2 RiskAssessment
+
+- id ;
+- reportId ;
+- assessedAt ;
+- level : none, attention, moderate, high, immediate ;
+- factors ;
+- emergencyFlags ;
+- recommendedActions ;
+- engineVersion ;
+- assessedBy : system, professional ;
+- humanReviewRequired.
+
+6.3 Referral
+
+- id ;
+- reportId ;
+- referralType ;
+- destinationId ;
+- reason ;
+- createdAt ;
+- createdBy ;
+- status ;
+- consentRequired ;
+- consentGrantedAt ;
+- followUpDate ;
+- completedAt.
+
+6.4 SafetyPlan
+
+- id ;
+- reportId ;
+- createdAt ;
+- safeContacts ;
+- safePlaces ;
+- emergencyActions ;
+- communicationPreferences ;
+- reviewDate.
+
+Le plan ne doit pas enregistrer un detail qui pourrait mettre la personne
+plus en danger si son appareil est consulte par l'auteur des violences.
+
+6.5 AuditEvent
+
+- id ;
+- timestamp ;
+- actorId ;
+- actorRole ;
+- action ;
+- targetType ;
+- targetId ;
+- reason ;
+- success ;
+- technicalMetadata minimale.
+
+Le recit de la victime, le contenu des messages et les donnees medicales
+ne doivent pas apparaitre dans les logs techniques.
+
+======================================================================
+7. REGLES D'EVALUATION DU RISQUE
+======================================================================
+
+7.1 Principe general
+
+Le moteur donne une priorite indicative a une situation, et non une
+qualification juridique. Un indicateur critique doit primer sur le score
+cumulatif. Toute priorite haute ou immediate doit proposer une verification
+humaine lorsque cela est possible.
+
+7.2 Indicateurs immediats
+
+Le niveau "immediate" est declenche si l'utilisateur indique au moins un
+facteur critique :
+
+- danger present au moment du questionnaire ;
+- menace de mort ou de blessure grave credible ;
+- arme ou moyen dangereux accessible ;
+- blessure grave ou urgence medicale ;
+- auteur present et impossibilite de se mettre a l'abri ;
+- risque grave pour un enfant ou une personne dependante ;
+- tentative d'enlevement, sequestration ou enfermement ;
+- escalade rapide accompagnee d'une menace directe.
+
+Dans ce cas, l'application affiche d'abord les options d'urgence. Elle ne
+force pas l'utilisateur a terminer le signalement avant de recevoir cette
+information.
+
+7.3 Niveaux non immediats
+
+- Attention : un indicateur non critique, sans repetition importante.
+- Moderate : plusieurs indicateurs, repetition, isolement, controle ou
+  menace non immediate.
+- High : escalade, menace serieuse, violence repetee, dependance forte,
+  enfant expose ou absence de solution de protection.
+- None : aucun indicateur declare. Cela ne signifie pas absence de violence.
+
+Les seuils et les poids doivent etre definis dans un fichier de regles
+versionne et couverts par des tests unitaires. Ils doivent pouvoir etre
+modifies sans modifier l'historique des evaluations anciennes.
+
+======================================================================
+8. SECURITE, CONSENTEMENT ET CONFIDENTIALITE
+======================================================================
+
+Exigences obligatoires :
+
+- consentement distinct pour enregistrer un signalement identifie ;
+- consentement distinct pour partager avec un professionnel ;
+- consentement distinct pour partager une piece jointe ;
+- possibilite de refuser une question non indispensable ;
+- minimisation des donnees collectees ;
+- stockage chiffre sur l'appareil ;
+- absence de donnees sensibles dans les logs ;
+- controle d'acces par role ;
+- journalisation de chaque acces professionnel ;
+- masquage des informations non necessaires ;
+- suppression ou anonymisation selon la politique validee ;
+- gestion de la revocation du consentement ;
+- avertissement sur les risques d'un appareil partage ;
+- protection supplementaire pour les mineurs ;
+- aucune promesse de secret absolu en cas d'obligation legale validee ;
+- politique de conservation documentee avant la production.
+
+Les donnees locales doivent etre separees des donnees d'authentification.
+Une future synchronisation serveur devra utiliser une API authentifiee,
+chiffrement en transit, controle d'autorisation cote serveur et strategie
+de suppression. Le chiffrement local seul ne suffit pas pour une mise en
+production multi-utilisateur.
+
+======================================================================
+9. ECRANS A REALISER
+======================================================================
+
+Ecrans utilisateur :
+
+- Protection et aide immediate ;
+- Introduction au signalement ;
+- Choix de confidentialite et consentement ;
+- Formulaire de signalement ;
+- Evaluation de securite ;
+- Resume avant confirmation ;
+- Resultat et orientation ;
+- Mes signalements ;
+- Detail d'un signalement ;
+- Plan de securite ;
+- Ressources verifiees.
+
+Ecrans professionnel :
+
+- File des signalements autorises ;
+- Detail securise d'un dossier ;
+- Verification et changement de statut ;
+- Ajout d'une orientation ;
+- Plan de suivi ;
+- Historique d'actions ;
+- Notes professionnelles.
+
+Ecrans administrateur :
+
+- Categories de violence ;
+- Regles de risque ;
+- Ressources et numeros ;
+- Gestion des professionnels ;
+- Statistiques anonymisees ;
+- Journaux d'acces ;
+- Versions des consentements.
+
+Tous les ecrans doivent fonctionner en francais et en arabe, respecter le
+RTL en arabe, avoir des zones tactiles d'au moins 48 pixels et rester
+utilisables sur petit ecran.
+
+======================================================================
+10. PERSISTANCE ET ARCHITECTURE
+======================================================================
+
+Organisation recommandee :
+
+lib/features/protection/
+- data/
+- domain/models/
+- domain/engines/
+- domain/repositories/
+- presentation/providers/
+- presentation/pages/
+- presentation/widgets/
+
+A ajouter au stockage local :
+- reports_box ;
+- risk_assessments_box ;
+- referrals_box ;
+- safety_plans_box ;
+- protection_audit_box ;
+- protection_settings_box.
+
+Les repositories doivent etre injectes avec Riverpod, comme les
+repositories existants. Les ecrans ne doivent pas appeler Hive directement.
+
+Les adapters Hive doivent etre versionnes et ajoutes a l'initialisation
+centrale. Une migration doit etre prevue si la structure d'un dossier change.
+
+Les regles du moteur de risque doivent rester dans le domaine et ne pas
+dependre des widgets Flutter.
+
+======================================================================
+11. PLAN D'IMPLEMENTATION
+======================================================================
+
+Etape 1 - Validation fonctionnelle
+- faire valider les champs du signalement ;
+- faire valider les niveaux de risque ;
+- faire valider les orientations et les numeros ;
+- faire valider la politique de confidentialite ;
+- identifier les services reels disponibles par wilaya.
+
+Etape 2 - Domaine et stockage
+- creer les modeles ;
+- creer les enums et statuts ;
+- creer les adapters Hive ;
+- creer les repositories ;
+- ajouter la version des regles ;
+- ajouter les tests des modeles et repositories.
+
+Etape 3 - Moteur de risque
+- implementer les indicateurs ;
+- traiter les facteurs critiques en priorite ;
+- produire les actions recommandees ;
+- ajouter les tests des cinq niveaux ;
+- tester les reponses partielles et le refus de repondre.
+
+Etape 4 - Parcours utilisateur
+- creer les ecrans de signalement ;
+- connecter le consentement ;
+- connecter l'evaluation ;
+- connecter l'orientation ;
+- connecter l'historique ;
+- ajouter les traductions francaises et arabes.
+
+Etape 5 - Parcours professionnel et administration
+- ajouter la file securisee ;
+- ajouter les permissions ;
+- ajouter la verification humaine ;
+- ajouter les orientations ;
+- ajouter l'audit ;
+- ajouter les statistiques anonymisees.
+
+Etape 6 - Durcissement et test final
+- tester le mode hors ligne ;
+- tester la perte de connexion ;
+- tester la revocation du consentement ;
+- tester les acces interdits ;
+- tester les donnees de mineurs ;
+- tester les petits ecrans et le RTL ;
+- verifier les logs ;
+- effectuer une revue juridique et securite ;
+- produire un rapport de test signe.
+
+======================================================================
+12. TESTS A PREVOIR
+======================================================================
+
+12.1 Tests unitaires
+
+- classification de chaque niveau de risque ;
+- priorite aux indicateurs critiques ;
+- absence de diagnostic dans les messages ;
+- orientation adaptee au niveau ;
+- refus de partage sans consentement ;
+- anonymat sans userId ;
+- conservation de la version des regles ;
+- serialisation et deserialisation des modeles ;
+- absence de donnees sensibles dans AuditEvent ;
+- historique immuable du recit initial.
+
+12.2 Tests d'integration
+
+- creation d'un signalement local ;
+- restauration apres redemarrage ;
+- creation d'une evaluation liee ;
+- creation d'une orientation ;
+- retrait du consentement ;
+- attribution a un professionnel ;
+- acces refuse a un autre professionnel ;
+- acces administrateur limite ;
+- migration Hive ;
+- fonctionnement sans connexion.
+
+12.3 Tests d'interface
+
+- parcours urgence en moins de trois actions ;
+- formulaire incomplet ;
+- question refusee ;
+- texte long ;
+- orientation immediate ;
+- bouton retour ;
+- traduction francaise ;
+- traduction arabe et RTL ;
+- taille d'ecran mobile ;
+- contraste et zones tactiles ;
+- fermeture ou sortie rapide d'un ecran sensible.
+
+12.4 Tests de securite
+
+- utilisateur non connecte ;
+- utilisateur connecte sans droit ;
+- professionnel non approuve ;
+- acces a un dossier non attribue ;
+- tentative de modification d'un recit ;
+- consultation apres revocation ;
+- contenu sensible dans les logs ;
+- export non autorise ;
+- donnees residuelles apres suppression.
+
+======================================================================
+13. CRITERES D'ACCEPTATION DE LA VERSION TESTABLE
+======================================================================
+
+La version pourra etre presentee au client lorsque :
+
+- un utilisateur peut lancer une aide urgente sans remplir un long
+  formulaire ;
+- un utilisateur peut creer un signalement anonyme et un signalement
+  identifie ;
+- le consentement est visible, distinct et conserve avec sa version ;
+- les categories de violence sont disponibles en francais et en arabe ;
+- les indicateurs critiques declenchent l'orientation urgente ;
+- les cinq niveaux de risque sont couverts par des tests ;
+- aucun message ne presente le resultat comme un diagnostic ;
+- un dossier possede un statut et un historique ;
+- un professionnel ne voit que les dossiers autorises ;
+- les acces professionnels sont journalises ;
+- l'administrateur peut gerer les ressources sans obtenir un acces general
+  au contenu sensible ;
+- les donnees locales sont stockees dans des boites chiffrees ;
+- le parcours fonctionne hors ligne pour la creation locale ;
+- l'application reste utilisable en arabe et en RTL ;
+- les tests unitaires et d'integration passent ;
+- les numeros d'urgence et ressources ont ete verifies ;
+- le client valide le parcours et les textes ;
+- une revue juridique et une revue de securite ont ete effectuees avant
+  toute utilisation reelle.
+
+======================================================================
+14. ELEMENTS A FAIRE VALIDER PAR LE CLIENT
+======================================================================
+
+Avant de coder la version complete, le client doit valider :
+
+1. Le nom de la fonctionnalite dans l'application.
+2. Les profils utilisateurs autorises.
+3. Les categories de violence.
+4. Les questions de danger immediat.
+5. Les niveaux de priorite.
+6. Les messages francais et arabes.
+7. Les services vers lesquels orienter.
+8. Les numeros d'urgence par zone.
+9. Les regles de partage des dossiers.
+10. La duree de conservation des donnees.
+11. La procedure concernant les mineurs.
+12. La procedure en cas de danger immediat.
+13. Les statistiques attendues.
+14. Le perimetre de la premiere demonstration.
+15. La decision de rester en mode local ou de preparer un backend.
+
+======================================================================
+15. CONCLUSION
+======================================================================
+
+Le travail a realiser ne consiste pas seulement a ajouter un formulaire.
+Il faut creer un parcours de protection complet, prudent et testable,
+connecte aux fonctions existantes d'evaluation, de ressources et de suivi
+professionnel.
+
+La priorite est de construire d'abord un noyau fiable : signalement,
+evaluation de securite, orientation, consentement, stockage chiffre et
+controle d'acces. Les fonctions avancees, notamment la synchronisation
+serveur, les statistiques et la coordination institutionnelle, devront venir
+apres validation du modele et des procedures.
+
+La version finale testable doit etre consideree comme un prototype
+fonctionnel de prevention et d'orientation. Elle ne pourra etre presentee
+comme un service institutionnel reel qu'apres validation des procedures,
+des ressources, de la securite informatique et du cadre juridique.

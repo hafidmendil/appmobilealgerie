@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:projetmascara/features/onboarding/consent_screen.dart';
+import 'package:projetmascara/generated/l10n/app_localizations.dart';
 
 class PrivacyInfoScreen extends StatelessWidget {
   const PrivacyInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
@@ -15,25 +17,25 @@ class PrivacyInfoScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Confidentialité",
+                l10n.privacy_label,
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const SizedBox(height: 24),
-              const _PrivacyItem(
-                title: "Traitement local",
-                description: "Vos données sont traitées sur votre appareil autant que possible.",
+              _PrivacyItem(
+                title: l10n.dataSovereigntyTitle,
+                description: l10n.dataSovereigntyDesc,
               ),
-              const _PrivacyItem(
-                title: "Anonymat",
-                description: "Aucune collecte nominative inutile n'est effectuée.",
+              _PrivacyItem(
+                title: l10n.anonymityTitle,
+                description: l10n.anonymityDesc,
               ),
-              const _PrivacyItem(
-                title: "Pas de profilage criminel",
-                description: "NeuroSync n'est pas un outil de prédiction ou de surveillance.",
+              _PrivacyItem(
+                title: l10n.professionalSecretTitle,
+                description: l10n.professionalSecretDesc,
               ),
-              const _PrivacyItem(
-                title: "Confidentialité totale",
-                description: "Aucune transmission automatique aux autorités n'est prévue.",
+              _PrivacyItem(
+                title: l10n.userRightsTitle,
+                description: l10n.userRightsDesc,
               ),
               const SizedBox(height: 48),
               ElevatedButton(
@@ -45,7 +47,7 @@ class PrivacyInfoScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(56),
                 ),
-                child: const Text("Continuer vers le consentement"),
+                child: Text(l10n.continue_to_consent),
               ),
             ],
           ),
@@ -73,10 +75,7 @@ class _PrivacyItem extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           const SizedBox(height: 8),
-          Text(
-            description,
-            style: TextStyle(color: Colors.grey[700]),
-          ),
+          Text(description, style: TextStyle(color: Colors.grey[700])),
         ],
       ),
     );

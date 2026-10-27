@@ -1,12 +1,7 @@
-import 'package:projetmascara/core/models/admin/security_log.dart';
+import '../../models/admin/security_log.dart';
 
 abstract class SecurityLogRepository {
+  Future<List<SecurityLog>> getLogs();
   Future<void> logEvent(SecurityLog log);
-  Future<List<SecurityLog>> getLogs({
-    String? actorId,
-    String? action,
-    DateTime? startDate,
-    DateTime? endDate,
-  });
-  Future<void> clearLogs();
+  Future<void> clearAllLogs();
 }

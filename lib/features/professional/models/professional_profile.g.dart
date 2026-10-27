@@ -8,7 +8,7 @@ part of 'professional_profile.dart';
 
 class ProfessionalProfileAdapter extends TypeAdapter<ProfessionalProfile> {
   @override
-  final int typeId = 7;
+  final int typeId = 26;
 
   @override
   ProfessionalProfile read(BinaryReader reader) {
@@ -66,7 +66,7 @@ class ProfessionalProfileAdapter extends TypeAdapter<ProfessionalProfile> {
 
 class ProfessionalSpecialtyAdapter extends TypeAdapter<ProfessionalSpecialty> {
   @override
-  final int typeId = 5;
+  final int typeId = 10;
 
   @override
   ProfessionalSpecialty read(BinaryReader reader) {

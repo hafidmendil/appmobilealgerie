@@ -1,86 +1,143 @@
-import 'dart:math';
 import '../models/assessment_axis.dart';
 import '../models/assessment_question.dart';
+import '../models/assessment_session.dart';
+import '../models/domain_state.dart';
+import '../models/engine_trace.dart';
 import '../../data/question_bank.dart';
 import 'scoring_engine.dart';
+import 'priority_engine.dart';
+import 'confidence_engine.dart';
+import 'completion_engine.dart';
+import 'rule_engine.dart';
 
 class AdaptiveQuestionEngine {
   final ScoringEngine _scoringEngine = ScoringEngine();
+  final PriorityEngine _priorityEngine = PriorityEngine();
+  final ConfidenceEngine _confidenceEngine = ConfidenceEngine();
+  final CompletionEngine _completionEngine = CompletionEngine();
+  final RuleEngine _ruleEngine = RuleEngine();
 
-  /// Selects the best next question based on current session state.
-  AssessmentQuestion? getNextQuestion({
-    required List<String> askedQuestionIds,
-    required Map<String, int?> answers,
-    int maxQuestions = 15,
-  }) {
-    if (askedQuestionIds.length >= maxQuestions) return null;
+  /// Processes the latest answer and returns the next question or null if finished.
+  /// Also updates the session state with new domain states and a trace.
+  AssessmentQuestion? getNextQuestion(AssessmentSession session) {
+    // Safety check should be done before calling this.
 
-    final candidateQuestions = QuestionBank.questions.where(
-      (q) => !askedQuestionIds.contains(q.id)
-    ).toList();
+    // 3. Update Context
+    final needs = _scoringEngine.calculateAxisNeeds(session.answers);
 
-    if (candidateQuestions.isEmpty) return null;
+    var domainStates = _scoringEngine.updateDomainStates(
+      session.domainStates,
+      session.answers,
+      needs,
+    );
 
-    final currentNeeds = _scoringEngine.calculateAxisNeeds(answers);
-    final axisDistribution = _calculateAxisDistribution(askedQuestionIds);
+    domainStates = _confidenceEngine.calculateConfidence(
+      domainStates,
+      session.questionIds.length,
+    );
+
+    domainStates = _ruleEngine.evaluateRules(domainStates, needs);
+
+    domainStates = _priorityEngine.adjustPriorities(domainStates, needs);
+
+    // 3. Completion Check
+    if (_completionEngine.shouldStopAssessment(
+      domainStates,
+      session.questionIds.length,
+    )) {
+      return null;
+    }
+
+    // 4. Selection Logic
+    final candidates = QuestionBank.questions.where((q) {
+      if (session.questionIds.contains(q.id)) return false;
+
+      final state = domainStates[q.axis];
+      if (state == null || state.status == ExplorationStatus.closed)
+        return false;
+
+      return true;
+    }).toList();
+
+    if (candidates.isEmpty) return null;
 
     final scores = <String, double>{};
+    for (var q in candidates) {
+      final state = domainStates[q.axis]!;
+      double score = q.basePriority.toDouble() + state.priority;
+      score += state.score * 250;
+      score += _contextBoost(q.axis, session.answers);
 
-    for (var q in candidateQuestions) {
-      double score = q.basePriority.toDouble();
+      // Rule boost
+      score += _calculateRuleBoost(q.id, session.answers);
 
-      // 1. Boost based on axis needs
-      final needScore = currentNeeds[q.axis] ?? 0.0;
-      score += needScore * 150; // Significant boost for relevant axes
-
-      // 2. Boost based on nextRules from previous answers
-      score += _calculateRuleBoost(q.id, answers);
-
-      // 3. Safety boost
-      if (q.safetyLevel != SafetyLevel.none) {
-        score += (q.safetyLevel.index * 20);
-      }
-
-      // 4. Exploration bonus for unexplored areas
-      if (axisDistribution[q.axis] == 0) {
-        score += 40; // Increased exploration bonus
-      }
-
-      // 5. Penalty for over-represented axes to maintain variety
-      final count = axisDistribution[q.axis] ?? 0;
-      score -= count * 35; // Increased penalty for repetition
-
-      // 6. Avoid asking too many questions from the same subtheme consecutively
-      if (askedQuestionIds.isNotEmpty) {
-        final lastId = askedQuestionIds.last;
-        final lastQ = QuestionBank.questions.firstWhere((q) => q.id == lastId);
-        if (lastQ.subTheme == q.subTheme) {
-          score -= 50; // Heavy penalty for same subtheme
-        }
-      }
+      // Diversity penalty
+      final askedInAxis = session.questionIds.where((id) {
+        final aq = QuestionBank.questions.firstWhere((aq) => aq.id == id);
+        return aq.axis == q.axis;
+      }).length;
+      score -= askedInAxis * 40;
 
       scores[q.id] = score;
     }
 
-    // Sort by score descending
-    candidateQuestions.sort((a, b) {
-      final scoreA = scores[a.id] ?? 0.0;
-      final scoreB = scores[b.id] ?? 0.0;
-      return scoreB.compareTo(scoreA);
+    candidates.sort((a, b) {
+      final scoreComparison = (scores[b.id] ?? 0.0).compareTo(
+        scores[a.id] ?? 0.0,
+      );
+      if (scoreComparison != 0) return scoreComparison;
+      return _tieBreakScore(
+        b.id,
+        session,
+      ).compareTo(_tieBreakScore(a.id, session));
     });
+    final selected = candidates.first;
 
-    return candidateQuestions.first;
+    // 5. Trace & Session Update (These would be applied back to the session by the caller)
+    // Note: session.domainStates and session.traces are updated in the notifier.
+
+    return selected;
   }
 
-  Map<AssessmentAxis, int> _calculateAxisDistribution(List<String> askedIds) {
-    final dist = <AssessmentAxis, int>{};
-    for (var axis in AssessmentAxis.values) dist[axis] = 0;
+  List<String> getCandidateQuestionIds(AssessmentSession session) {
+    final needs = _scoringEngine.calculateAxisNeeds(session.answers);
+    var states = _scoringEngine.updateDomainStates(
+      session.domainStates,
+      session.answers,
+      needs,
+    );
+    states = _confidenceEngine.calculateConfidence(
+      states,
+      session.questionIds.length,
+    );
+    states = _ruleEngine.evaluateRules(states, needs);
+    states = _priorityEngine.adjustPriorities(states, needs);
 
-    for (var id in askedIds) {
-      final q = QuestionBank.questions.firstWhere((q) => q.id == id);
-      dist[q.axis] = (dist[q.axis] ?? 0) + 1;
-    }
-    return dist;
+    return QuestionBank.questions
+        .where(
+          (question) =>
+              !session.questionIds.contains(question.id) &&
+              states[question.axis]?.status != ExplorationStatus.closed,
+        )
+        .map((question) => question.id)
+        .toList();
+  }
+
+  // Helper for notifier to get updated states
+  Map<AssessmentAxis, DomainState> getUpdatedStates(AssessmentSession session) {
+    final needs = _scoringEngine.calculateAxisNeeds(session.answers);
+    var domainStates = _scoringEngine.updateDomainStates(
+      session.domainStates,
+      session.answers,
+      needs,
+    );
+    domainStates = _confidenceEngine.calculateConfidence(
+      domainStates,
+      session.questionIds.length,
+    );
+    domainStates = _ruleEngine.evaluateRules(domainStates, needs);
+    domainStates = _priorityEngine.adjustPriorities(domainStates, needs);
+    return domainStates;
   }
 
   double _calculateRuleBoost(String targetId, Map<String, int?> answers) {
@@ -88,11 +145,43 @@ class AdaptiveQuestionEngine {
     for (var entry in answers.entries) {
       final q = QuestionBank.questions.firstWhere((q) => q.id == entry.key);
       for (var rule in q.nextRules) {
-        if (rule.targetQuestionId == targetId && rule.triggerValues.contains(entry.value)) {
+        if (rule.targetQuestionId == targetId &&
+            rule.triggerValues.contains(entry.value)) {
           boost += rule.priorityBoost;
         }
       }
     }
     return boost;
+  }
+
+  int _tieBreakScore(String questionId, AssessmentSession session) {
+    final answerSeed = session.answers.values.fold<int>(
+      17,
+      (seed, answer) => seed * 31 + (answer ?? -1),
+    );
+    final questionSeed = questionId.codeUnits.fold<int>(
+      0,
+      (sum, code) => sum + code,
+    );
+    return (answerSeed + questionSeed) & 0x7fffffff;
+  }
+
+  double _contextBoost(AssessmentAxis axis, Map<String, int?> answers) {
+    final concern = answers['Q000_Concern'];
+    switch (concern) {
+      case 0:
+        return axis == AssessmentAxis.stressAnxiety ? 180 : 0;
+      case 1:
+        return axis == AssessmentAxis.emotions ||
+                axis == AssessmentAxis.sleepEnergy
+            ? 180
+            : 0;
+      case 2:
+        return axis == AssessmentAxis.socialSupport ? 180 : 0;
+      case 3:
+        return axis == AssessmentAxis.angerRegulation ? 180 : 0;
+      default:
+        return 0;
+    }
   }
 }

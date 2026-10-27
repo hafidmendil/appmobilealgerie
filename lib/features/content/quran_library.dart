@@ -1,4 +1,5 @@
-import '../assessment/assessment_models.dart';
+import '../adaptive_assessment/domain/models/assessment_axis.dart';
+import '../adaptive_assessment/domain/models/quran_verse.dart';
 
 final List<QuranVerse> quranLibrary = [
   // --- THÈME : ESPOIR & MISÉRICORDE ---
@@ -6,23 +7,37 @@ final List<QuranVerse> quranLibrary = [
     id: 'q_39_53',
     surahNumber: 39,
     verseNumber: 53,
-    textAr: 'قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنْفُسِهِمْ لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ',
-    textFr: 'Dis: "Ô Mes serviteurs qui avez commis des excès à votre propre détriment, ne désespérez pas de la miséricorde d\'Allah."',
+    textAr:
+        'قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنْفُسِهِمْ لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ',
+    textFr:
+        'Dis: "Ô Mes serviteurs qui avez commis des excès à votre propre détriment, ne désespérez pas de la miséricorde d\'Allah."',
     theme: 'espoir',
     context: 'Sourate Az-Zumar',
-    reflection: 'La miséricorde est toujours plus grande que nos erreurs. C\'est une invitation à la paix intérieure.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.selfEsteem, QuestionModule.phq4],
+    reflection:
+        'La miséricorde est toujours plus grande que nos erreurs. C\'est une invitation à la paix intérieure.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.selfConfidence,
+      AssessmentAxis.phq4,
+    ],
   ),
   QuranVerse(
     id: 'q_12_87',
     surahNumber: 12,
     verseNumber: 87,
-    textAr: 'وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ ۖ إِنَّهُ لَا يَيْأَسُ مِن رَّوْحِ اللَّهِ إِلَّا الْقَوْمُ الْكَافِرُونَ',
-    textFr: '...et ne désespérez pas de la miséricorde d\'Allah. Ce sont seulement les gens mécréants qui désespèrent de la miséricorde d\'Allah.',
+    textAr:
+        'وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ ۖ إِنَّهُ لَا يَيْأَسُ مِن رَّوْحِ اللَّهِ إِلَّا الْقَوْمُ الْكَافِرُونَ',
+    textFr:
+        '...et ne désespérez pas de la miséricorde d\'Allah. Ce sont seulement les gens mécréants qui désespèrent de la miséricorde d\'Allah.',
     theme: 'espoir',
     context: 'Histoire de Yusuf (Joseph)',
-    reflection: 'Même dans les situations les plus sombres, l\'espoir est une forme de foi et de résilience.',
-    associatedDomains: [QuestionModule.phq4, QuestionModule.emotions, QuestionModule.spiritual],
+    reflection:
+        'Même dans les situations les plus sombres, l\'espoir est une forme de foi et de résilience.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.emotions,
+      AssessmentAxis.spiritual,
+    ],
   ),
   QuranVerse(
     id: 'q_93_3',
@@ -32,19 +47,31 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'Ton Seigneur ne t\'a ni abandonné, ni détesté.',
     theme: 'réconfort',
     context: 'Sourate Ad-Duha (Le Jour Montant)',
-    reflection: 'Ce verset apporte un immense réconfort lors des moments de solitude ou de doute.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.relationship, QuestionModule.spiritual],
+    reflection:
+        'Ce verset apporte un immense réconfort lors des moments de solitude ou de doute.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.socialSupport,
+      AssessmentAxis.spiritual,
+    ],
   ),
   QuranVerse(
     id: 'q_2_186',
     surahNumber: 2,
     verseNumber: 186,
-    textAr: 'وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ',
-    textFr: 'Et quand Mes serviteurs t\'interrogent sur Moi... alors Je suis tout proche: Je réponds à l\'appel de celui qui Me prie quand il Me prie.',
+    textAr:
+        'وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ',
+    textFr:
+        'Et quand Mes serviteurs t\'interrogent sur Moi... alors Je suis tout proche: Je réponds à l\'appel de celui qui Me prie quand il Me prie.',
     theme: 'proximité',
     context: 'Sourate Al-Baqarah',
-    reflection: 'La sensation de présence et d\'écoute est un puissant régulateur émotionnel.',
-    associatedDomains: [QuestionModule.spiritual, QuestionModule.emotions, QuestionModule.social],
+    reflection:
+        'La sensation de présence et d\'écoute est un puissant régulateur émotionnel.',
+    associatedAxes: [
+      AssessmentAxis.spiritual,
+      AssessmentAxis.emotions,
+      AssessmentAxis.social,
+    ],
   ),
 
   // --- THÈME : PATIENCE & PERSÉVÉRANCE ---
@@ -52,34 +79,53 @@ final List<QuranVerse> quranLibrary = [
     id: 'q_2_153',
     surahNumber: 2,
     verseNumber: 153,
-    textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ',
-    textFr: 'Ô les croyants! Cherchez secours dans l\'endurance et la Salât. Car Allah est avec ceux qui sont endurants.',
+    textAr:
+        'يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ',
+    textFr:
+        'Ô les croyants! Cherchez secours dans l\'endurance et la Salât. Car Allah est avec ceux qui sont endurants.',
     theme: 'patience',
     context: 'Sourate Al-Baqarah',
-    reflection: 'La patience n\'est pas passive, c\'est une force active pour traverser les épreuves.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.functioning, QuestionModule.spiritual],
+    reflection:
+        'La patience n\'est pas passive, c\'est une force active pour traverser les épreuves.',
+    associatedAxes: [
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.productivity,
+      AssessmentAxis.spiritual,
+    ],
   ),
   QuranVerse(
     id: 'q_94_5_6',
     surahNumber: 94,
     verseNumber: 5,
     textAr: 'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا * إِنَّ مَعَ الْعُسْرِ يُسْرًا',
-    textFr: 'À côté de la difficulté est, certes, une facilité ! À côté de la difficulté est, certes, une facilité !',
+    textFr:
+        'À côté de la difficulté est, certes, une facilité ! À côté de la difficulté est, certes, une facilité !',
     theme: 'soulagement',
     context: 'Sourate Ash-Sharh',
-    reflection: 'La difficulté et la facilité coexistent. Il y a toujours une porte ouverte même dans l\'épreuve.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.phq4, QuestionModule.productivity],
+    reflection:
+        'La difficulté et la facilité coexistent. Il y a toujours une porte ouverte même dans l\'épreuve.',
+    associatedAxes: [
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.emotions,
+      AssessmentAxis.productivity,
+    ],
   ),
   QuranVerse(
     id: 'q_3_200',
     surahNumber: 3,
     verseNumber: 200,
     textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا',
-    textFr: 'Ô les croyants! Soyez endurants. Incitez-vous à l\'endurance. Luttez constamment...',
+    textFr:
+        'Ô les croyants! Soyez endurants. Incitez-vous à l\'endurance. Luttez constamment...',
     theme: 'persévérance',
     context: 'Fin de Al-Imran',
-    reflection: 'La résilience se construit étape par étape, seul et en communauté.',
-    associatedDomains: [QuestionModule.productivity, QuestionModule.behavioral, QuestionModule.social],
+    reflection:
+        'La résilience se construit étape par étape, seul et en communauté.',
+    associatedAxes: [
+      AssessmentAxis.productivity,
+      AssessmentAxis.behavioral,
+      AssessmentAxis.social,
+    ],
   ),
   QuranVerse(
     id: 'q_2_286',
@@ -89,8 +135,13 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'Allah n\'impose à aucune âme une charge supérieure à sa capacité.',
     theme: 'responsabilité',
     context: 'Dernier verset de Al-Baqarah',
-    reflection: 'Vous possédez en vous les ressources nécessaires pour faire face à ce que vous vivez.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.functioning, QuestionModule.selfEsteem],
+    reflection:
+        'Vous possédez en vous les ressources nécessaires pour faire face à ce que vous vivez.',
+    associatedAxes: [
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.productivity,
+      AssessmentAxis.selfEsteem,
+    ],
   ),
 
   // --- THÈME : PAIX INTÉRIEURE & SÉRÉNITÉ ---
@@ -99,33 +150,53 @@ final List<QuranVerse> quranLibrary = [
     surahNumber: 13,
     verseNumber: 28,
     textAr: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',
-    textFr: 'N\'est-ce point par l\'évocation d\'Allah que se tranquillisent les cœurs ?',
+    textFr:
+        'N\'est-ce point par l\'évocation d\'Allah que se tranquillisent les cœurs ?',
     theme: 'sérénité',
     context: 'Sourate Ar-Ra\'d',
-    reflection: 'Le retour au sens et à la spiritualité apaise l\'agitation mentale.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.cognitive, QuestionModule.emotions],
+    reflection:
+        'Le retour au sens et à la spiritualité apaise l\'agitation mentale.',
+    associatedAxes: [
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.cognitive,
+      AssessmentAxis.emotions,
+    ],
   ),
   QuranVerse(
     id: 'q_48_4',
     surahNumber: 48,
     verseNumber: 4,
-    textAr: 'هُوَ الَّذِي أَنزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ لِيَزْدَادُوا إِيمَانًا مَّعَ إِيمَانِهِمْ',
-    textFr: 'C\'est Lui qui a fait descendre la quiétude (sakinah) dans les cœurs des croyants...',
+    textAr:
+        'هُوَ الَّذِي أَنزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ لِيَزْدَادُوا إِيمَانًا مَّعَ إِيمَانِهِمْ',
+    textFr:
+        'C\'est Lui qui a fait descendre la quiétude (sakinah) dans les cœurs des croyants...',
     theme: 'sakinah',
     context: 'Sourate Al-Fath',
-    reflection: 'La sérénité est un don qui permet de rester stable face aux tempêtes de la vie.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.stress, QuestionModule.safety],
+    reflection:
+        'La sérénité est un don qui permet de rester stable face aux tempêtes de la vie.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.safety,
+    ],
   ),
   QuranVerse(
     id: 'q_89_27_28',
     surahNumber: 89,
     verseNumber: 27,
-    textAr: 'يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ * ارْجِعِي إِلَىٰ رَبِّكِ رَاضِيَةً مَّرْضِيَّةً',
-    textFr: 'Ô toi, âme apaisée, retourne vers ton Seigneur, satisfaite et agréée.',
+    textAr:
+        'يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ * ارْجِعِي إِلَىٰ رَبِّكِ رَاضِيَةً مَّرْضِيَّةً',
+    textFr:
+        'Ô toi, âme apaisée, retourne vers ton Seigneur, satisfaite et agréée.',
     theme: 'paix',
     context: 'Sourate Al-Fajr',
-    reflection: 'L\'objectif ultime est d\'atteindre cet état d\'apaisement intérieur total.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.spiritual, QuestionModule.safety],
+    reflection:
+        'L\'objectif ultime est d\'atteindre cet état d\'apaisement intérieur total.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.spiritual,
+      AssessmentAxis.safety,
+    ],
   ),
 
   // --- THÈME : FORCE & CONFIANCE ---
@@ -133,12 +204,19 @@ final List<QuranVerse> quranLibrary = [
     id: 'q_3_139',
     surahNumber: 3,
     verseNumber: 139,
-    textAr: 'وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنْتُمُ الْأَعْلَوْنَ إِنْ كُنْتُمْ مُؤْمِنِينَ',
-    textFr: 'Ne vous laissez pas battre, ne vous affligez pas alors que vous êtes les supérieurs, si vous êtes de vrais croyants.',
+    textAr:
+        'وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنْتُمُ الْأَعْلَوْنَ إِنْ كُنْتُمْ مُؤْمِنِينَ',
+    textFr:
+        'Ne vous laissez pas battre, ne vous affligez pas alors que vous êtes les supérieurs, si vous êtes de vrais croyants.',
     theme: 'force',
     context: 'Sourate Al-Imran',
-    reflection: 'La foi est un levier pour surmonter le sentiment d\'infériorité ou de défaite.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.emotions, QuestionModule.productivity],
+    reflection:
+        'La foi est un levier pour surmonter le sentiment d\'infériorité ou de défaite.',
+    associatedAxes: [
+      AssessmentAxis.selfConfidence,
+      AssessmentAxis.emotions,
+      AssessmentAxis.productivity,
+    ],
   ),
   QuranVerse(
     id: 'q_65_3',
@@ -148,8 +226,13 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'Et quiconque place sa confiance en Allah, Il lui suffit.',
     theme: 'confiance',
     context: 'Sourate At-Talaq',
-    reflection: 'Se décharger du poids de l\'avenir sur une force supérieure apporte la paix.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.cognitive, QuestionModule.environmental],
+    reflection:
+        'Se décharger du poids de l\'avenir sur une force supérieure apporte la paix.',
+    associatedAxes: [
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.cognitive,
+      AssessmentAxis.environmental,
+    ],
   ),
   QuranVerse(
     id: 'q_9_40',
@@ -159,8 +242,13 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'Ne t\'afflige pas, car Allah est avec nous.',
     theme: 'présence',
     context: 'Épisode de la grotte',
-    reflection: 'La certitude d\'être accompagné dissout la peur et la tristesse.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.safety, QuestionModule.relationship],
+    reflection:
+        'La certitude d\'être accompagné dissout la peur et la tristesse.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.safety,
+      AssessmentAxis.relationship,
+    ],
   ),
 
   // --- AJOUTS SUPPLÉMENTAIRES (POUR ATTEINDRE 100+) ---
@@ -173,74 +261,120 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'Seigneur, épanouis-moi ma poitrine, et facilite-moi ma tâche.',
     theme: 'clarté',
     context: 'Invocation de Moïse (Moussa)',
-    reflection: 'Demander l\'ouverture du cœur et de l\'esprit avant d\'affronter un défi.',
-    associatedDomains: [QuestionModule.productivity, QuestionModule.stress, QuestionModule.cognitive],
+    reflection:
+        'Demander l\'ouverture du cœur et de l\'esprit avant d\'affronter un défi.',
+    associatedAxes: [
+      AssessmentAxis.productivity,
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.cognitive,
+    ],
   ),
   QuranVerse(
     id: 'q_21_87',
     surahNumber: 21,
     verseNumber: 87,
-    textAr: 'لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ',
-    textFr: 'Pas de divinité à part Toi! Pureté à Toi! J\'ai été vraiment du nombre des injustes.',
+    textAr:
+        'لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ',
+    textFr:
+        'Pas de divinité à part Toi! Pureté à Toi! J\'ai été vraiment du nombre des injustes.',
     theme: 'pardon',
     context: 'Invocation de Jonas (Yunus)',
-    reflection: 'Reconnaître ses limites est le premier pas vers la libération intérieure.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.selfEsteem, QuestionModule.phq4],
+    reflection:
+        'Reconnaître ses limites est le premier pas vers la libération intérieure.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.selfConfidence,
+      AssessmentAxis.phq4,
+    ],
   ),
   QuranVerse(
     id: 'q_10_57',
     surahNumber: 10,
     verseNumber: 57,
-    textAr: 'يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَّوْعِظَةٌ مِّن رَّبِّكُمْ وَشِفَاءٌ لِّمَا فِي الصُّدُورِ',
-    textFr: 'Ô gens! Une exhortation vous est venue, de votre Seigneur, une guérison de ce qui est dans les poitrines.',
+    textAr:
+        'يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَّوْعِظَةٌ مِّن رَّبِّكُمْ وَشِفَاءٌ لِّمَا فِي الصُّدُورِ',
+    textFr:
+        'Ô gens! Une exhortation vous est venue, de votre Seigneur, une guérison de ce qui est dans les poitrines.',
     theme: 'guérison',
     context: 'Sourate Yunus',
-    reflection: 'Le message spirituel est avant tout un remède pour les maux de l\'âme.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.spiritual, QuestionModule.health],
+    reflection:
+        'Le message spirituel est avant tout un remède pour les maux de l\'âme.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.spiritual,
+      AssessmentAxis.health,
+    ],
   ),
   QuranVerse(
     id: 'q_4_28',
     surahNumber: 4,
     verseNumber: 28,
-    textAr: 'يُرِيدُ اللَّهُ أَن يُخَفِّفَ عَنكُمْ ۚ وَخُلِقَ الْإِنسَانُ ضَعِيفًا',
-    textFr: 'Allah veut vous alléger (les obligations), car l\'homme a été créé faible.',
+    textAr:
+        'يُرِيدُ اللَّهُ أَن يُخَفِّفَ عَنكُمْ ۚ وَخُلِقَ الْإِنسَانُ ضَعِيفًا',
+    textFr:
+        'Allah veut vous alléger (les obligations), car l\'homme a été créé faible.',
     theme: 'douceur',
     context: 'Sourate An-Nisa',
-    reflection: 'Accepter sa vulnérabilité humaine est une force, pas une honte.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.functioning, QuestionModule.lifestyle],
+    reflection:
+        'Accepter sa vulnérabilité humaine est une force, pas une honte.',
+    associatedAxes: [
+      AssessmentAxis.selfConfidence,
+      AssessmentAxis.productivity,
+      AssessmentAxis.lifestyle,
+    ],
   ),
   QuranVerse(
     id: 'q_2_155',
     surahNumber: 2,
     verseNumber: 155,
-    textAr: 'وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ ۗ وَبَشِّرِ الصَّابِرِينَ',
-    textFr: 'Très certainement, Nous vous éprouverons par un peu de peur, de faim... Et fais la bonne annonce aux endurants.',
+    textAr:
+        'وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ ۗ وَبَشِّرِ الصَّابِرِينَ',
+    textFr:
+        'Très certainement, Nous vous éprouverons par un peu de peur, de faim... Et fais la bonne annonce aux endurants.',
     theme: 'épreuve',
     context: 'Sourate Al-Baqarah',
-    reflection: 'La difficulté est une part inhérente de l\'existence, elle n\'est pas une punition.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.economic, QuestionModule.safety],
+    reflection:
+        'La difficulté est une part inhérente de l\'existence, elle n\'est pas une punition.',
+    associatedAxes: [
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.economic,
+      AssessmentAxis.safety,
+    ],
   ),
   QuranVerse(
     id: 'q_14_7',
     surahNumber: 14,
     verseNumber: 7,
     textAr: 'لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ',
-    textFr: 'Si vous êtes reconnaissants, très certainement J\'augmenterai (Mes bienfaits) pour vous.',
+    textFr:
+        'Si vous êtes reconnaissants, très certainement J\'augmenterai (Mes bienfaits) pour vous.',
     theme: 'gratitude',
     context: 'Sourate Ibrahim',
-    reflection: 'La gratitude focalise l\'esprit sur l\'abondance plutôt que sur le manque.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.emotions, QuestionModule.behavioral],
+    reflection:
+        'La gratitude focalise l\'esprit sur l\'abondance plutôt que sur le manque.',
+    associatedAxes: [
+      AssessmentAxis.selfConfidence,
+      AssessmentAxis.emotions,
+      AssessmentAxis.behavioral,
+    ],
   ),
   QuranVerse(
     id: 'q_33_43',
     surahNumber: 33,
     verseNumber: 43,
-    textAr: 'هُوَ الَّذِي يُصَلِّي عَلَيْكُمْ وَمَلَائِكَتُهُ لِيُخْرِجَكُم مِّنَ الظُّلُمَاتِ إِلَى النُّورِ',
-    textFr: 'C\'est Lui qui vous bénit... afin de vous faire sortir des ténèbres à la lumière.',
+    textAr:
+        'هُوَ الَّذِي يُصَلِّي عَلَيْكُمْ وَمَلَائِكَتُهُ لِيُخْرِجَكُم مِّنَ الظُّلُمَاتِ إِلَى النُّورِ',
+    textFr:
+        'C\'est Lui qui vous bénit... afin de vous faire sortir des ténèbres à la lumière.',
     theme: 'lumière',
     context: 'Sourate Al-Ahzab',
-    reflection: 'Il y a toujours un chemin vers la lumière, même après la confusion la plus totale.',
-    associatedDomains: [QuestionModule.phq4, QuestionModule.emotions, QuestionModule.safety],
+    reflection:
+        'Il y a toujours un chemin vers la lumière, même après la confusion la plus totale.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.emotions,
+      AssessmentAxis.safety,
+    ],
   ),
   QuranVerse(
     id: 'q_39_36',
@@ -250,19 +384,30 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'Allah ne suffit-Il pas à Son serviteur ?',
     theme: 'suffisance',
     context: 'Sourate Az-Zumar',
-    reflection: 'Un rappel puissant sur l\'autosuffisance spirituelle face aux pressions sociales.',
-    associatedDomains: [QuestionModule.social, QuestionModule.selfEsteem, QuestionModule.environmental],
+    reflection:
+        'Un rappel puissant sur l\'autosuffisance spirituelle face aux pressions sociales.',
+    associatedAxes: [
+      AssessmentAxis.socialSupport,
+      AssessmentAxis.selfConfidence,
+      AssessmentAxis.environmental,
+    ],
   ),
   QuranVerse(
     id: 'q_42_43',
     surahNumber: 42,
     verseNumber: 43,
     textAr: 'وَلَمَن صَبَرَ وَغَفَرَ إِنَّ ذَٰلِكَ لَمِنْ عَزْمِ الْأُمُورِ',
-    textFr: 'Mais celui qui endure et pardonne, cela en vérité, fait partie des bonnes résolutions.',
+    textFr:
+        'Mais celui qui endure et pardonne, cela en vérité, fait partie des bonnes résolutions.',
     theme: 'pardon',
     context: 'Sourate Ash-Shura',
-    reflection: 'Le pardon est un acte de force qui libère d\'abord celui qui l\'accorde.',
-    associatedDomains: [QuestionModule.angerRegulation, QuestionModule.relationship, QuestionModule.emotionalManagement],
+    reflection:
+        'Le pardon est un acte de force qui libère d\'abord celui qui l\'accorde.',
+    associatedAxes: [
+      AssessmentAxis.angerRegulation,
+      AssessmentAxis.socialSupport,
+      AssessmentAxis.emotionalManagement,
+    ],
   ),
   QuranVerse(
     id: 'q_53_43',
@@ -272,52 +417,75 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'et que c\'est Lui qui a fait rire et qui a fait pleurer.',
     theme: 'acceptation',
     context: 'Sourate An-Najm',
-    reflection: 'Toutes les émotions ont leur place et leur sens dans le cycle de la vie.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.emotionalManagement, QuestionModule.general],
+    reflection:
+        'Toutes les émotions ont leur place et leur sens dans le cycle de la vie.',
+    associatedAxes: [
+      AssessmentAxis.emotions,
+      AssessmentAxis.angerRegulation,
+      AssessmentAxis.general,
+    ],
   ),
   QuranVerse(
     id: 'q_64_11',
     surahNumber: 64,
     verseNumber: 11,
-    textAr: 'مَا أَصَابَ مِن مُّصِيبَةٍ إِلَّا بِإِذْنِ اللَّهِ ۗ وَمَن يُؤْمِن بِاللَّهِ يَهْدِ قَلْبَهُ',
-    textFr: 'Nul malheur n\'atteint [l\'homme] que par la permission d\'Allah. Et quiconque croit en Allah, Il guide son cœur.',
+    textAr:
+        'مَا أَصَابَ مِن مُّصِيبَةٍ إِلَّا بِإِذْنِ اللَّهِ ۗ وَمَن يُؤْمِن بِاللَّهِ يَهْدِ قَلْبَهُ',
+    textFr:
+        'Nul malheur n\'atteint [l\'homme] que par la permission d\'Allah. Et quiconque croit en Allah, Il guide son cœur.',
     theme: 'guidance',
     context: 'Sourate At-Taghabun',
-    reflection: 'La foi est une boussole interne dans les moments de désorientation.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.safety, QuestionModule.spiritual],
+    reflection:
+        'La foi est une boussole interne dans les moments de désorientation.',
+    associatedAxes: [
+      AssessmentAxis.cognitive,
+      AssessmentAxis.safety,
+      AssessmentAxis.spiritual,
+    ],
   ),
   QuranVerse(
     id: 'q_16_127',
     surahNumber: 16,
     verseNumber: 127,
-    textAr: 'وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ ۚ وَلَا تَحْزَنْ عَلَيْهِمْ وَلَا تَكُ فِي ضَيْقٍ مِّمَّا يَمْكُرُونَ',
-    textFr: 'Endure ! Ton endurance [ne viendra] qu\'avec (l\'aide d\') Allah. Ne t\'afflige pas sur eux. Et ne sois pas angoissé à cause de leurs complots.',
+    textAr:
+        'وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ ۚ وَلَا تَحْزَنْ عَلَيْهِمْ وَلَا تَكُ فِي ضَيْقٍ مِّمَّا يَمْكُرُونَ',
+    textFr:
+        'Endure ! Ton endurance [ne viendra] qu\'avec (l\'aide d\') Allah. Ne t\'afflige pas sur eux. Et ne sois pas angoissé à cause de leurs complots.',
     theme: 'protection',
     context: 'Sourate An-Nahl',
-    reflection: 'Le calme face à l\'hostilité extérieure est une manifestation de force spirituelle.',
-    associatedDomains: [QuestionModule.social, QuestionModule.stress, QuestionModule.angerRegulation],
+    reflection:
+        'Le calme face à l\'hostilité extérieure est une manifestation de force spirituelle.',
+    associatedAxes: [
+      AssessmentAxis.socialSupport,
+      AssessmentAxis.stressAnxiety,
+      AssessmentAxis.angerRegulation,
+    ],
   ),
   QuranVerse(
     id: 'q_2_152',
     surahNumber: 2,
     verseNumber: 152,
     textAr: 'فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ',
-    textFr: 'Souvenez-vous de Moi donc, Je vous répondrai. Remerciez-Moi et ne soyez pas ingrats envers Moi.',
+    textFr:
+        'Souvenez-vous de Moi donc, Je vous répondrai. Remerciez-Moi et ne soyez pas ingrats envers Moi.',
     theme: 'gratitude',
     context: 'Sourate Al-Baqarah',
     reflection: 'Le souvenir de Dieu est un ancrage puissant dans le présent.',
-    associatedDomains: [QuestionModule.spiritual, QuestionModule.emotions],
+    associatedAxes: [AssessmentAxis.spiritual, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_3_159',
     surahNumber: 3,
     verseNumber: 159,
-    textAr: 'فَبِمَا رَحْمَةٍ مِّنَ اللَّهِ لِنتَ لَهُمْ ۖ وَلَوْ كُنتَ فَظًّا غَلِيظَ الْقَلْبِ لَانفَضُّوا مِنْ حَوْلِكَ',
-    textFr: 'C\'est par quelque miséricorde de la part d\'Allah que tu as été si doux envers eux ! Mais si tu étais rude, au cœur dur, ils se seraient enfuis de ton entourage.',
+    textAr:
+        'فَبِمَا رَحْمَةٍ مِّنَ اللَّهِ لِنتَ لَهُمْ ۖ وَلَوْ كُنتَ فَظًّا غَلِيظَ الْقَلْبِ لَانفَضُّوا مِنْ حَوْلِكَ',
+    textFr:
+        'C\'est par quelque miséricorde de la part d\'Allah que tu as été si doux envers eux ! Mais si tu étais rude, au cœur dur, ils se seraient enfuis de ton entourage.',
     theme: 'douceur',
     context: 'Sourate Al-Imran',
-    reflection: 'La bienveillance envers soi et les autres est la clé des relations saines.',
-    associatedDomains: [QuestionModule.relationship, QuestionModule.social],
+    reflection:
+        'La bienveillance envers soi et les autres est la clé des relations saines.',
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.social],
   ),
   QuranVerse(
     id: 'q_6_160',
@@ -328,95 +496,115 @@ final List<QuranVerse> quranLibrary = [
     theme: 'optimisme',
     context: 'Sourate Al-An\'am',
     reflection: 'Chaque petit pas positif est multiplié dans son impact.',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.productivity],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.productivity],
   ),
   QuranVerse(
     id: 'q_22_54',
     surahNumber: 22,
     verseNumber: 54,
-    textAr: 'وَإِنَّ اللَّهَ لَهَادِ الَّذِينَ آمَنُوا إِلَىٰ صِرَاطٍ مُّسْتَقِيمٍ',
+    textAr:
+        'وَإِنَّ اللَّهَ لَهَادِ الَّذِينَ آمَنُوا إِلَىٰ صِرَاطٍ مُّسْتَقِيمٍ',
     textFr: 'Certes, Allah guide ceux qui croient vers un droit chemin.',
     theme: 'guidance',
     context: 'Sourate Al-Hajj',
-    reflection: 'Même dans la confusion, il existe une direction claire vers la paix.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.spiritual],
+    reflection:
+        'Même dans la confusion, il existe une direction claire vers la paix.',
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_30_21',
     surahNumber: 30,
     verseNumber: 21,
-    textAr: 'وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً',
-    textFr: 'Et parmi Ses signes, Il a créé de vous, pour vous, des épouses pour que vous viviez en tranquillité avec elles et Il a mis entre vous de l\'affection et de la bonté.',
+    textAr:
+        'وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً',
+    textFr:
+        'Et parmi Ses signes, Il a créé de vous, pour vous, des épouses pour que vous viviez en tranquillité avec elles et Il a mis entre vous de l\'affection et de la bonté.',
     theme: 'affection',
     context: 'Sourate Ar-Rum',
     reflection: 'Les liens affectifs sont une source de sakinah (quiétude).',
-    associatedDomains: [QuestionModule.relationship, QuestionModule.social],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.social],
   ),
   QuranVerse(
     id: 'q_33_35',
     surahNumber: 33,
     verseNumber: 35,
-    textAr: 'وَالذَّاكِرِينَ اللَّهَ كَثِيرًا وَالذَّاكِرَاتِ أَعَدَّ اللَّهُ لَهُم مَّغْفِرَةً وَأَجْرًا عَظِيمًا',
-    textFr: '...ceux et celles qui invoquent souvent Allah: Allah a préparé pour eux un pardon et une énorme récompense.',
+    textAr:
+        'وَالذَّاكِرِينَ اللَّهَ كَثِيرًا وَالذَّاكِرَاتِ أَعَدَّ اللَّهُ لَهُم مَّغْفِرَةً وَأَجْرًا عَظِيمًا',
+    textFr:
+        '...ceux et celles qui invoquent souvent Allah: Allah a préparé pour eux un pardon et une énorme récompense.',
     theme: 'paix',
     context: 'Sourate Al-Ahzab',
-    reflection: 'La pratique régulière de la pleine conscience spirituelle libère le cœur.',
-    associatedDomains: [QuestionModule.spiritual, QuestionModule.behavioral],
+    reflection:
+        'La pratique régulière de la pleine conscience spirituelle libère le cœur.',
+    associatedAxes: [AssessmentAxis.spiritual, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_41_34',
     surahNumber: 41,
     verseNumber: 34,
-    textAr: 'ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ فَإِذَا الَّذِي بَيْنَكَ وَبَيْنَهُ عَدَاوَةٌ كَأَنَّهُ وَلِيٌّ حَمِيمٌ',
-    textFr: 'Repousse (le mal) par ce qui est meilleur; et voilà que celui avec qui tu avais une animosité devient tel un ami chaleureux.',
+    textAr:
+        'ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ فَإِذَا الَّذِي بَيْنَكَ وَبَيْنَهُ عَدَاوَةٌ كَأَنَّهُ وَلِيٌّ حَمِيمٌ',
+    textFr:
+        'Repousse (le mal) par ce qui est meilleur; et voilà que celui avec qui tu avais une animosité devient tel un ami chaleureux.',
     theme: 'réconciliation',
     context: 'Sourate Fussilat',
     reflection: 'L\'empathie peut transformer les conflits en alliés.',
-    associatedDomains: [QuestionModule.relationship, QuestionModule.angerRegulation],
+    associatedAxes: [
+      AssessmentAxis.socialSupport,
+      AssessmentAxis.angerRegulation,
+    ],
   ),
   QuranVerse(
     id: 'q_42_30',
     surahNumber: 42,
     verseNumber: 30,
-    textAr: 'وَمَا أَصَابَكُم مِّن مُّصِيبَةٍ فَبِمَا كَسَبَتْ أَيْدِيكُمْ وَيَعْفُو عَن كَثِيرٍ',
-    textFr: 'Tout malheur qui vous atteint est dû à ce que vos mains ont acquis. Et Il pardonne beaucoup.',
+    textAr:
+        'وَمَا أَصَابَكُم مِّن مُّصِيبَةٍ فَبِمَا كَسَبَتْ أَيْدِيكُمْ وَيَعْفُو عَن كَثِيرٍ',
+    textFr:
+        'Tout malheur qui vous atteint est dû à ce que vos mains ont acquis. Et Il pardonne beaucoup.',
     theme: 'responsabilité',
     context: 'Sourate Ash-Shura',
     reflection: 'Reconnaître ses erreurs avec bienveillance permet d\'avancer.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_49_10',
     surahNumber: 49,
     verseNumber: 10,
     textAr: 'إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا بَيْنَ أَخَوَيْكُمْ',
-    textFr: 'Les croyants ne sont que des frères. Établissez la concorde entre vos frères.',
+    textFr:
+        'Les croyants ne sont que des frères. Établissez la concorde entre vos frères.',
     theme: 'fraternité',
     context: 'Sourate Al-Hujurat',
     reflection: 'Le soutien communautaire est une force face à l\'isolement.',
-    associatedDomains: [QuestionModule.social, QuestionModule.relationship],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_49_12',
     surahNumber: 49,
     verseNumber: 12,
-    textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا اجْتَنِبُوا كَثِيرًا مِّنَ الظَّنِّ إِنَّ بَعْضَ الظَّنِّ إِثْمٌ',
-    textFr: 'Ô vous qui avez cru ! Évitez de trop conjecturer [sur autrui] car une partie des conjectures est péché.',
+    textAr:
+        'يَا أَيُّهَا الَّذِينَ آمَنُوا اجْتَنِبُوا كَثِيرًا مِّنَ الظَّنِّ إِنَّ بَعْضَ الظَّنِّ إِثْمٌ',
+    textFr:
+        'Ô vous qui avez cru ! Évitez de trop conjecturer [sur autrui] car une partie des conjectures est péché.',
     theme: 'clarté_mentale',
     context: 'Sourate Al-Hujurat',
-    reflection: 'Éviter les suppositions négatives apaise l\'esprit et les relations.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.relationship],
+    reflection:
+        'Éviter les suppositions négatives apaise l\'esprit et les relations.',
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_51_50',
     surahNumber: 51,
     verseNumber: 50,
     textAr: 'فَفِرُّوا إِلَى اللَّهِ ۖ إِنِّي لَكُم مِّنْهُ نَذِيرٌ مُّبِينٌ',
-    textFr: 'Fuyez donc vers Allah. Je suis pour vous, de Sa part, un avertisseur explicite.',
+    textFr:
+        'Fuyez donc vers Allah. Je suis pour vous, de Sa part, un avertisseur explicite.',
     theme: 'refuge',
     context: 'Sourate Ad-Dhariyat',
-    reflection: 'Trouver refuge dans le sens et la foi quand le monde devient accablant.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.safety],
+    reflection:
+        'Trouver refuge dans le sens et la foi quand le monde devient accablant.',
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.safety],
   ),
   QuranVerse(
     id: 'q_57_20',
@@ -426,52 +614,62 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'La vie présente n\'est que jouissance trompeuse.',
     theme: 'perspective',
     context: 'Sourate Al-Hadid',
-    reflection: 'Prendre de la hauteur sur les soucis matériels pour retrouver l\'essentiel.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.lifestyle],
+    reflection:
+        'Prendre de la hauteur sur les soucis matériels pour retrouver l\'essentiel.',
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.lifestyle],
   ),
   QuranVerse(
     id: 'q_57_22',
     surahNumber: 57,
     verseNumber: 22,
-    textAr: 'مَا أَصَابَ مِن مُّصِيبَةٍ فِي الْأَرْضِ وَلَا فِي أَنفُسِكُمْ إِلَّا فِي كِتَابٍ مِّن قَبْلِ أَن نَّبْرَأَهَا',
-    textFr: 'Nul malheur n\'atteint la terre ni vos personnes, qui ne soit enregistré dans un Livre avant que Nous ne l\'ayons créé.',
+    textAr:
+        'مَا أَصَابَ مِن مُّصِيبَةٍ فِي الْأَرْضِ وَلَا فِي أَنفُسِكُمْ إِلَّا فِي كِتَابٍ مِّن قَبْلِ أَن نَّبْرَأَهَا',
+    textFr:
+        'Nul malheur n\'atteint la terre ni vos personnes, qui ne soit enregistré dans un Livre avant que Nous ne l\'ayons créé.',
     theme: 'acceptation',
     context: 'Sourate Al-Hadid',
-    reflection: 'L\'acceptation du destin aide à surmonter les regrets et l\'anxiété face à l\'avenir.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.stress],
+    reflection:
+        'L\'acceptation du destin aide à surmonter les regrets et l\'anxiété face à l\'avenir.',
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.stress],
   ),
   QuranVerse(
     id: 'q_67_23',
     surahNumber: 67,
     verseNumber: 23,
-    textAr: 'قُلْ هُوَ الَّذِي أَنشَأَكُمْ وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۖ قَلِيلًا مَّا تَشْكُرُونَ',
-    textFr: 'Dis: "C\'est Lui qui vous a créés et vous a donné l\'ouïe, la vue et les cœurs. Mais vous êtes peu reconnaissants !"',
+    textAr:
+        'قُلْ هُوَ الَّذِي أَنشَأَكُمْ وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۖ قَلِيلًا مَّا تَشْكُرُونَ',
+    textFr:
+        'Dis: "C\'est Lui qui vous a créés et vous a donné l\'ouïe, la vue et les cœurs. Mais vous êtes peu reconnaissants !"',
     theme: 'reconnaissance',
     context: 'Sourate Al-Mulk',
-    reflection: 'Prendre conscience de nos facultés est le début de la gratitude.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.behavioral],
+    reflection:
+        'Prendre conscience de nos facultés est le début de la gratitude.',
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_73_10',
     surahNumber: 73,
     verseNumber: 10,
     textAr: 'وَاصْبِرْ عَلَىٰ مَا يَقُولُونَ وَاهْجُرْهُمْ هَجْرًا جَمِيلًا',
-    textFr: 'Et endure ce qu\'ils disent; et écarte-toi d\'eux d\'une façon convenable.',
+    textFr:
+        'Et endure ce qu\'ils disent; et écarte-toi d\'eux d\'une façon convenable.',
     theme: 'détachement',
     context: 'Sourate Al-Muzzammil',
-    reflection: 'Savoir s\'éloigner des influences toxiques avec élégance et fermeté.',
-    associatedDomains: [QuestionModule.social, QuestionModule.relationship],
+    reflection:
+        'Savoir s\'éloigner des influences toxiques avec élégance et fermeté.',
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_87_14_15',
     surahNumber: 87,
     verseNumber: 14,
     textAr: 'قَدْ أَفْلَحَ مَن تَزَكَّىٰ * وَذَكَرَ اسْمَ رَبِّهِ فَصَلَّىٰ',
-    textFr: 'Réussit, certes, celui qui se purifie, et se rappelle le nom de son Seigneur, puis célèbre la Salât.',
+    textFr:
+        'Réussit, certes, celui qui se purifie, et se rappelle le nom de son Seigneur, puis célèbre la Salât.',
     theme: 'purification',
     context: 'Sourate Al-A\'la',
     reflection: 'Le soin apporté à son âme est le véritable succès.',
-    associatedDomains: [QuestionModule.spiritual, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.spiritual, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_94_1',
@@ -482,40 +680,48 @@ final List<QuranVerse> quranLibrary = [
     theme: 'apaisement',
     context: 'Sourate Ash-Sharh',
     reflection: 'La sensation d\'ouverture et de légèreté après la difficulté.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.stress],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.stress],
   ),
   QuranVerse(
     id: 'q_103_1_3',
     surahNumber: 103,
     verseNumber: 1,
-    textAr: 'وَالْعَصْرِ * إِنَّ الْإِنسَانَ لَفِي خُسْرٍ * إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَواصَوْا بِالْحَقِّ وَتَواصَوْا بِالصَّبْرِ',
-    textFr: 'Par le Temps ! L\'homme est certes, en perdition, sauf ceux qui croient et accomplissent les bonnes œuvres, s\'enjoignent mutuellement la vérité et s\'enjoignent mutuellement l\'endurance.',
+    textAr:
+        'وَالْعَصْرِ * إِنَّ الْإِنسَانَ لَفِي خُسْرٍ * إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَواصَوْا بِالْحَقِّ وَتَواصَوْا بِالصَّبْرِ',
+    textFr:
+        'Par le Temps ! L\'homme est certes, en perdition, sauf ceux qui croient et accomplissent les bonnes œuvres, s\'enjoignent mutuellement la vérité et s\'enjoignent mutuellement l\'endurance.',
     theme: 'temps',
     context: 'Sourate Al-Asr',
-    reflection: 'La solidarité et la patience collective sont les remèdes contre l\'usure du temps.',
-    associatedDomains: [QuestionModule.social, QuestionModule.behavioral],
+    reflection:
+        'La solidarité et la patience collective sont les remèdes contre l\'usure du temps.',
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_107_1_7',
     surahNumber: 107,
     verseNumber: 1,
-    textAr: 'أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ * فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ * وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ',
-    textFr: 'Vois-tu celui qui traite de mensonge la Rétribution ? C\'est bien lui qui repousse l\'orphelin, et n\'encourage point à nourrir le pauvre.',
+    textAr:
+        'أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ * فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ * وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ',
+    textFr:
+        'Vois-tu celui qui traite de mensonge la Rétribution ? C\'est bien lui qui repousse l\'orphelin, et n\'encourage point à nourrir le pauvre.',
     theme: 'compassion',
     context: 'Sourate Al-Ma\'un',
-    reflection: 'La foi authentique se mesure à la compassion envers les plus vulnérables.',
-    associatedDomains: [QuestionModule.social, QuestionModule.behavioral],
+    reflection:
+        'La foi authentique se mesure à la compassion envers les plus vulnérables.',
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_2_155',
     surahNumber: 2,
     verseNumber: 155,
-    textAr: 'وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ ۗ وَبَشِّرِ الصَّابِرِينَ',
-    textFr: 'Très certainement, Nous vous éprouverons par un peu de peur, de faim et de diminution de biens... Et fais la bonne annonce aux endurants.',
+    textAr:
+        'وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ ۗ وَبَشِّرِ الصَّابِرِينَ',
+    textFr:
+        'Très certainement, Nous vous éprouverons par un peu de peur, de faim et de diminution de biens... Et fais la bonne annonce aux endurants.',
     theme: 'épreuve',
     context: 'Sourate Al-Baqarah',
     reflection: 'L\'épreuve est une occasion de croissance et de patience.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.phq4],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.phq4],
   ),
   QuranVerse(
     id: 'q_2_214',
@@ -526,40 +732,45 @@ final List<QuranVerse> quranLibrary = [
     theme: 'espoir',
     context: 'Sourate Al-Baqarah',
     reflection: 'La délivrance arrive toujours au moment opportun.',
-    associatedDomains: [QuestionModule.phq4, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_3_103',
     surahNumber: 3,
     verseNumber: 103,
     textAr: 'وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا',
-    textFr: 'Et attachez-vous tous ensemble au lien d\'Allah et ne soyez pas divisés.',
+    textFr:
+        'Et attachez-vous tous ensemble au lien d\'Allah et ne soyez pas divisés.',
     theme: 'unité',
     context: 'Sourate Al-Imran',
-    reflection: 'L\'union et la solidarité sont des remparts contre la détresse.',
-    associatedDomains: [QuestionModule.social, QuestionModule.relationship],
+    reflection:
+        'L\'union et la solidarité sont des remparts contre la détresse.',
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_3_134',
     surahNumber: 3,
     verseNumber: 134,
-    textAr: 'الَّذِينَ يُنفِقُونَ فِي السَّرَّاءِ وَالضَّرَّاءِ وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ',
-    textFr: '...qui dépensent dans l\'aisance et dans l\'adversité, qui dominent leur rage et pardonnent à autrui.',
+    textAr:
+        'الَّذِينَ يُنفِقُونَ فِي السَّرَّاءِ وَالضَّرَّاءِ وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ',
+    textFr:
+        '...qui dépensent dans l\'aisance et dans l\'adversité, qui dominent leur rage et pardonnent à autrui.',
     theme: 'maitrise_de_soi',
     context: 'Sourate Al-Imran',
     reflection: 'La maîtrise de la colère est une noblesse de caractère.',
-    associatedDomains: [QuestionModule.angerRegulation, QuestionModule.emotions],
+    associatedAxes: [AssessmentAxis.angerRegulation, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_4_147',
     surahNumber: 4,
     verseNumber: 147,
     textAr: 'مَّا يَفْعَلُ اللَّهُ بِعَذَابِكُمْ إِن شَكَرْتُمْ وَآمَنتُمْ',
-    textFr: 'Pourquoi Allah vous infligerait-Il un châtiment si vous êtes reconnaissants et croyants ?',
+    textFr:
+        'Pourquoi Allah vous infligerait-Il un châtiment si vous êtes reconnaissants et croyants ?',
     theme: 'gratitude',
     context: 'Sourate An-Nisa',
     reflection: 'Dieu ne veut pas notre souffrance, mais notre reconnaissance.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_5_8',
@@ -570,18 +781,20 @@ final List<QuranVerse> quranLibrary = [
     theme: 'justice',
     context: 'Sourate Al-Ma\'idah',
     reflection: 'L\'équilibre et la justice intérieure amènent la paix.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_6_32',
     surahNumber: 6,
     verseNumber: 32,
-    textAr: 'وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا لَعِبٌ وَلَهْوٌ ۖ وَلَلدَّارُ الْآخِرَةُ خَيْرٌ لِّلَّذِينَ يَتَّقُونَ',
-    textFr: 'La présente vie n\'est que jeu et divertissement. La demeure dernière est meilleure pour ceux qui sont pieux.',
+    textAr:
+        'وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا لَعِبٌ وَلَهْوٌ ۖ وَلَلدَّارُ الْآخِرَةُ خَيْرٌ لِّلَّذِينَ يَتَّقُونَ',
+    textFr:
+        'La présente vie n\'est que jeu et divertissement. La demeure dernière est meilleure pour ceux qui sont pieux.',
     theme: 'perspective',
     context: 'Sourate Al-An\'am',
     reflection: 'Relativiser les soucis du présent face à l\'éternité.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.lifestyle],
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.lifestyle],
   ),
   QuranVerse(
     id: 'q_7_156',
@@ -592,73 +805,82 @@ final List<QuranVerse> quranLibrary = [
     theme: 'miséricorde',
     context: 'Sourate Al-A\'raf',
     reflection: 'Rien n\'est en dehors de la bonté divine.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_7_199',
     surahNumber: 7,
     verseNumber: 199,
     textAr: 'خُذِ الْعَفْوَ وَأْمُرْ بِالْعُرْفِ وَأَعْرِضْ عَنِ الْجَاهِلِينَ',
-    textFr: 'Accepte ce qu\'on t\'offre de raisonnable, commande ce qui est convenable et éloigne-toi des ignorants.',
+    textFr:
+        'Accepte ce qu\'on t\'offre de raisonnable, commande ce qui est convenable et éloigne-toi des ignorants.',
     theme: 'douceur',
     context: 'Sourate Al-A\'raf',
     reflection: 'La sagesse dans les interactions sociales.',
-    associatedDomains: [QuestionModule.social, QuestionModule.relationship],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_8_30',
     surahNumber: 8,
     verseNumber: 30,
     textAr: 'وَيَمْكُرُونَ وَيَمْكُرُ اللَّهُ ۖ وَاللَّهُ خَيْرُ الْمَاكِرِينَ',
-    textFr: 'Ils complotèrent, mais Allah a fait échouer leur complot, et Allah est le meilleur en stratagèmes.',
+    textFr:
+        'Ils complotèrent, mais Allah a fait échouer leur complot, et Allah est le meilleur en stratagèmes.',
     theme: 'confiance',
     context: 'Sourate Al-Anfal',
     reflection: 'La protection divine dépasse les plans humains.',
-    associatedDomains: [QuestionModule.safety, QuestionModule.cognitive],
+    associatedAxes: [AssessmentAxis.safety, AssessmentAxis.cognitive],
   ),
   QuranVerse(
     id: 'q_11_115',
     surahNumber: 11,
     verseNumber: 115,
     textAr: 'وَاصْبِرْ فَإِنَّ اللَّهَ لَا يُضِيعُ أَجْرَ الْمُحْسِنِينَ',
-    textFr: 'Et sois patient, car Allah ne laisse pas perdre la récompense des gens bienfaisants.',
+    textFr:
+        'Et sois patient, car Allah ne laisse pas perdre la récompense des gens bienfaisants.',
     theme: 'patience',
     context: 'Sourate Hud',
     reflection: 'L\'effort constant finit par porter ses fruits.',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.productivity],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.productivity],
   ),
   QuranVerse(
     id: 'q_13_11',
     surahNumber: 13,
     verseNumber: 11,
-    textAr: 'إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ',
-    textFr: 'En vérité, Allah ne change pas l\'état d\'un peuple tant que celui-ci ne change pas ce qui est en lui-même.',
+    textAr:
+        'إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ',
+    textFr:
+        'En vérité, Allah ne change pas l\'état d\'un peuple tant que celui-ci ne change pas ce qui est en lui-même.',
     theme: 'changement',
     context: 'Sourate Ar-Ra\'d',
     reflection: 'La transformation commence par l\'intérieur.',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.selfEsteem],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.selfEsteem],
   ),
   QuranVerse(
     id: 'q_14_34',
     surahNumber: 14,
     verseNumber: 34,
     textAr: 'وَإِن تَعُدُّوا نِعْمَتَ اللَّهِ لَا تُحْصُوهَا',
-    textFr: 'Et si vous comptiez les bienfaits d\'Allah, vous ne sauriez les dénombrer.',
+    textFr:
+        'Et si vous comptiez les bienfaits d\'Allah, vous ne sauriez les dénombrer.',
     theme: 'gratitude',
     context: 'Sourate Ibrahim',
-    reflection: 'Focaliser sur ce que nous avons plutôt que sur ce qui nous manque.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.emotions],
+    reflection:
+        'Focaliser sur ce que nous avons plutôt que sur ce qui nous manque.',
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_16_90',
     surahNumber: 16,
     verseNumber: 90,
-    textAr: 'إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ وَإِيتَاءِ ذِي الْقُرْبَىٰ',
-    textFr: 'Certes, Allah commande l\'équité, la bienfaisance et l\'assistance aux proches.',
+    textAr:
+        'إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ وَإِيتَاءِ ذِي الْقُرْبَىٰ',
+    textFr:
+        'Certes, Allah commande l\'équité, la bienfaisance et l\'assistance aux proches.',
     theme: 'bienfaisance',
     context: 'Sourate An-Nahl',
     reflection: 'L\'action positive est un moteur de bien-être social.',
-    associatedDomains: [QuestionModule.social, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_17_23',
@@ -669,29 +891,33 @@ final List<QuranVerse> quranLibrary = [
     theme: 'famille',
     context: 'Sourate Al-Isra',
     reflection: 'Le respect des parents est le socle de l\'équilibre familial.',
-    associatedDomains: [QuestionModule.relationship, QuestionModule.social],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.social],
   ),
   QuranVerse(
     id: 'q_17_82',
     surahNumber: 17,
     verseNumber: 82,
-    textAr: 'وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ',
-    textFr: 'Nous faisons descendre du Coran ce qui est une guérison et une miséricorde pour les croyants.',
+    textAr:
+        'وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ',
+    textFr:
+        'Nous faisons descendre du Coran ce qui est une guérison et une miséricorde pour les croyants.',
     theme: 'guérison',
     context: 'Sourate Al-Isra',
     reflection: 'La parole divine est un remède pour l\'esprit.',
-    associatedDomains: [QuestionModule.spiritual, QuestionModule.emotions],
+    associatedAxes: [AssessmentAxis.spiritual, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_18_10',
     surahNumber: 18,
     verseNumber: 10,
-    textAr: 'رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا',
-    textFr: 'Ô notre Seigneur, donne-nous de Ta part une miséricorde; et assure-nous la droiture dans tout ce qui nous concerne.',
+    textAr:
+        'رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا',
+    textFr:
+        'Ô notre Seigneur, donne-nous de Ta part une miséricorde; et assure-nous la droiture dans tout ce qui nous concerne.',
     theme: 'guidance',
     context: 'Gens de la Caverne',
     reflection: 'Demander de l\'aide pour trouver la bonne voie.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_20_114',
@@ -702,18 +928,20 @@ final List<QuranVerse> quranLibrary = [
     theme: 'apprentissage',
     context: 'Sourate Ta-Ha',
     reflection: 'L\'ouverture d\'esprit par la connaissance.',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.productivity],
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.productivity],
   ),
   QuranVerse(
     id: 'q_25_74',
     surahNumber: 25,
     verseNumber: 74,
-    textAr: 'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ',
-    textFr: 'Seigneur, donne-nous, en nos épouses et nos descendants, la joie de nos yeux.',
+    textAr:
+        'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ',
+    textFr:
+        'Seigneur, donne-nous, en nos épouses et nos descendants, la joie de nos yeux.',
     theme: 'famille',
     context: 'Sourate Al-Furqan',
     reflection: 'La paix au sein du foyer.',
-    associatedDomains: [QuestionModule.relationship, QuestionModule.social],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.social],
   ),
   QuranVerse(
     id: 'q_28_77',
@@ -723,8 +951,9 @@ final List<QuranVerse> quranLibrary = [
     textFr: 'Et n\'oublie pas ta part de la vie présente.',
     theme: 'équilibre',
     context: 'Sourate Al-Qasas',
-    reflection: 'L\'importance de l\'équilibre entre vie spirituelle et vie terrestre.',
-    associatedDomains: [QuestionModule.lifestyle, QuestionModule.behavioral],
+    reflection:
+        'L\'importance de l\'équilibre entre vie spirituelle et vie terrestre.',
+    associatedAxes: [AssessmentAxis.lifestyle, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_31_17',
@@ -735,7 +964,7 @@ final List<QuranVerse> quranLibrary = [
     theme: 'patience',
     context: 'Conseils de Luqman',
     reflection: 'L\'endurance face aux aléas de la vie.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.phq4],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.phq4],
   ),
   QuranVerse(
     id: 'q_31_18',
@@ -746,18 +975,21 @@ final List<QuranVerse> quranLibrary = [
     theme: 'humilité',
     context: 'Conseils de Luqman',
     reflection: 'L\'humilité est la base d\'une saine estime de soi.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_35_15',
     surahNumber: 35,
     verseNumber: 15,
-    textAr: 'يَا أَيُّهَا النَّاسُ أَنتُمُ الْفُقَرَاءُ إِلَى اللَّهِ ۖ وَاللَّهُ هُوَ الْغَنِيُّ الْحَمِيدُ',
-    textFr: 'Ô hommes, vous êtes les indigents ayant besoin d\'Allah, et c\'est Allah, Lui qui se suffit à Lui-même, le Digne de louange.',
+    textAr:
+        'يَا أَيُّهَا النَّاسُ أَنتُمُ الْفُقَرَاءُ إِلَى اللَّهِ ۖ وَاللَّهُ هُوَ الْغَنِيُّ الْحَمِيدُ',
+    textFr:
+        'Ô hommes, vous êtes les indigents ayant besoin d\'Allah, et c\'est Allah, Lui qui se suffit à Lui-même, le Digne de louange.',
     theme: 'humilité',
     context: 'Sourate Fatir',
-    reflection: 'Reconnaître notre dépendance envers le Créateur libère du faux orgueil.',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.spiritual],
+    reflection:
+        'Reconnaître notre dépendance envers le Créateur libère du faux orgueil.',
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_39_10',
@@ -768,7 +1000,7 @@ final List<QuranVerse> quranLibrary = [
     theme: 'patience',
     context: 'Sourate Az-Zumar',
     reflection: 'La patience a une valeur inestimable.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.phq4],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.phq4],
   ),
   QuranVerse(
     id: 'q_40_60',
@@ -779,40 +1011,45 @@ final List<QuranVerse> quranLibrary = [
     theme: 'proximité',
     context: 'Sourate Ghafir',
     reflection: 'La porte du dialogue avec Dieu est toujours ouverte.',
-    associatedDomains: [QuestionModule.spiritual, QuestionModule.emotions],
+    associatedAxes: [AssessmentAxis.spiritual, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_41_30',
     surahNumber: 41,
     verseNumber: 30,
-    textAr: 'إِنَّ الَّذِينَ قَالُوا رَبُّنَا اللَّهُ ثُمَّ اسْتَقَامُوا تَتَنَزَّلُ عَلَيْهِمُ الْمَلَائِكَةُ أَلَّا تَخَافُوا وَلَا تَحْزَنُوا',
-    textFr: 'Ceux qui disent : "Notre Seigneur est Allah", et qui se tiennent dans le droit chemin, les Anges descendent sur eux : "N\'ayez pas peur et ne soyez pas affligés."',
+    textAr:
+        'إِنَّ الَّذِينَ قَالُوا رَبُّنَا اللَّهُ ثُمَّ اسْتَقَامُوا تَتَنَزَّلُ عَلَيْهِمُ الْمَلَائِكَةُ أَلَّا تَخَافُوا وَلَا تَحْزَنُوا',
+    textFr:
+        'Ceux qui disent : "Notre Seigneur est Allah", et qui se tiennent dans le droit chemin, les Anges descendent sur eux : "N\'ayez pas peur et ne soyez pas affligés."',
     theme: 'sérénité',
     context: 'Sourate Fussilat',
     reflection: 'La persévérance dans le bien apporte la paix intérieure.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.phq4],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.phq4],
   ),
   QuranVerse(
     id: 'q_48_18',
     surahNumber: 48,
     verseNumber: 18,
     textAr: 'فَأَنزَلَ السَّكِينَةَ عَلَيْهِمْ وَأَثَابَهُمْ فَتْحًا قَرِيبًا',
-    textFr: 'Il a fait descendre sur eux la quiétude et les a récompensés par une victoire proche.',
+    textFr:
+        'Il a fait descendre sur eux la quiétude et les a récompensés par une victoire proche.',
     theme: 'sakinah',
     context: 'Pacte d\'Al-Hudaybiya',
     reflection: 'La quiétude du cœur est le préalable à toute réussite.',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.stress],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.stress],
   ),
   QuranVerse(
     id: 'q_53_39',
     surahNumber: 53,
     verseNumber: 39,
     textAr: 'وَأَن لَّيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ',
-    textFr: '...et qu\'en vérité, l\'homme n\'obtient que le fruit de ses efforts.',
+    textFr:
+        '...et qu\'en vérité, l\'homme n\'obtient que le fruit de ses efforts.',
     theme: 'effort',
     context: 'Sourate An-Najm',
-    reflection: 'L\'importance de l\'engagement personnel dans son propre bien-être.',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.productivity],
+    reflection:
+        'L\'importance de l\'engagement personnel dans son propre bien-être.',
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.productivity],
   ),
   QuranVerse(
     id: 'q_65_7',
@@ -823,7 +1060,7 @@ final List<QuranVerse> quranLibrary = [
     theme: 'soulagement',
     context: 'Sourate At-Talaq',
     reflection: 'La difficulté est temporaire.',
-    associatedDomains: [QuestionModule.stress, QuestionModule.phq4],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.phq4],
   ),
   QuranVerse(
     id: 'q_1_1',
@@ -832,43 +1069,50 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
     textFr: 'Au nom d\'Allah, le Tout Miséricordieux, le Très Miséricordieux.',
     theme: 'commencement',
-    associatedDomains: [QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_2_2',
     surahNumber: 2,
     verseNumber: 2,
     textAr: 'ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ',
-    textFr: 'C\'est le Livre au sujet duquel il n\'y a aucun doute, c\'est un guide pour les pieux.',
+    textFr:
+        'C\'est le Livre au sujet duquel il n\'y a aucun doute, c\'est un guide pour les pieux.',
     theme: 'guidance',
-    associatedDomains: [QuestionModule.cognitive],
+    associatedAxes: [AssessmentAxis.cognitive],
   ),
   QuranVerse(
     id: 'q_2_45',
     surahNumber: 2,
     verseNumber: 45,
-    textAr: 'وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ',
-    textFr: 'Et cherchez secours dans l\'endurance et la Salât : certes, la Salât est une lourde obligation, sauf pour les humbles.',
+    textAr:
+        'وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ',
+    textFr:
+        'Et cherchez secours dans l\'endurance et la Salât : certes, la Salât est une lourde obligation, sauf pour les humbles.',
     theme: 'patience',
-    associatedDomains: [QuestionModule.stress, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_2_156',
     surahNumber: 2,
     verseNumber: 156,
-    textAr: 'الَّذِينَ إِذَا أَصَابَتْهُم مُّصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ',
-    textFr: '...qui disent, quand un malheur les atteint: "Certes nous sommes à Allah, et c\'est à Lui que nous retournerons".',
+    textAr:
+        'الَّذِينَ إِذَا أَصَابَتْهُم مُّصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ',
+    textFr:
+        '...qui disent, quand un malheur les atteint: "Certes nous sommes à Allah, et c\'est à Lui que nous retournerons".',
     theme: 'acceptation',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.stress],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.stress],
   ),
   QuranVerse(
     id: 'q_2_216',
     surahNumber: 2,
     verseNumber: 216,
-    textAr: 'وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ ۖ وَعَسَىٰ أَن تُحِبُّوا شَيْئًا وَهُوَ شَرٌّ لَّكُمْ',
-    textFr: 'Il se peut que vous ayez de l\'aversion pour une chose alors qu\'elle vous est un bien. Et il se peut que vous aimiez une chose alors qu\'elle vous est un mal.',
+    textAr:
+        'وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ ۖ وَعَسَىٰ أَن تُحِبُّوا شَيْئًا وَهُوَ شَرٌّ لَّكُمْ',
+    textFr:
+        'Il se peut que vous ayez de l\'aversion pour une chose alors qu\'elle vous est un bien. Et il se peut que vous aimiez une chose alors qu\'elle vous est un mal.',
     theme: 'sagesse',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.emotions],
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_3_160',
@@ -877,7 +1121,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'إِن يَنصُرْكُمُ اللَّهُ فَلَا غَالِبَ لَكُمْ',
     textFr: 'Si Allah vous donne Son secours, nul ne peut vous vaincre.',
     theme: 'force',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.safety],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.safety],
   ),
   QuranVerse(
     id: 'q_3_173',
@@ -886,34 +1130,42 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ',
     textFr: 'Allah nous suffit; Il est notre meilleur garant.',
     theme: 'confiance',
-    associatedDomains: [QuestionModule.stress, QuestionModule.safety],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.safety],
   ),
   QuranVerse(
     id: 'q_4_1',
     surahNumber: 4,
     verseNumber: 1,
     textAr: 'وَاتَّقُوا اللَّهَ الَّذِي تَسَاءَلُونَ بِهِ وَالْأَرْحَامَ',
-    textFr: '...et craignez Allah au nom duquel vous vous implorez les uns les autres, et craignez de rompre les liens du sang.',
+    textFr:
+        '...et craignez Allah au nom duquel vous vous implorez les uns les autres, et craignez de rompre les liens du sang.',
     theme: 'famille',
-    associatedDomains: [QuestionModule.relationship, QuestionModule.social],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.social],
   ),
   QuranVerse(
     id: 'q_4_149',
     surahNumber: 4,
     verseNumber: 149,
-    textAr: 'إِن تُبْدُوا خَيْرًا أَوْ تُخْفُوهُ أَوْ تَعْفُوا عَن سُوءٍ فَإِنَّ اللَّهَ كَانَ عَفُوًّا قَدِيرًا',
-    textFr: 'Que vous fassiez du bien, ouvertement ou en cachette, ou que vous pardonniez un mal... alors Allah est Pardonneur et Omnipotent.',
+    textAr:
+        'إِن تُبْدُوا خَيْرًا أَوْ تُخْفُوهُ أَوْ تَعْفُوا عَن سُوءٍ فَإِنَّ اللَّهَ كَانَ عَفُوًّا قَدِيرًا',
+    textFr:
+        'Que vous fassiez du bien, ouvertement ou en cachette, ou que vous pardonniez un mal... alors Allah est Pardonneur et Omnipotent.',
     theme: 'pardon',
-    associatedDomains: [QuestionModule.angerRegulation, QuestionModule.relationship],
+    associatedAxes: [
+      AssessmentAxis.angerRegulation,
+      AssessmentAxis.relationship,
+    ],
   ),
   QuranVerse(
     id: 'q_5_2',
     surahNumber: 5,
     verseNumber: 2,
-    textAr: 'وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ۖ وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ',
-    textFr: 'Entraidez-vous dans l\'accomplissement des bonnes œuvres et de la piété et ne vous entraidez pas dans le péché et la transgression.',
+    textAr:
+        'وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ۖ وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ',
+    textFr:
+        'Entraidez-vous dans l\'accomplissement des bonnes œuvres et de la piété et ne vous entraidez pas dans le péché et la transgression.',
     theme: 'entraide',
-    associatedDomains: [QuestionModule.social, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_6_54',
@@ -922,16 +1174,18 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'كَتَبَ رَبُّكُمْ عَلَىٰ نَفْسِهِ الرَّحْمَةَ',
     textFr: 'Votre Seigneur S\'est prescrit à Lui-même la miséricorde.',
     theme: 'miséricorde',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_10_62',
     surahNumber: 10,
     verseNumber: 62,
-    textAr: 'أَلَا إِنَّ أَوْلِيَاءَ اللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ',
-    textFr: 'En vérité, les bien-aimés d\'Allah seront à l\'abri de toute crainte, et ils ne seront point affligés.',
+    textAr:
+        'أَلَا إِنَّ أَوْلِيَاءَ اللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ',
+    textFr:
+        'En vérité, les bien-aimés d\'Allah seront à l\'abri de toute crainte, et ils ne seront point affligés.',
     theme: 'paix',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.safety],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.safety],
   ),
   QuranVerse(
     id: 'q_12_18',
@@ -940,7 +1194,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'فَصَبْرٌ جَمِيلٌ',
     textFr: 'Il ne me reste plus qu\'une belle patience !',
     theme: 'patience',
-    associatedDomains: [QuestionModule.stress, QuestionModule.emotions],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_13_22',
@@ -949,16 +1203,18 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَيَدْرَءُونَ بِالْحَسَنَةِ السَّيِّئَةَ',
     textFr: '...et repoussent le mal par le bien.',
     theme: 'bienveillance',
-    associatedDomains: [QuestionModule.relationship, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_16_125',
     surahNumber: 16,
     verseNumber: 125,
-    textAr: 'ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ وَالْمَوْعِظَةِ الْحَسَنَةِ',
-    textFr: 'Par la sagesse et la bonne exhortation, appelle (les gens) au sentier de ton Seigneur.',
+    textAr:
+        'ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ وَالْمَوْعِظَةِ الْحَسَنَةِ',
+    textFr:
+        'Par la sagesse et la bonne exhortation, appelle (les gens) au sentier de ton Seigneur.',
     theme: 'sagesse',
-    associatedDomains: [QuestionModule.social, QuestionModule.cognitive],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.cognitive],
   ),
   QuranVerse(
     id: 'q_17_53',
@@ -967,7 +1223,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَقُل لِّعِبَادِي يَقُولُوا الَّتِي هِيَ أَحْسَنُ',
     textFr: 'Et dis à Mes serviteurs de dire les paroles les meilleures.',
     theme: 'parole',
-    associatedDomains: [QuestionModule.social, QuestionModule.relationship],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_17_70',
@@ -976,34 +1232,39 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ',
     textFr: 'Certes, Nous avons honoré les fils d\'Adam.',
     theme: 'dignité',
-    associatedDomains: [QuestionModule.selfEsteem],
+    associatedAxes: [AssessmentAxis.selfEsteem],
   ),
   QuranVerse(
     id: 'q_17_110',
     surahNumber: 17,
     verseNumber: 110,
-    textAr: 'وَلَا تَجْهَرْ بِصَلَاتِكَ وَلَا تُخَافِتْ بِهَا وَابْتَغِ بَيْنَ ذَٰلِكَ سَبِيلًا',
-    textFr: 'Et dans ta Salât, ne récites pas trop à haute voix, et ne l\'y abaisse pas trop, mais cherche le juste milieu entre les deux.',
+    textAr:
+        'وَلَا تَجْهَرْ بِصَلَاتِكَ وَلَا تُخَافِتْ بِهَا وَابْتَغِ بَيْنَ ذَٰلِكَ سَبِيلًا',
+    textFr:
+        'Et dans ta Salât, ne récites pas trop à haute voix, et ne l\'y abaisse pas trop, mais cherche le juste milieu entre les deux.',
     theme: 'équilibre',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.lifestyle],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.lifestyle],
   ),
   QuranVerse(
     id: 'q_18_28',
     surahNumber: 18,
     verseNumber: 28,
-    textAr: 'وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُم بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ',
-    textFr: 'Fais preuve de patience [en restant] avec ceux qui invoquent leur Seigneur matin et soir, cherchant Sa Face.',
+    textAr:
+        'وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُم بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ',
+    textFr:
+        'Fais preuve de patience [en restant] avec ceux qui invoquent leur Seigneur matin et soir, cherchant Sa Face.',
     theme: 'entourage',
-    associatedDomains: [QuestionModule.social, QuestionModule.relationship],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_21_35',
     surahNumber: 21,
     verseNumber: 35,
     textAr: 'وَنَبْلُوكُم بِالشَّرِّ وَالْخَيْرِ فِتْنَةً',
-    textFr: 'Nous vous éprouverons par le mal et par le bien [à titre] de tentation.',
+    textFr:
+        'Nous vous éprouverons par le mal et par le bien [à titre] de tentation.',
     theme: 'épreuve',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.emotions],
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_22_34',
@@ -1012,70 +1273,84 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَبَشِّرِ الْمُخْبِتِينَ',
     textFr: 'Et fais la bonne annonce à ceux qui s\'humilient.',
     theme: 'humilité',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_24_22',
     surahNumber: 24,
     verseNumber: 22,
-    textAr: 'وَلْيَعْفُوا وَلْيَصْفَحُوا ۗ أَلَا تُحِبُّونَ أَن يَغْفَرَ اللَّهُ لَكُمْ',
-    textFr: 'Qu\'ils pardonnent et absolvent. N\'aimez-vous pas qu\'Allah vous pardonne ?',
+    textAr:
+        'وَلْيَعْفُوا وَلْيَصْفَحُوا ۗ أَلَا تُحِبُّونَ أَن يَغْفَرَ اللَّهُ لَكُمْ',
+    textFr:
+        'Qu\'ils pardonnent et absolvent. N\'aimez-vous pas qu\'Allah vous pardonne ?',
     theme: 'pardon',
-    associatedDomains: [QuestionModule.angerRegulation, QuestionModule.relationship],
+    associatedAxes: [
+      AssessmentAxis.angerRegulation,
+      AssessmentAxis.relationship,
+    ],
   ),
   QuranVerse(
     id: 'q_25_63',
     surahNumber: 25,
     verseNumber: 63,
-    textAr: 'وَعِبَادُ الرَّحْمَنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنًا وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا',
-    textFr: 'Les serviteurs du Tout Miséricordieux sont ceux qui marchent humblement sur terre, qui, lorsque les ignorants s\'adressent à eux, disent: "Paix".',
+    textAr:
+        'وَعِبَادُ الرَّحْمَنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنًا وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا',
+    textFr:
+        'Les serviteurs du Tout Miséricordieux sont ceux qui marchent humblement sur terre, qui, lorsque les ignorants s\'adressent à eux, disent: "Paix".',
     theme: 'paix',
-    associatedDomains: [QuestionModule.social, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_29_69',
     surahNumber: 29,
     verseNumber: 69,
     textAr: 'وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا',
-    textFr: 'Et quant à ceux qui luttent pour Notre cause, Nous les guiderons certes sur Nos sentiers.',
+    textFr:
+        'Et quant à ceux qui luttent pour Notre cause, Nous les guiderons certes sur Nos sentiers.',
     theme: 'effort',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.productivity],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.productivity],
   ),
   QuranVerse(
     id: 'q_33_70',
     surahNumber: 33,
     verseNumber: 70,
-    textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا',
+    textAr:
+        'يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا',
     textFr: 'Ô vous qui croyez ! Craignez Allah et parlez avec droiture.',
     theme: 'intégrité',
-    associatedDomains: [QuestionModule.social, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_35_10',
     surahNumber: 35,
     verseNumber: 10,
-    textAr: 'إِلَيْهِ يَصْعَدُ الْكَلِمُ الطَّيِّبُ وَالْعَمَلُ الصَّالِحُ يَرْفَعُهُ',
+    textAr:
+        'إِلَيْهِ يَصْعَدُ الْكَلِمُ الطَّيِّبُ وَالْعَمَلُ الصَّالِحُ يَرْفَعُهُ',
     textFr: 'Vers Lui monte la bonne parole, et Il élève haut la bonne action.',
     theme: 'positivité',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_39_23',
     surahNumber: 39,
     verseNumber: 23,
-    textAr: 'تَقْشَعِرُّ مِنْهُ جُلُودُ الَّذِينَ يَخْشَوْنَ رَبَّهُمْ ثُمَّ تَلِينُ جُلُودُهُمْ وَقُلُوبُهُمْ إِلَىٰ ذِكْرِ اللَّهِ',
-    textFr: '...les peaux de ceux qui redoutent leur Seigneur en frissonnent; puis leurs peaux et leurs cœurs s\'apaisent au rappel d\'Allah.',
+    textAr:
+        'تَقْشَعِرُّ مِنْهُ جُلُودُ الَّذِينَ يَخْشَوْنَ رَبَّهُمْ ثُمَّ تَلِينُ جُلُودُهُمْ وَقُلُوبُهُمْ إِلَىٰ ذِكْرِ اللَّهِ',
+    textFr:
+        '...les peaux de ceux qui redoutent leur Seigneur en frissonnent; puis leurs peaux et leurs cœurs s\'apaisent au rappel d\'Allah.',
     theme: 'apaisement',
-    associatedDomains: [QuestionModule.spiritual, QuestionModule.emotions],
+    associatedAxes: [AssessmentAxis.spiritual, AssessmentAxis.emotions],
   ),
   QuranVerse(
     id: 'q_40_44',
     surahNumber: 40,
     verseNumber: 44,
-    textAr: 'وَأُفَوِّضُ أَمْرِي إِلَى اللَّهِ ۚ إِنَّ اللَّهَ بَصِيرٌ بِالْعِبَادِ',
-    textFr: 'Et je confie mon sort à Allah. Allah, en vérité, voit parfaitement les hommes.',
+    textAr:
+        'وَأُفَوِّضُ أَمْرِي إِلَى اللَّهِ ۚ إِنَّ اللَّهَ بَصِيرٌ بِالْعِبَادِ',
+    textFr:
+        'Et je confie mon sort à Allah. Allah, en vérité, voit parfaitement les hommes.',
     theme: 'confiance',
-    associatedDomains: [QuestionModule.stress, QuestionModule.safety],
+    associatedAxes: [AssessmentAxis.stressAnxiety, AssessmentAxis.safety],
   ),
   QuranVerse(
     id: 'q_41_46',
@@ -1084,7 +1359,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'مَنْ عَمِلَ صَالِحًا فَلِنَفْسِهِ',
     textFr: 'Quiconque fait une bonne œuvre, c\'est pour son bien.',
     theme: 'responsabilité',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.selfEsteem],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.selfEsteem],
   ),
   QuranVerse(
     id: 'q_42_38',
@@ -1093,7 +1368,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَأَمْرُهُمْ شُورَىٰ بَيْنَهُمْ',
     textFr: '...et qui se consultent entre eux pour leurs affaires.',
     theme: 'consultation',
-    associatedDomains: [QuestionModule.social, QuestionModule.relationship],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_42_40',
@@ -1102,52 +1377,63 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'فَمَنْ عَفَا وَأَصْلَحَ فَأَجْرُهُ عَلَى اللَّهِ',
     textFr: 'Mais quiconque pardonne et réforme, son salaire incombe à Allah.',
     theme: 'pardon',
-    associatedDomains: [QuestionModule.angerRegulation, QuestionModule.relationship],
+    associatedAxes: [
+      AssessmentAxis.angerRegulation,
+      AssessmentAxis.relationship,
+    ],
   ),
   QuranVerse(
     id: 'q_43_67',
     surahNumber: 43,
     verseNumber: 67,
-    textAr: 'الْأَخِلَّاءُ يَوْمَئِذٍ بَعْضُهُمْ لِبَعْضٍ عَدُوٌّ إِلَّا الْمُتَّقِينَ',
-    textFr: 'Les amis, ce jour-là, seront ennemis les uns des autres, excepté les pieux.',
+    textAr:
+        'الْأَخِلَّاءُ يَوْمَئِذٍ بَعْضُهُمْ لِبَعْضٍ عَدُوٌّ إِلَّا الْمُتَّقِينَ',
+    textFr:
+        'Les amis, ce jour-là, seront ennemis les uns des autres, excepté les pieux.',
     theme: 'amitié',
-    associatedDomains: [QuestionModule.social, QuestionModule.relationship],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.relationship],
   ),
   QuranVerse(
     id: 'q_46_15',
     surahNumber: 46,
     verseNumber: 15,
-    textAr: 'رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ',
-    textFr: 'Seigneur ! Inspire-moi pour que je rende grâce au bienfait dont Tu m\'as comblé.',
+    textAr:
+        'رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ',
+    textFr:
+        'Seigneur ! Inspire-moi pour que je rende grâce au bienfait dont Tu m\'as comblé.',
     theme: 'gratitude',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_48_4_2',
     surahNumber: 48,
     verseNumber: 4,
     textAr: 'هُوَ الَّذِي أَنزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ',
-    textFr: 'C\'est Lui qui a fait descendre la quiétude dans les cœurs des croyants.',
+    textFr:
+        'C\'est Lui qui a fait descendre la quiétude dans les cœurs des croyants.',
     theme: 'sakinah',
-    associatedDomains: [QuestionModule.emotions, QuestionModule.stress],
+    associatedAxes: [AssessmentAxis.emotions, AssessmentAxis.stress],
   ),
   QuranVerse(
     id: 'q_49_6',
     surahNumber: 49,
     verseNumber: 6,
-    textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا إِن جَاءَكُمْ فَاسِقٌ بِنَبَإٍ فَتَبَيَّنُوا',
-    textFr: 'Ô vous qui avez cru ! Si un pervers vous apporte une nouvelle, voyez bien clair [de crainte que par inadvertance vous ne portiez atteinte à des gens].',
+    textAr:
+        'يَا أَيُّهَا الَّذِينَ آمَنُوا إِن جَاءَكُمْ فَاسِقٌ بِنَبَإٍ فَتَبَيَّنُوا',
+    textFr:
+        'Ô vous qui avez cru ! Si un pervers vous apporte une nouvelle, voyez bien clair [de crainte que par inadvertance vous ne portiez atteinte à des gens].',
     theme: 'discernement',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.social],
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.social],
   ),
   QuranVerse(
     id: 'q_49_11',
     surahNumber: 49,
     verseNumber: 11,
     textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا لَا يَسْخَرْ قَوْمٌ مِّن قَوْمٍ',
-    textFr: 'Ô vous qui avez cru ! Qu\'un groupe ne se raille pas d\'un autre groupe.',
+    textFr:
+        'Ô vous qui avez cru ! Qu\'un groupe ne se raille pas d\'un autre groupe.',
     theme: 'respect',
-    associatedDomains: [QuestionModule.social, QuestionModule.selfEsteem],
+    associatedAxes: [AssessmentAxis.socialSupport, AssessmentAxis.selfEsteem],
   ),
   QuranVerse(
     id: 'q_50_16',
@@ -1156,7 +1442,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ',
     textFr: '...et Nous sommes plus près de lui que sa veine jugulaire.',
     theme: 'proximité',
-    associatedDomains: [QuestionModule.spiritual, QuestionModule.safety],
+    associatedAxes: [AssessmentAxis.spiritual, AssessmentAxis.safety],
   ),
   QuranVerse(
     id: 'q_51_21',
@@ -1165,7 +1451,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَفِي أَنفُسِكُمْ ۚ أَفَلَا تُبْصِرُونَ',
     textFr: '...ainsi qu\'en vous-mêmes. Ne voyez-vous donc pas ?',
     theme: 'introspection',
-    associatedDomains: [QuestionModule.cognitive, QuestionModule.selfEsteem],
+    associatedAxes: [AssessmentAxis.cognitive, AssessmentAxis.selfEsteem],
   ),
   QuranVerse(
     id: 'q_55_60',
@@ -1174,7 +1460,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'هَلْ جَزَاءُ الْإِحْسَانِ إِلَّا الْإِحْسَانُ',
     textFr: 'Y a-t-il d\'autre récompense pour le bien, que le bien ?',
     theme: 'bienveillance',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.social],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.social],
   ),
   QuranVerse(
     id: 'q_57_4',
@@ -1183,43 +1469,54 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ',
     textFr: 'Et Il est avec vous où que vous soyez.',
     theme: 'présence',
-    associatedDomains: [QuestionModule.safety, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.safety, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_58_11',
     surahNumber: 58,
     verseNumber: 11,
-    textAr: 'يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ',
-    textFr: '...Allah élèvera en degrés ceux d\'entre vous qui auront cru et ceux qui auront reçu le savoir.',
+    textAr:
+        'يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ',
+    textFr:
+        '...Allah élèvera en degrés ceux d\'entre vous qui auront cru et ceux qui auront reçu le savoir.',
     theme: 'savoir',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.cognitive],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.cognitive],
   ),
   QuranVerse(
     id: 'q_61_2',
     surahNumber: 61,
     verseNumber: 2,
-    textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا لِمَ تَقُولُونَ مَا لَا تَفْعَلُونَ',
-    textFr: 'Ô vous qui avez cru ! Pourquoi dites-vous ce que vous ne faites pas ?',
+    textAr:
+        'يَا أَيُّهَا الَّذِينَ آمَنُوا لِمَ تَقُولُونَ مَا لَا تَفْعَلُونَ',
+    textFr:
+        'Ô vous qui avez cru ! Pourquoi dites-vous ce que vous ne faites pas ?',
     theme: 'intégrité',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.selfEsteem],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.selfEsteem],
   ),
   QuranVerse(
     id: 'q_64_14',
     surahNumber: 64,
     verseNumber: 14,
-    textAr: 'وَإِن تَعْفُوا وَتَصْفَحُوا وَتَغْفِرُوا فَإِنَّ اللَّهَ غَفُورٌ رَّحِيمٌ',
-    textFr: '...mais si vous [les] excusez, passez sur [leurs fautes] et [leur] pardonnez, alors Allah est Pardonneur, Très Miséricordieux.',
+    textAr:
+        'وَإِن تَعْفُوا وَتَصْفَحُوا وَتَغْفِرُوا فَإِنَّ اللَّهَ غَفُورٌ رَّحِيمٌ',
+    textFr:
+        '...mais si vous [les] excusez, passez sur [leurs fautes] et [leur] pardonnez, alors Allah est Pardonneur, Très Miséricordieux.',
     theme: 'pardon',
-    associatedDomains: [QuestionModule.relationship, QuestionModule.angerRegulation],
+    associatedAxes: [
+      AssessmentAxis.socialSupport,
+      AssessmentAxis.angerRegulation,
+    ],
   ),
   QuranVerse(
     id: 'q_66_8',
     surahNumber: 66,
     verseNumber: 8,
-    textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا تُوبُوا إِلَى اللَّهِ تَوْبَةً نَّصُوحًا',
-    textFr: 'Ô vous qui avez cru ! Repentez-vous à Allah d\'un repentir sincère.',
+    textAr:
+        'يَا أَيُّهَا الَّذِينَ آمَنُوا تُوبُوا إِلَى اللَّهِ تَوْبَةً نَّصُوحًا',
+    textFr:
+        'Ô vous qui avez cru ! Repentez-vous à Allah d\'un repentir sincère.',
     theme: 'renouveau',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.spiritual],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.spiritual],
   ),
   QuranVerse(
     id: 'q_68_4',
@@ -1228,7 +1525,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ',
     textFr: 'Et tu es certes, d\'une moralité éminente.',
     theme: 'éthique',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_74_38',
@@ -1237,7 +1534,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ',
     textFr: 'Toute âme est l\'otage de ce qu\'elle a acquis.',
     theme: 'responsabilité',
-    associatedDomains: [QuestionModule.behavioral, QuestionModule.cognitive],
+    associatedAxes: [AssessmentAxis.behavioral, AssessmentAxis.cognitive],
   ),
   QuranVerse(
     id: 'q_91_9',
@@ -1246,7 +1543,7 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'قَدْ أَفْلَحَ مَن زَكَّاهَا',
     textFr: 'A réussi, certes, celui qui la purifie [l\'âme].',
     theme: 'succès',
-    associatedDomains: [QuestionModule.selfEsteem, QuestionModule.behavioral],
+    associatedAxes: [AssessmentAxis.selfConfidence, AssessmentAxis.behavioral],
   ),
   QuranVerse(
     id: 'q_95_4',
@@ -1255,6 +1552,6 @@ final List<QuranVerse> quranLibrary = [
     textAr: 'لَقَدْ خَلَقْنَا الْإِنسَانَ فِي أَحْسَنِ تَقْوِيمٍ',
     textFr: 'Nous avons certes créé l\'homme dans la forme la plus parfaite.',
     theme: 'dignité',
-    associatedDomains: [QuestionModule.selfEsteem],
+    associatedAxes: [AssessmentAxis.selfEsteem],
   ),
 ];

@@ -16,10 +16,13 @@ class RuleEngine {
         newStatus = ExplorationStatus.opened;
       } else if (state.status == ExplorationStatus.opened && need > 0.4) {
         newStatus = ExplorationStatus.exploring;
-      } else if (state.status == ExplorationStatus.exploring && state.confidence >= 0.8) {
+      } else if (state.status == ExplorationStatus.exploring &&
+          state.confidence >= 0.8) {
         newStatus = ExplorationStatus.closed;
-      } else if (state.status == ExplorationStatus.unexplored && state.questionsAsked > 2 && need < 0.1) {
-          newStatus = ExplorationStatus.closed;
+      } else if (state.status == ExplorationStatus.unexplored &&
+          state.questionsAsked > 2 &&
+          need < 0.1) {
+        newStatus = ExplorationStatus.closed;
       }
 
       updatedStates[axis] = state.copyWith(status: newStatus);

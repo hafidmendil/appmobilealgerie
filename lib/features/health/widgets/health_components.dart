@@ -71,18 +71,19 @@ class HealthKnowledgeCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               EvidenceLevelBadge(level: item.evidenceLevel),
-              if (item.sourceStatus == 'UNVERIFIED')
-                const UnverifiedBadge(),
+              if (item.sourceStatus == 'UNVERIFIED') const UnverifiedBadge(),
             ],
           ),
           const SizedBox(height: AppSpacing.sm),
           Text(
             isAr ? item.arabicTitle : item.title,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(
-            item.description,
+            isAr ? l10n.contentAvailableInFrench : item.description,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodySmall,
@@ -93,12 +94,11 @@ class HealthKnowledgeCard extends StatelessWidget {
             children: [
               Text(
                 item.source ?? "",
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
               ),
-              TextButton(
-                onPressed: onTap,
-                child: Text(l10n.read_more),
-              ),
+              TextButton(onPressed: onTap, child: Text(l10n.read_more)),
             ],
           ),
         ],
@@ -140,7 +140,6 @@ class EvidenceLevelBadge extends StatelessWidget {
         label = l10n.evidence_review;
         break;
       case EvidenceLevel.uncertain:
-      default:
         color = Colors.grey;
         label = l10n.evidence_uncertain;
         break;
@@ -155,7 +154,11 @@ class EvidenceLevelBadge extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(color: color, fontSize: 10, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          color: color,
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -175,7 +178,11 @@ class UnverifiedBadge extends StatelessWidget {
       ),
       child: Text(
         l10n.unverified_source,
-        style: const TextStyle(color: Colors.red, fontSize: 10, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+          color: Colors.red,
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

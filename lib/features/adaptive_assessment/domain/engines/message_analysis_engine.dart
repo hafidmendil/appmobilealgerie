@@ -8,13 +8,21 @@ class MessageAnalysisEngine {
     'tristesse': ['triste', 'pleurer', 'حزن', 'بكى', 'دموع', 'قلبي معمر'],
     'anxiété': ['anxieux', 'peur', 'خوف', 'رهبة', 'وسواس', 'خايف'],
     'travail': ['travail', 'boulot', 'études', 'خدمة', 'قراية', 'ليكول'],
-    'famille': ['famille', 'parents', 'عائلة', 'والدين', 'دارنا', 'بابا', 'ماما'],
+    'famille': [
+      'famille',
+      'parents',
+      'عائلة',
+      'والدين',
+      'دارنا',
+      'بابا',
+      'ماما',
+    ],
     'santé': ['santé', 'malade', 'مرض', 'صحة', 'طبيب', 'وجع'],
   };
 
   List<String> analyzeThemes(String text) {
     if (text.isEmpty) return [];
-    
+
     final themes = <String>[];
     final lowerText = text.toLowerCase();
 
@@ -29,7 +37,7 @@ class MessageAnalysisEngine {
 
     return themes;
   }
-  
+
   /// Determines dominant emotions based on intensity of keywords (future expansion)
   Map<String, double> getEmotionScores(String text) {
     // Basic implementation for now

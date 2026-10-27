@@ -6,7 +6,7 @@ enum RecommendationCategory {
   socialSupport,
   professionalConsultation,
   spiritual,
-  physicalActivity
+  physicalActivity,
 }
 
 class Recommendation {

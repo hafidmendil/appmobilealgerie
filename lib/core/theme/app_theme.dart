@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'tokens/app_colors.dart';
 import 'tokens/app_typography.dart';
 import 'tokens/app_spacing.dart';
@@ -32,10 +31,11 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.oliveGreen,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.md),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadii.mediumRadius,
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xl,
+            vertical: AppSpacing.md,
           ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadii.mediumRadius),
           elevation: 0,
         ),
       ),
@@ -43,36 +43,49 @@ class AppTheme {
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.oliveGreen,
           side: const BorderSide(color: AppColors.oliveGreen, width: 1.5),
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.md),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadii.mediumRadius,
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xl,
+            vertical: AppSpacing.md,
           ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadii.mediumRadius),
         ),
       ),
       cardTheme: CardThemeData(
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadii.largeRadius,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadii.largeRadius),
         color: Colors.white,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white, // Pure white for better contrast
-        contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.md),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md,
+          vertical: AppSpacing.md,
+        ),
         border: OutlineInputBorder(
           borderRadius: AppRadii.mediumRadius,
-          borderSide: const BorderSide(color: AppColors.textMuted, width: 1), // Stronger border
+          borderSide: const BorderSide(
+            color: AppColors.textMuted,
+            width: 1,
+          ), // Stronger border
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: AppRadii.mediumRadius,
-          borderSide: BorderSide(color: AppColors.textMuted.withOpacity(0.5)), // More visible
+          borderSide: BorderSide(
+            color: AppColors.textMuted.withAlpha(128),
+          ), // More visible
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: AppRadii.mediumRadius,
-          borderSide: const BorderSide(color: AppColors.oliveGreen, width: 2.5), // Stronger focus
+          borderSide: const BorderSide(
+            color: AppColors.oliveGreen,
+            width: 2.5,
+          ), // Stronger focus
         ),
-        labelStyle: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
+        labelStyle: const TextStyle(
+          color: AppColors.textPrimary,
+          fontWeight: FontWeight.bold,
+        ),
         hintStyle: const TextStyle(color: AppColors.textMuted),
       ),
     );
@@ -103,10 +116,11 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.darkPrimary,
           foregroundColor: AppColors.darkBackground,
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.md),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadii.mediumRadius,
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xl,
+            vertical: AppSpacing.md,
           ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadii.mediumRadius),
           elevation: 0,
         ),
       ),
@@ -114,43 +128,52 @@ class AppTheme {
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.darkPrimary,
           side: const BorderSide(color: AppColors.darkPrimary, width: 1.5),
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.md),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadii.mediumRadius,
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xl,
+            vertical: AppSpacing.md,
           ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadii.mediumRadius),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          foregroundColor: AppColors.darkPrimary,
-        ),
+        style: TextButton.styleFrom(foregroundColor: AppColors.darkPrimary),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.darkCard,
-        contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.md),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md,
+          vertical: AppSpacing.md,
+        ),
         border: OutlineInputBorder(
           borderRadius: AppRadii.mediumRadius,
-          borderSide: const BorderSide(color: AppColors.darkSecondary, width: 1),
+          borderSide: const BorderSide(
+            color: AppColors.darkSecondary,
+            width: 1,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: AppRadii.mediumRadius,
-          borderSide: BorderSide(color: AppColors.darkSecondary.withOpacity(0.5)),
+          borderSide: BorderSide(color: AppColors.darkSecondary.withAlpha(128)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: AppRadii.mediumRadius,
-          borderSide: const BorderSide(color: AppColors.darkPrimary, width: 2.5),
+          borderSide: const BorderSide(
+            color: AppColors.darkPrimary,
+            width: 2.5,
+          ),
         ),
-        labelStyle: const TextStyle(color: AppColors.darkText, fontWeight: FontWeight.bold),
+        labelStyle: const TextStyle(
+          color: AppColors.darkText,
+          fontWeight: FontWeight.bold,
+        ),
         hintStyle: const TextStyle(color: AppColors.darkSecondary),
         prefixIconColor: AppColors.darkSecondary,
         suffixIconColor: AppColors.darkSecondary,
       ),
       cardTheme: CardThemeData(
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadii.largeRadius,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadii.largeRadius),
         color: AppColors.darkCard,
       ),
     );

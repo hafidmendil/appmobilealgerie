@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projetmascara/core/theme/app_animations.dart';
 import 'package:projetmascara/generated/l10n/app_localizations.dart';
-import 'package:projetmascara/generated/l10n/app_localizations.dart';
 
 class PrivacyScreen extends StatelessWidget {
   const PrivacyScreen({super.key});
@@ -9,7 +8,7 @@ class PrivacyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       appBar: AppBar(title: Text(l10n.privacyPolicy)),
       body: SingleChildScrollView(
@@ -19,7 +18,11 @@ class PrivacyScreen extends StatelessWidget {
           children: [
             const FadeInAnimation(
               child: Center(
-                child: Icon(Icons.security_outlined, size: 80, color: Colors.blueGrey),
+                child: Icon(
+                  Icons.security_outlined,
+                  size: 80,
+                  color: Colors.blueGrey,
+                ),
               ),
             ),
             const SizedBox(height: 32),
@@ -27,7 +30,9 @@ class PrivacyScreen extends StatelessWidget {
               delay: const Duration(milliseconds: 200),
               child: Text(
                 l10n.privacyEngagement,
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 24),
@@ -65,7 +70,10 @@ class PrivacyScreen extends StatelessWidget {
               delay: const Duration(milliseconds: 700),
               child: Text(
                 l10n.userRightsTitle,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -81,7 +89,9 @@ class PrivacyScreen extends StatelessWidget {
               delay: const Duration(milliseconds: 900),
               child: ElevatedButton(
                 onPressed: () => Navigator.pop(context),
-                style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(60)),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(60),
+                ),
                 child: Text(l10n.close),
               ),
             ),
@@ -113,7 +123,7 @@ class _PrivacyTile extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Colors.blueGrey.withOpacity(0.05),
+              color: Colors.blueGrey.withAlpha(12),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(icon, color: Colors.blueGrey),
@@ -123,9 +133,18 @@ class _PrivacyTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
                 const SizedBox(height: 4),
-                Text(description, style: const TextStyle(color: Colors.blueGrey, height: 1.4)),
+                Text(
+                  description,
+                  style: const TextStyle(color: Colors.blueGrey, height: 1.4),
+                ),
               ],
             ),
           ),

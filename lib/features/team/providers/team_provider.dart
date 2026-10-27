@@ -3,9 +3,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:projetmascara/core/data/hive_config.dart';
 import 'package:projetmascara/features/team/models/project_member.dart';
 
-final teamMembersProvider = StateNotifierProvider<TeamMembersNotifier, List<ProjectMember>>((ref) {
-  return TeamMembersNotifier();
-});
+final teamMembersProvider =
+    StateNotifierProvider<TeamMembersNotifier, List<ProjectMember>>((ref) {
+      return TeamMembersNotifier();
+    });
 
 class TeamMembersNotifier extends StateNotifier<List<ProjectMember>> {
   TeamMembersNotifier() : super([]) {
@@ -63,7 +64,7 @@ class TeamMembersNotifier extends StateNotifier<List<ProjectMember>> {
         order: 4,
       ),
     ];
-    
+
     final box = Hive.box<ProjectMember>(HiveConfig.teamMembersBox);
     box.addAll(initial);
     state = initial;

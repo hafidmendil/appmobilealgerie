@@ -1,11 +1,22 @@
 import '../models/assessment_question.dart';
 import '../../data/question_bank.dart';
 
-enum SafetyStatus {
-  none,
-  attention,
-  supportRecommended,
-  urgentSupport
+enum SafetyStatus { none, attention, supportRecommended, urgentSupport }
+
+class SafetyDecision {
+  final SafetyStatus status;
+  final String messageFr;
+  final String messageAr;
+  final bool shouldStopAssessment;
+  final bool isNonDiagnostic;
+
+  const SafetyDecision({
+    required this.status,
+    required this.messageFr,
+    required this.messageAr,
+    required this.shouldStopAssessment,
+    this.isNonDiagnostic = true,
+  });
 }
 
 class SafetyEngine {
@@ -31,7 +42,8 @@ class SafetyEngine {
       );
 
       if (option.isSafetyTrigger) {
-        if (question.safetyLevel == SafetyLevel.high || question.safetyLevel == SafetyLevel.urgent) {
+        if (question.safetyLevel == SafetyLevel.high ||
+            question.safetyLevel == SafetyLevel.urgent) {
           highSafetyTriggers++;
         } else if (question.safetyLevel == SafetyLevel.medium) {
           mediumSafetyTriggers++;
@@ -42,8 +54,37 @@ class SafetyEngine {
     if (highSafetyTriggers > 0) return SafetyStatus.urgentSupport;
     if (mediumSafetyTriggers >= 2) return SafetyStatus.supportRecommended;
     if (mediumSafetyTriggers == 1) return SafetyStatus.attention;
-    
+
     return SafetyStatus.none;
+  }
+
+  SafetyDecision evaluate(Map<String, int?> answers, {String locale = 'fr'}) {
+    final status = determineSafetyStatus(answers);
+    final shouldStop = status == SafetyStatus.urgentSupport;
+
+    if (status == SafetyStatus.none) {
+      return SafetyDecision(
+        status: SafetyStatus.none,
+        messageFr: '',
+        messageAr: '',
+        shouldStopAssessment: false,
+      );
+    }
+
+    final messageFr = status == SafetyStatus.urgentSupport
+        ? 'Vos réponses indiquent des signaux qui peuvent justifier un soutien immédiat. Ce questionnaire ne constitue pas un diagnostic. Consultez une personne de confiance, un professionnel qualifié ou les services d’urgence si nécessaire.'
+        : 'Vos réponses montrent des indicateurs qui méritent une attention particulière. Ce questionnaire ne constitue pas un diagnostic et ne remplace pas l’évaluation d’un professionnel qualifié.';
+
+    final messageAr = status == SafetyStatus.urgentSupport
+        ? 'تشير إجاباتك إلى مؤشرات قد تستدعي دعمًا فوريًا. هذا الاستبيان لا يشكل تشخيصًا. تحدث إلى شخص تثق به أو إلى مختص مؤهل أو إلى خدمات الطوارئ عند الضرورة.'
+        : 'تشير إجاباتك إلى مؤشرات تستحق اهتمامًا خاصًا. هذا الاستبيان لا يشكل تشخيصًا ولا يحل محل تقييم مختص مؤهل.';
+
+    return SafetyDecision(
+      status: status,
+      messageFr: messageFr,
+      messageAr: messageAr,
+      shouldStopAssessment: shouldStop,
+    );
   }
 
   /// Checks if any safety trigger has been activated that justifies stopping.
@@ -58,17 +99,13 @@ class SafetyEngine {
     switch (langCode) {
       case 'ar':
         return status == SafetyStatus.urgentSupport
-            ? "لقد لاحظنا بعض الإشارات التي تشير إلى أنك قد تحتاج إلى دعم فوري. من المهم جداً أن تتواصل مع شخص تثق به أو مع المصالح المختصة."
-            : "يبدو أنك تمر بفترة صعبة. نحن هنا لدعمك.";
-      case 'darja':
-        return status == SafetyStatus.urgentSupport
-            ? "شفنا بلي راك محتاج مساعدة دركا. بزاف مهم تهدر مع واحد توثق فيه ولا تتصل بالحماية المدنية ولا طبيب."
-            : "باين بلي راك تجوز في وقت واعر. رانا هنا باش نعاونوك.";
+            ? "تشير إجاباتك إلى مؤشرات قد تستدعي دعمًا فوريًا. هذا الاستبيان لا يشكل تشخيصًا، ومن المهم التحدث إلى شخص تثق به أو إلى مختص مؤهل أو خدمات الطوارئ عند الضرورة."
+            : "تشير إجاباتك إلى مؤشرات تستحق اهتمامًا خاصًا. هذا الاستبيان لا يشكل تشخيصًا ولا يحل محل تقييم مختص مؤهل.";
       case 'fr':
       default:
         return status == SafetyStatus.urgentSupport
-            ? "Nous avons remarqué des signaux indiquant que vous pourriez avoir besoin d'un soutien immédiat. Il est très important de contacter une personne de confiance ou les services appropriés."
-            : "Il semble que tu traverses une période difficile. Nous sommes là pour t'accompagner.";
+            ? "Vos réponses indiquent des signaux qui peuvent justifier un soutien immédiat. Ce questionnaire ne constitue pas un diagnostic. Consultez une personne de confiance, un professionnel qualifié ou les services d’urgence si nécessaire."
+            : "Vos réponses montrent des indicateurs qui méritent une attention particulière. Ce questionnaire ne constitue pas un diagnostic et ne remplace pas l’évaluation d’un professionnel qualifié.";
     }
   }
 }

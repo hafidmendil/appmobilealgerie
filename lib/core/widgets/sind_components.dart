@@ -24,14 +24,15 @@ class SindPrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size.fromHeight(56),
-      ),
+      style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
       child: isLoading
           ? const SizedBox(
               height: 24,
               width: 24,
-              child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Colors.white,
+              ),
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +41,7 @@ class SindPrimaryButton extends StatelessWidget {
                   Icon(icon, size: 20),
                   const SizedBox(width: AppSpacing.sm),
                 ],
-                Text(label),
+                Flexible(child: Text(label, overflow: TextOverflow.ellipsis)),
               ],
             ),
     ).animate(target: onPressed == null ? 0 : 1).fadeIn().scale();
@@ -63,9 +64,7 @@ class SindSecondaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: onPressed,
-      style: OutlinedButton.styleFrom(
-        minimumSize: const Size.fromHeight(56),
-      ),
+      style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -73,7 +72,7 @@ class SindSecondaryButton extends StatelessWidget {
             Icon(icon, size: 20),
             const SizedBox(width: AppSpacing.sm),
           ],
-          Text(label),
+          Flexible(child: Text(label, overflow: TextOverflow.ellipsis)),
         ],
       ),
     );
@@ -110,16 +109,23 @@ class SindGlassCard extends StatelessWidget {
         child: Container(
           padding: padding ?? const EdgeInsets.all(AppSpacing.lg),
           decoration: BoxDecoration(
-            color: baseColor.withOpacity(opacity),
+            color: baseColor.withAlpha((opacity * 255).toInt()),
             borderRadius: AppRadii.largeRadius,
             border: Border.all(
-              color: isDark ? Colors.white.withOpacity(0.25) : AppColors.textMuted.withOpacity(0.4), // Stronger borders
+              color: isDark
+                  ? Colors.white.withAlpha(64)
+                  : AppColors.textMuted.withAlpha(102), // Stronger borders
               width: 1.5,
             ),
           ),
-          child: DefaultTextStyle.merge(
-            style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
-            child: child,
+          child: Material(
+            color: Colors.transparent,
+            child: DefaultTextStyle.merge(
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyLarge?.color,
+              ),
+              child: child,
+            ),
           ),
         ),
       ),
@@ -137,11 +143,7 @@ class SindProgressBar extends StatelessWidget {
   final double value;
   final String? label;
 
-  const SindProgressBar({
-    super.key,
-    required this.value,
-    this.label,
-  });
+  const SindProgressBar({super.key, required this.value, this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -150,17 +152,16 @@ class SindProgressBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (label != null) ...[
-          Text(
-            label!,
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
+          Text(label!, style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: AppSpacing.xs),
         ],
         Container(
           height: 12, // Slightly thicker
           width: double.infinity,
           decoration: BoxDecoration(
-            color: isDark ? Colors.white.withOpacity(0.15) : AppColors.textMuted.withOpacity(0.25), // Better track visibility
+            color: isDark
+                ? Colors.white.withAlpha(38)
+                : AppColors.textMuted.withAlpha(64), // Better track visibility
             borderRadius: AppRadii.pillRadius,
           ),
           child: FractionallySizedBox(
@@ -175,7 +176,10 @@ class SindProgressBar extends StatelessWidget {
               ),
             ),
           ),
-        ).animate().shimmer(duration: 2.seconds, color: Colors.white.withOpacity(0.5)),
+        ).animate().shimmer(
+          duration: 2.seconds,
+          color: Colors.white.withAlpha(128),
+        ),
       ],
     );
   }
@@ -202,49 +206,146 @@ class SindAnswerOption extends StatelessWidget {
 
     Color getBgColor() {
       if (!isSelected) return isDark ? AppColors.darkCard : Colors.white;
-      if (isSafetyTrigger) return AppColors.danger.withOpacity(0.2); // Increased opacity
-      return AppColors.oliveGreen.withOpacity(0.15); // Increased opacity
+      if (isSafetyTrigger)
+        return AppColors.danger.withAlpha(51); // Increased opacity
+      return AppColors.oliveGreen.withAlpha(38); // Increased opacity
     }
 
     Color getBorderColor() {
-      if (!isSelected) return isDark ? Colors.white.withOpacity(0.15) : AppColors.textMuted.withOpacity(0.2); // Visible unselected border
+      if (!isSelected)
+        return isDark
+            ? Colors.white.withAlpha(38)
+            : AppColors.textMuted.withAlpha(51); // Visible unselected border
       if (isSafetyTrigger) return AppColors.danger;
       return AppColors.oliveGreen;
     }
 
     return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: AppSpacing.lg),
-        decoration: BoxDecoration(
-          color: getBgColor(),
-          borderRadius: AppRadii.largeRadius,
-          border: Border.all(color: getBorderColor(), width: 2),
-          boxShadow: isSelected ? [] : AppShadows.soft,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                label,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
-                  color: isSelected 
-                    ? (isSafetyTrigger ? AppColors.danger : (isDark ? AppColors.darkPrimary : AppColors.deepOlive))
-                    : theme.textTheme.bodyLarge?.color,
+          onTap: onTap,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+              vertical: AppSpacing.lg,
+            ),
+            decoration: BoxDecoration(
+              color: getBgColor(),
+              borderRadius: AppRadii.largeRadius,
+              border: Border.all(color: getBorderColor(), width: 2),
+              boxShadow: isSelected ? [] : AppShadows.soft,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    label,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.w600,
+                      color: isSelected
+                          ? (isSafetyTrigger
+                                ? AppColors.danger
+                                : (isDark
+                                      ? AppColors.darkPrimary
+                                      : AppColors.deepOlive))
+                          : theme.textTheme.bodyLarge?.color,
+                    ),
+                  ),
                 ),
+                if (isSelected)
+                  Icon(
+                    Icons.check_circle,
+                    color: isSafetyTrigger
+                        ? AppColors.danger
+                        : AppColors.oliveGreen,
+                  ).animate().scale(),
+              ],
+            ),
+          ),
+        )
+        .animate(target: isSelected ? 1 : 0)
+        .scale(begin: const Offset(1, 1), end: const Offset(0.98, 0.98));
+  }
+}
+
+class SindVideoCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final String thumbnailUrl;
+  final VoidCallback onTap;
+
+  const SindVideoCard({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.thumbnailUrl,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SindGlassCard(
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
+      padding: EdgeInsets.zero,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: AppRadii.largeRadius,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
+                  child: Image.network(
+                    thumbnailUrl,
+                    height: 160,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      height: 160,
+                      color: AppColors.softOlive,
+                      child: const Icon(Icons.video_library, size: 48),
+                    ),
+                  ),
+                ),
+                const Icon(
+                  Icons.play_circle_fill,
+                  size: 64,
+                  color: Colors.white70,
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(AppSpacing.md),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    style: Theme.of(context).textTheme.bodySmall,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
             ),
-            if (isSelected)
-              Icon(
-                Icons.check_circle,
-                color: isSafetyTrigger ? AppColors.danger : AppColors.oliveGreen,
-              ).animate().scale(),
           ],
         ),
       ),
-    ).animate(target: isSelected ? 1 : 0).scale(begin: const Offset(1, 1), end: const Offset(0.98, 0.98));
+    );
   }
 }

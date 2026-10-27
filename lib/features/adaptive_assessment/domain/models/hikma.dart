@@ -1,23 +1,22 @@
 import 'assessment_axis.dart';
+import 'domain_state.dart';
 
 class Hikma {
   final String id;
-  final String textAr;
   final String textFr;
-  final String authorAr;
-  final String authorFr;
+  final String textAr;
+  final String? authorFr;
+  final String? authorAr;
   final List<AssessmentAxis> associatedAxes;
-  final List<dynamic> associatedStates;
-  final String? contextFr;
+  final List<DeclaredState> associatedStates;
 
   const Hikma({
     required this.id,
-    required this.textAr,
     required this.textFr,
-    required this.authorAr,
-    required this.authorFr,
-    this.associatedAxes = const [],
-    this.associatedStates = const [],
-    this.contextFr,
+    required this.textAr,
+    this.authorFr,
+    this.authorAr,
+    required this.associatedAxes,
+    required this.associatedStates,
   });
 }

@@ -21,7 +21,7 @@ class _TeamAdminScreenState extends ConsumerState<TeamAdminScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gestion de l'Équipe"),
+        title: Text(l10n.administration),
         actions: [
           IconButton(
             icon: const Icon(LucideIcons.plus),
@@ -39,7 +39,9 @@ class _TeamAdminScreenState extends ConsumerState<TeamAdminScreen> {
             subtitle: Text(member.role),
             trailing: IconButton(
               icon: const Icon(LucideIcons.trash_2, color: Colors.red),
-              onPressed: () => ref.read(teamMembersProvider.notifier).deleteMember(member.id),
+              onPressed: () => ref
+                  .read(teamMembersProvider.notifier)
+                  .deleteMember(member.id),
             ),
           );
         },
@@ -48,6 +50,7 @@ class _TeamAdminScreenState extends ConsumerState<TeamAdminScreen> {
   }
 
   void _showMemberDialog(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final nameController = TextEditingController();
     final roleController = TextEditingController();
     final phoneController = TextEditingController();
@@ -55,17 +58,31 @@ class _TeamAdminScreenState extends ConsumerState<TeamAdminScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Ajouter un membre"),
+        title: Text(l10n.add_member),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(controller: nameController, decoration: const InputDecoration(labelText: "Nom")),
-            TextField(controller: roleController, decoration: const InputDecoration(labelText: "Rôle")),
-            TextField(controller: phoneController, decoration: const InputDecoration(labelText: "Téléphone")),
+            TextField(
+              controller: nameController,
+              decoration: const InputDecoration(labelText: "Nom"),
+            ),
+            TextField(
+              controller: roleController,
+              decoration: const InputDecoration(labelText: "Rôle"),
+            ),
+            TextField(
+              controller: phoneController,
+              decoration: InputDecoration(labelText: l10n.phone_label),
+              keyboardType: TextInputType.phone,
+              textDirection: TextDirection.ltr,
+            ),
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text("Annuler")),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel),
+          ),
           ElevatedButton(
             onPressed: () {
               final newMember = ProjectMember(
@@ -78,7 +95,7 @@ class _TeamAdminScreenState extends ConsumerState<TeamAdminScreen> {
               ref.read(teamMembersProvider.notifier).addMember(newMember);
               Navigator.pop(context);
             },
-            child: const Text("Ajouter"),
+            child: Text(l10n.add),
           ),
         ],
       ),

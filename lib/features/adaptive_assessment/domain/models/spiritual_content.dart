@@ -6,7 +6,7 @@ enum SpiritualCategory {
   patience,
   hope,
   tawakkul,
-  mercy
+  mercy,
 }
 
 class SpiritualContent {

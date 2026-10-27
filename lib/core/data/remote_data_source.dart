@@ -1,7 +1,7 @@
-import 'package:projetmascara/core/models/user_model.dart';
-import 'package:projetmascara/core/auth/user_role.dart';
-import 'package:projetmascara/features/assessment/assessment_record.dart';
-import 'package:projetmascara/features/professional/models/access_request.dart';
+import '../../features/assessment/assessment_record.dart';
+import '../../features/professional/models/access_request.dart';
+import '../models/user_model.dart';
+import '../auth/user_role.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel?> getCurrentUser();

@@ -1,15 +1,13 @@
 import '../models/assessment_axis.dart';
 import '../models/assessment_question.dart';
+import '../models/domain_state.dart';
 import '../../data/question_bank.dart';
 
 class ScoringEngine {
-  /// Calculates need scores for each axis based on provided answers.
-  /// Scores are normalized between 0.0 and 1.0.
   Map<AssessmentAxis, double> calculateAxisNeeds(Map<String, int?> answers) {
     final Map<AssessmentAxis, double> totalScores = {};
     final Map<AssessmentAxis, double> maxPossibleScores = {};
 
-    // Initialize maps for all axes
     for (var axis in AssessmentAxis.values) {
       totalScores[axis] = 0.0;
       maxPossibleScores[axis] = 0.0;
@@ -19,7 +17,6 @@ class ScoringEngine {
       final questionId = entry.key;
       final answerValue = entry.value;
 
-      // Skip if user preferred not to answer
       if (answerValue == null) continue;
 
       final question = QuestionBank.questions.firstWhere(
@@ -27,14 +24,30 @@ class ScoringEngine {
         orElse: () => throw Exception('Question $questionId not found in bank'),
       );
 
-      // Add to primary axis
-      totalScores[question.axis] = (totalScores[question.axis] ?? 0) + answerValue;
-      maxPossibleScores[question.axis] = (maxPossibleScores[question.axis] ?? 0) + 4; // Max value is 4
+      if (question.scoreDirection == ScoreDirection.nonScored) continue;
 
-      // Add to other axes based on weights
+      final values = question.options
+          .map((option) => option.value)
+          .whereType<int>();
+      if (values.isEmpty) continue;
+      final maxValue = values.reduce((a, b) => a > b ? a : b);
+      if (maxValue <= 0) continue;
+
+      final orientedValue =
+          question.scoreDirection == ScoreDirection.higherMeansLowerNeed
+          ? maxValue - answerValue
+          : answerValue;
+
+      totalScores[question.axis] =
+          (totalScores[question.axis] ?? 0) + (orientedValue * question.weight);
+      maxPossibleScores[question.axis] =
+          (maxPossibleScores[question.axis] ?? 0) +
+          (maxValue * question.weight);
+
       question.weights.forEach((axis, weight) {
-        totalScores[axis] = (totalScores[axis] ?? 0) + (answerValue * weight);
-        maxPossibleScores[axis] = (maxPossibleScores[axis] ?? 0) + (4 * weight);
+        totalScores[axis] = (totalScores[axis] ?? 0) + (orientedValue * weight);
+        maxPossibleScores[axis] =
+            (maxPossibleScores[axis] ?? 0) + (maxValue * weight);
       });
     }
 
@@ -46,5 +59,31 @@ class ScoringEngine {
     }
 
     return normalizedNeeds;
+  }
+
+  Map<AssessmentAxis, DomainState> updateDomainStates(
+    Map<AssessmentAxis, DomainState> currentStates,
+    Map<String, int?> answers,
+    Map<AssessmentAxis, double> needs,
+  ) {
+    final updatedStates = <AssessmentAxis, DomainState>{};
+
+    for (var axis in AssessmentAxis.values) {
+      final currentState = currentStates[axis] ?? DomainState(axis: axis);
+
+      // Calculate how many questions were asked for this axis
+      int askedCount = 0;
+      for (var questionId in answers.keys) {
+        final q = QuestionBank.questions.firstWhere((q) => q.id == questionId);
+        if (q.axis == axis) askedCount++;
+      }
+
+      updatedStates[axis] = currentState.copyWith(
+        score: needs[axis] ?? 0.0,
+        questionsAsked: askedCount,
+      );
+    }
+
+    return updatedStates;
   }
 }

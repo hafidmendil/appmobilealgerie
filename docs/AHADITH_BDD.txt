@@ -1,0 +1,498 @@
+AHADITH PRESENTS DANS LA BDD (62)
+========================================
+
+1. h_bukhari_1
+Collection : Sahih al-Bukhari
+Numero : 1
+Source : Bukhari
+Theme : intention
+Arabe : إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ
+Francais : Les actions ne valent que par les intentions.
+
+2. h_muslim_2664
+Collection : Sahih Muslim
+Numero : 2664
+Source : Muslim
+Theme : force
+Arabe : الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ وَفِي كُلٍّ خَيْرٌ
+Francais : Le croyant fort est meilleur et plus aimé d'Allah que le croyant faible, bien qu'en chacun il y ait un bien.
+
+3. h_muslim_2999
+Collection : Sahih Muslim
+Numero : 2999
+Source : Muslim
+Theme : gratitude
+Arabe : عَجَبًا لأَمْرِ الْمُؤْمِنِ إِنَّ أَمْرَهُ كُلَّهُ خَيْرٌ
+Francais : Étonnant est le cas du croyant, tout ce qui lui arrive est un bien.
+
+4. h_bukhari_6470
+Collection : Sahih al-Bukhari
+Numero : 6470
+Source : Bukhari
+Theme : espoir
+Arabe : مَا يُصِيبُ الْمُسْلِمَ مِنْ نَصَبٍ وَلاَ وَصَبٍ وَلاَ هَمٍّ وَلاَ حُزْنٍ وَلاَ أَذًى وَلاَ غَمٍّ حَتَّى الشَّوْكَةِ يُشَاكُهَا إِلاَّ كَفَّرَ اللَّهُ بِهَا مِنْ خَطَايَاهُ
+Francais : Tout ce qui atteint le musulman comme fatigue, maladie, souci, tristesse, préjudice ou angoisse... lui sert d'expiation.
+
+5. h_bukhari_6114
+Collection : Sahih al-Bukhari
+Numero : 6114
+Source : Bukhari
+Theme : maitrise_de_soi
+Arabe : لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ
+Francais : L'homme fort n'est pas celui qui terrasse les autres, mais celui qui se maîtrise lors d'une colère.
+
+6. h_bukhari_6116
+Collection : Sahih al-Bukhari
+Numero : 6116
+Source : Bukhari
+Theme : colère
+Arabe : لاَ تَغْضَبْ
+Francais : Ne te mets pas en colère.
+
+7. h_muslim_2594
+Collection : Sahih Muslim
+Numero : 2594
+Source : Muslim
+Theme : douceur
+Arabe : إِنَّ الرِّفْقَ لاَ يَكُونُ فِي شَيْءٍ إِلاَّ زَانَهُ وَلاَ يُنْزَعُ مِنْ شَيْءٍ إِلاَّ شَانَهُ
+Francais : La douceur n'est jamais présente dans une chose sans qu'elle ne l'embellisse.
+
+8. h_bukhari_13
+Collection : Sahih al-Bukhari
+Numero : 13
+Source : Bukhari
+Theme : empathie
+Arabe : لاَ يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ
+Francais : Nul d'entre vous n'est véritablement croyant tant qu'il n'aime pas pour son frère ce qu'il aime pour lui-même.
+
+9. h_tirmidhi_2516
+Collection : Jami` at-Tirmidhi
+Numero : 2516
+Source : Tirmidhi
+Theme : confiance
+Arabe : احفظ الله يحفظك
+Francais : Préserve Allah et Il te préservera.
+
+10. h_tirmidhi_2344
+Collection : Jami` at-Tirmidhi
+Numero : 2344
+Source : Tirmidhi
+Theme : tawakkul
+Arabe : لَوْ أَنَّكُمْ تَتَوَكَّلُونَ عَلَى اللَّهِ حَقَّ تَوَكُّلِهِ لَرَزَقَكُمْ كَمَا يَرْزُقُ الطَّيْرَ
+Francais : Si vous placiez votre confiance en Allah comme il se doit, Il vous donnerait votre subsistance comme Il la donne aux oiseaux.
+
+11. h_muslim_2623
+Collection : Sahih Muslim
+Numero : 2623
+Source : Muslim
+Theme : action
+Arabe : احْرِصْ عَلَى مَا يَنْفَعُكَ وَاسْتَعِنْ بِاللَّهِ وَلاَ تَعْجِزْ
+Francais : Recherche avec ardeur ce qui te profite, demande l'aide d'Allah et ne faiblis pas.
+
+12. h_bukhari_2409
+Collection : Sahih al-Bukhari
+Numero : 2409
+Source : Bukhari
+Theme : responsabilité
+Arabe : كُلُّكُمْ رَاعٍ وَكُلُّكُمْ مَسْؤُولٌ عَنْ رَعِيَّتِهِ
+Francais : Chacun de vous est un berger et chacun est responsable de son troupeau.
+
+13. h_tirmidhi_2520
+Collection : Jami` at-Tirmidhi
+Numero : 2520
+Source : Tirmidhi
+Theme : sérénité
+Arabe : دَعْ مَا يَرِيبُكَ إِلَى مَا لاَ يَرِيبُكَ
+Francais : Laisse ce qui te fait douter pour ce qui ne te fait pas douter.
+
+14. h_tirmidhi_2465
+Collection : Jami` at-Tirmidhi
+Numero : 2465
+Source : Tirmidhi
+Theme : gratitude
+Arabe : مَنْ أَصْبَحَ مِنْكُمْ آمِنًا فِي سِرْبِهِ مُعَافًى فِي جَسَدِهِ عِنْدَهُ قُوتُ يَوْمِهِ فَكَأَنَّمَا حِيزَتْ لَهُ الدُّنْيَا
+Francais : Celui qui se réveille en sécurité dans son foyer, en bonne santé, et ayant de quoi manger... c'est comme s'il possédait le monde entier.
+
+15. h_muslim_2732
+Collection : Sahih Muslim
+Numero : 2732
+Source : Muslim
+Theme : régularité
+Arabe : أَحَبُّ الأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ
+Francais : Les œuvres les plus aimées d'Allah sont les plus régulières, même si elles sont peu nombreuses.
+
+16. h_bukhari_6412
+Collection : Sahih al-Bukhari
+Numero : 6412
+Source : Bukhari
+Theme : détachement
+Arabe : كُنْ فِي الدُّنْيَا كَأَنَّكَ غَرِيبٌ أَوْ عَابِرُ سَبِيلٍ
+Francais : Sois dans ce bas-monde comme un étranger ou un voyageur de passage.
+
+17. h_bukhari_6133
+Collection : Sahih al-Bukhari
+Numero : 6133
+Source : Bukhari
+Theme : douceur
+Arabe : إِنَّ اللَّهَ رَفِيقٌ يُحِبُّ الرِّفْقَ فِي الأَمْرِ كُلِّهِ
+Francais : Allah est Doux et Il aime la douceur en toute chose.
+
+18. h_muslim_2577
+Collection : Sahih Muslim
+Numero : 2577
+Source : Muslim
+Theme : caractère
+Arabe : الْبِرُّ حُسْنُ الْخُلُقِ وَالإِثْمُ مَا حَاكَ فِي نَفْسِكَ وَكَرِهْتَ أَنْ يَطَّلِعَ عَلَيْهِ النَّاسُ
+Francais : La piété, c'est le bon caractère. Le péché, c'est ce qui crée un malaise dans ton âme.
+
+19. h_tirmidhi_2517
+Collection : Jami` at-Tirmidhi
+Numero : 2517
+Source : Tirmidhi
+Theme : espoir
+Arabe : وَاعْلَمْ أَنَّ النَّصْرَ مَعَ الصَّبْرِ وَأَنَّ الْفَرَجَ مَعَ الْكَرْبِ وَأَنَّ مَعَ الْعُسْرِ يُسْرًا
+Francais : Sache que la victoire vient avec la patience, que la délivrance vient avec la détresse et qu'avec la difficulté vient la facilité.
+
+20. h_bukhari_33
+Collection : Sahih al-Bukhari
+Numero : 33
+Source : Bukhari
+Theme : intégrité
+Arabe : آيَةُ الْمُنَافِقِ ثَلاَثٌ إِذَا حَدَّثَ كَذَبَ وَإِذَا وَعَدَ أَخْلَفَ وَإِذَا اؤْتُمِنَ خَانَ
+Francais : Les signes de l'hypocrite sont trois : quand il parle, il ment ; quand il promet, il manque à sa parole ; et quand on lui fait confiance, il trahit.
+
+21. h_muslim_2586
+Collection : Sahih Muslim
+Numero : 2586
+Source : Muslim
+Theme : fraternité
+Arabe : لاَ تَحَاسَدُوا وَلاَ تَنَاجَشُوا وَلاَ تَبَاغَضُوا وَلاَ تَدَابَرُوا
+Francais : Ne soyez pas envieux les uns des autres, n'enchérissez pas les uns sur les autres, ne vous détestez pas et ne vous tournez pas le dos.
+
+22. h_bukhari_6065
+Collection : Sahih al-Bukhari
+Numero : 6065
+Source : Bukhari
+Theme : parole
+Arabe : مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ
+Francais : Celui qui croit en Allah et au Jour dernier, qu'il dise du bien ou qu'il se taise.
+
+23. h_muslim_2699
+Collection : Sahih Muslim
+Numero : 2699
+Source : Muslim
+Theme : entraide
+Arabe : مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ
+Francais : Celui qui soulage un croyant d'une peine de ce bas-monde, Allah le soulagera d'une peine au Jour de la Résurrection.
+
+24. h_tirmidhi_2016
+Collection : Jami` at-Tirmidhi
+Numero : 2016
+Source : Tirmidhi
+Theme : pardon
+Arabe : اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا
+Francais : Crains Allah où que tu sois et fais suivre la mauvaise action par une bonne, elle l'effacera.
+
+25. h_bukhari_6490
+Collection : Sahih al-Bukhari
+Numero : 6490
+Source : Bukhari
+Theme : gratitude
+Arabe : نِعْمَتَانِ مَغْبُونٌ فِيهِمَا كَثِيرٌ مِنَ النَّاسِ الصِّحَّةُ وَالْفَرَاغُ
+Francais : Deux bienfaits sont souvent négligés par les gens : la santé et le temps libre.
+
+26. h_muslim_2564
+Collection : Sahih Muslim
+Numero : 2564
+Source : Muslim
+Theme : patience
+Arabe : الدُّنْيَا سِجْنُ الْمُؤْمِنِ وَجَنَّةُ الْكَافِرِ
+Francais : Le bas-monde est une prison pour le croyant et un paradis pour le mécréant.
+
+27. h_bukhari_6011
+Collection : Sahih al-Bukhari
+Numero : 6011
+Source : Bukhari
+Theme : compassion
+Arabe : مَثَلُ الْمُؤْمِنِينَ فِي تَوَادِّهِمْ وَتَرَاحُمِهِمْ وَتَعَاطُفِهِمْ مَثَلُ الْجَسَدِ
+Francais : L'image des croyants dans leur amour, leur miséricorde et leur compassion mutuelle est celle d'un seul corps.
+
+28. h_tirmidhi_2488
+Collection : Jami` at-Tirmidhi
+Numero : 2488
+Source : Tirmidhi
+Theme : sérénité
+Arabe : الزُّهْدُ فِي الدُّنْيَا يُرِيحُ الْقَلْبَ وَالْبَدَنَ
+Francais : Le détachement du bas-monde repose le cœur et le corps.
+
+29. h_bukhari_6019
+Collection : Sahih al-Bukhari
+Numero : 6019
+Source : Bukhari
+Theme : famille
+Arabe : لاَ يَدْخُلُ الْجَنَّةَ قَاطِعٌ
+Francais : Celui qui rompt les liens de parenté n'entrera pas au Paradis.
+
+30. h_muslim_2674
+Collection : Sahih Muslim
+Numero : 2674
+Source : Muslim
+Theme : inspiration
+Arabe : مَنْ دَعَا إِلَى هُدًى كَانَ لَهُ مِنَ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ
+Francais : Celui qui appelle à une guidance aura une récompense égale à celle de ceux qui le suivent.
+
+31. h_bukhari_6018
+Collection : Sahih al-Bukhari
+Numero : 6018
+Source : Bukhari
+Theme : voisinage
+Arabe : مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ جَارَهُ
+Francais : Celui qui croit en Allah et au Jour dernier, qu'il honore son voisin.
+
+32. h_muslim_2553
+Collection : Sahih Muslim
+Numero : 2553
+Source : Muslim
+Theme : amour
+Arabe : لاَ تَدْخُلُونَ الْجَنَّةَ حَتَّى تُؤْمِنُوا وَلاَ تُؤْمِنُوا حَتَّى تَحَابُّوا
+Francais : Vous n'entrerez pas au Paradis tant que vous ne croirez pas, et vous ne croirez pas tant que vous ne vous aimerez pas les uns les autres.
+
+33. h_tirmidhi_1924
+Collection : Jami` at-Tirmidhi
+Numero : 1924
+Source : Tirmidhi
+Theme : positivité
+Arabe : تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ لَكَ صَدَقَةٌ
+Francais : Ton sourire à l'égard de ton frère est une aumône.
+
+34. h_bukhari_6013
+Collection : Sahih al-Bukhari
+Numero : 6013
+Source : Bukhari
+Theme : paix_sociale
+Arabe : الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ
+Francais : Le musulman est celui dont les musulmans sont à l'abri de sa langue et de sa main.
+
+35. h_muslim_2563
+Collection : Sahih Muslim
+Numero : 2563
+Source : Muslim
+Theme : fraternité
+Arabe : الْمُسْلِمُ أَخُو الْمُسْلِمِ لاَ يَظْلِمُهُ وَلاَ يَخْذُلُهُ وَلاَ يَحْقِرُهُ
+Francais : Le musulman est le frère du musulman : il ne l'opprime pas, ne l'abandonne pas et ne le méprise pas.
+
+36. h_bukhari_6021
+Collection : Sahih al-Bukhari
+Numero : 6021
+Source : Bukhari
+Theme : miséricorde
+Arabe : مَنْ لَا يَرْحَمِ النَّاسَ لَا يَرْحَمْهُ اللَّهُ
+Francais : Celui qui n'est pas miséricordieux envers les gens, Allah ne sera pas miséricordieux envers lui.
+
+37. h_muslim_2581
+Collection : Sahih Muslim
+Numero : 2581
+Source : Muslim
+Theme : justice
+Arabe : اتَّقُوا الظُّلْمَ فَإِنَّ الظُّلْمَ ظُلُمَاتٌ يَوْمَ الْقِيَامَةِ
+Francais : Craignez l'injustice, car l'injustice se transformera en ténèbres au Jour de la Résurrection.
+
+38. h_tirmidhi_2004
+Collection : Jami` at-Tirmidhi
+Numero : 2004
+Source : Tirmidhi
+Theme : caractère
+Arabe : مَا مِنْ شَيْءٍ أَثْقَلُ فِي مِيزَانِ الْمُؤْمِنِ يَوْمَ الْقِيَامَةِ مِنْ حُسْنِ الْخُلُقِ
+Francais : Rien n'est plus lourd dans la balance du croyant au Jour de la Résurrection que le bon caractère.
+
+39. h_bukhari_6130
+Collection : Sahih al-Bukhari
+Numero : 6130
+Source : Bukhari
+Theme : excellence
+Arabe : إِنَّ اللَّهَ يُحِبُّ إِذَا عَمِلَ أَحَدُكُمْ عَمَلاً أَنْ يُتْقِنَهُ
+Francais : Certes, Allah aime que lorsque l'un de vous accomplit une tâche, il le fasse avec excellence.
+
+40. h_muslim_2622
+Collection : Sahih Muslim
+Numero : 2622
+Source : Muslim
+Theme : optimisme
+Arabe : يَسِّرُوا وَلاَ تُعَسِّرُوا وَبَشِّرُوا وَلاَ تُنَفِّرُوا
+Francais : Facilitez les choses et ne les rendez pas difficiles, annoncez de bonnes nouvelles et ne rebutez pas les gens.
+
+41. h_tirmidhi_2317
+Collection : Jami` at-Tirmidhi
+Numero : 2317
+Source : Tirmidhi
+Theme : détachement
+Arabe : ازْهَدْ فِي الدُّنْيَا يُحِبَّكَ اللَّهُ وَازْهَدْ فِيمَا عِنْدَ النَّاسِ يُحِبَّكَ النَّاسُ
+Francais : Détache-toi de ce bas-monde, Allah t'aimera ; et détache-toi de ce que possèdent les gens, les gens t'aimeront.
+
+42. h_bukhari_6477
+Collection : Sahih al-Bukhari
+Numero : 6477
+Source : Bukhari
+Theme : sagesse
+Arabe : مَنْ صَمَتَ نَجَا
+Francais : Celui qui se tait est sauvé.
+
+43. h_muslim_2558
+Collection : Sahih Muslim
+Numero : 2558
+Source : Muslim
+Theme : conseil
+Arabe : الدِّينُ النَّصِيحَةُ
+Francais : La religion, c'est le bon conseil.
+
+44. h_tirmidhi_2499
+Collection : Jami` at-Tirmidhi
+Numero : 2499
+Source : Tirmidhi
+Theme : discrétion
+Arabe : مِنْ حُسْنِ إِسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ
+Francais : Fait partie de l'excellence de l'Islam d'une personne le fait de délaisser ce qui ne la regarde pas.
+
+45. h_bukhari_1
+Collection : Sahih al-Bukhari
+Numero : 1
+Source : Bukhari
+Theme : intention
+Arabe : إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ
+Francais : Les actions ne valent que par les intentions.
+
+46. h_muslim_2664
+Collection : Sahih Muslim
+Numero : 2664
+Source : Muslim
+Theme : force
+Arabe : الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ
+Francais : Le croyant fort est meilleur et plus aimé d'Allah que le croyant faible.
+
+47. h_tirmidhi_2516_2
+Collection : Jami` at-Tirmidhi
+Numero : 2516
+Source : Tirmidhi
+Theme : confiance
+Arabe : يَا غُلاَمُ إِنِّي أُعَلِّمُكَ كَلِمَاتٍ احْفَظِ اللَّهَ يَحْفَظْكَ
+Francais : Ô jeune homme ! Je vais t'enseigner quelques paroles : Préserve Allah et Il te préservera.
+
+48. h_bukhari_6407
+Collection : Sahih al-Bukhari
+Numero : 6407
+Source : Bukhari
+Theme : temps
+Arabe : اغْتَنِمْ خَمْسًا قَبْلَ خَمْسٍ شَبَابَكَ قَبْلَ هَرَمِكَ وَصِحَّتَكَ قَبْلَ سَقَمِكَ
+Francais : Profite de cinq choses avant cinq autres : ta jeunesse avant ta vieillesse, ta santé avant ta maladie...
+
+49. h_muslim_2999_2
+Collection : Sahih Muslim
+Numero : 2999
+Source : Muslim
+Theme : gratitude
+Arabe : عَجَبًا لأَمْرِ الْمُؤْمِنِ إِنَّ أَمْرَهُ كُلَّهُ خَيْرٌ
+Francais : Étonnant est le cas du croyant, tout ce qui lui arrive est un bien.
+
+50. h_bukhari_6118
+Collection : Sahih al-Bukhari
+Numero : 6118
+Source : Bukhari
+Theme : éthique
+Arabe : لَيْسَ الْمُؤْمِنُ بِالطَّعَّانِ وَلَا اللَّعَّانِ وَلَا الْفَاحِشِ وَلَا الْبَذِيءِ
+Francais : Le croyant n'est pas celui qui calomnie, ni celui qui maudit, ni celui qui est grossier ou indécent.
+
+51. h_muslim_2588
+Collection : Sahih Muslim
+Numero : 2588
+Source : Muslim
+Theme : respect
+Arabe : كُلُّ الْمُسْلِمِ عَلَى الْمُسْلِمِ حَرَامٌ دَمُهُ وَمَالُهُ وَعِرْضُهُ
+Francais : Tout ce qui appartient au musulman est sacré pour le musulman : son sang, ses biens et son honneur.
+
+52. h_tirmidhi_2310
+Collection : Jami` at-Tirmidhi
+Numero : 2310
+Source : Tirmidhi
+Theme : perspective
+Arabe : الدُّنْيَا حُلْوَةٌ خَضِرَةٌ
+Francais : Le bas-monde est doux et vert [attrayant].
+
+53. h_bukhari_6015
+Collection : Sahih al-Bukhari
+Numero : 6015
+Source : Bukhari
+Theme : parents
+Arabe : الْجَنَّةُ تَحْتَ أَقْدَامِ الأُمَّهَاتِ
+Francais : Le Paradis est sous les pieds des mères.
+
+54. h_muslim_2628
+Collection : Sahih Muslim
+Numero : 2628
+Source : Muslim
+Theme : authenticité
+Arabe : إِنَّ اللَّهَ لَا يَنْظُرُ إِلَى صُوَرِكُمْ وَأَمْوَالِكُمْ وَلَكِنْ يَنْظُرُ إِلَى قُلُوبِكُمْ وَأَعْمَالِكُمْ
+Francais : Allah ne regarde pas vos apparences ni vos richesses, mais Il regarde vos cœurs et vos actions.
+
+55. h_tirmidhi_2515
+Collection : Jami` at-Tirmidhi
+Numero : 2515
+Source : Tirmidhi
+Theme : espoir
+Arabe : أَفْضَلُ الْعِبَادَةِ انْتِظَارُ الْفَرَجِ
+Francais : La meilleure des adorations est l'attente de la délivrance.
+
+56. h_bukhari_6120
+Collection : Sahih al-Bukhari
+Numero : 6120
+Source : Bukhari
+Theme : caractère
+Arabe : إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا
+Francais : Certes, les meilleurs d'entre vous sont ceux qui ont le meilleur caractère.
+
+57. h_muslim_2591
+Collection : Sahih Muslim
+Numero : 2591
+Source : Muslim
+Theme : justice
+Arabe : الظُّلْمُ ظُلُمَاتٌ يَوْمَ الْقِيَامَةِ
+Francais : L'injustice se transformera en ténèbres au Jour de la Résurrection.
+
+58. h_tirmidhi_1987
+Collection : Jami` at-Tirmidhi
+Numero : 1987
+Source : Tirmidhi
+Theme : intégrité
+Arabe : اتَّقِ الْمَحَارِمَ تَكُنْ أَعْبَدَ النَّاسِ
+Francais : Évite les interdits et tu seras le plus fervent des adorateurs.
+
+59. h_bukhari_6010
+Collection : Sahih al-Bukhari
+Numero : 6010
+Source : Bukhari
+Theme : empathie
+Arabe : لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ
+Francais : Nul d'entre vous n'est véritablement croyant tant qu'il n'aime pas pour son frère ce qu'il aime pour lui-même.
+
+60. h_muslim_2625
+Collection : Sahih Muslim
+Numero : 2625
+Source : Muslim
+Theme : positivité
+Arabe : الْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ
+Francais : La bonne parole est une aumône.
+
+61. h_tirmidhi_2344_2
+Collection : Jami` at-Tirmidhi
+Numero : 2344
+Source : Tirmidhi
+Theme : confiance
+Arabe : لَوْ أَنَّكُمْ تَتَوَكَّلُونَ عَلَى اللَّهِ حَقَّ تَوَكُّلِهِ لَرَزَقَكُمْ كَمَا يَرْزُقُ الطَّيْرَ
+Francais : Si vous placiez votre confiance en Allah comme il se doit, Il vous donnerait votre subsistance comme Il la donne aux oiseaux.
+
+62. h_bukhari_6122
+Collection : Sahih al-Bukhari
+Numero : 6122
+Source : Bukhari
+Theme : famille
+Arabe : خِيَارُكُمْ خِيَارُكُمْ لِنِسَائِهِمْ
+Francais : Les meilleurs d'entre vous sont les meilleurs envers leurs épouses.

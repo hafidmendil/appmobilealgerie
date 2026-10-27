@@ -1,3 +1,4 @@
+import '../../../core/localization/l10n_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -31,7 +32,9 @@ class ProjectMemberCard extends StatelessWidget {
                 backgroundColor: AppColors.oliveGreen.withOpacity(0.1),
                 child: Text(
                   member.name[0].toUpperCase(),
-                  style: theme.textTheme.titleLarge?.copyWith(color: AppColors.oliveGreen),
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: AppColors.oliveGreen,
+                  ),
                 ),
               ),
               const SizedBox(width: AppSpacing.md),
@@ -41,11 +44,15 @@ class ProjectMemberCard extends StatelessWidget {
                   children: [
                     Text(
                       member.name,
-                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
                       member.role,
-                      style: theme.textTheme.bodySmall?.copyWith(color: AppColors.oliveGreen),
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: AppColors.oliveGreen,
+                      ),
                     ),
                   ],
                 ),
@@ -56,18 +63,26 @@ class ProjectMemberCard extends StatelessWidget {
             const SizedBox(height: AppSpacing.sm),
             Text(
               member.expertise!,
-              style: theme.textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ],
           if (member.location != null) ...[
             const SizedBox(height: AppSpacing.xs),
             Row(
               children: [
-                const Icon(LucideIcons.map_pin, size: 14, color: AppColors.textMuted),
+                const Icon(
+                  LucideIcons.map_pin,
+                  size: 14,
+                  color: AppColors.textMuted,
+                ),
                 const SizedBox(width: 4),
                 Text(
                   member.location!,
-                  style: theme.textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: AppColors.textMuted,
+                  ),
                 ),
               ],
             ),
@@ -83,10 +98,15 @@ class ProjectMemberCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Row(
                   children: [
-                    const Icon(LucideIcons.phone, size: 16, color: AppColors.oliveGreen),
+                    const Icon(
+                      LucideIcons.phone,
+                      size: 16,
+                      color: AppColors.oliveGreen,
+                    ),
                     const SizedBox(width: AppSpacing.sm),
                     Text(
                       member.phone!,
+                      textDirection: TextDirection.ltr,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: AppColors.oliveGreen,
                         fontWeight: FontWeight.w600,
@@ -116,7 +136,7 @@ class ProjectMemberCard extends StatelessWidget {
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Impossible d'ouvrir WhatsApp")),
+          SnackBar(content: Text(context.l10n.auto_impossible_douvrir_whatsapp)),
         );
       }
     }

@@ -5,9 +5,13 @@ import 'app_colors.dart';
 class AppTypography {
   static TextTheme getTextTheme(BuildContext context, Brightness brightness) {
     final bool isDark = brightness == Brightness.dark;
-    final Color primaryTextColor = isDark ? AppColors.darkText : AppColors.textPrimary;
-    final Color secondaryTextColor = isDark ? AppColors.darkSecondary : AppColors.textSecondary;
-    
+    final Color primaryTextColor = isDark
+        ? AppColors.darkText
+        : AppColors.textPrimary;
+    final Color secondaryTextColor = isDark
+        ? AppColors.darkSecondary
+        : AppColors.textSecondary;
+
     final locale = Localizations.maybeLocaleOf(context);
     final isArabic = locale?.languageCode == 'ar';
 
@@ -82,8 +86,10 @@ class AppTypography {
       ),
       bodySmall: baseStyle(
         fontSize: 12,
-        fontWeight: FontWeight.w500, // Small text needs more weight to be readable
-        color: primaryTextColor, // Use primary for small text to ensure visibility
+        fontWeight:
+            FontWeight.w500, // Small text needs more weight to be readable
+        color:
+            primaryTextColor, // Use primary for small text to ensure visibility
       ),
       labelLarge: baseStyle(
         fontSize: 14,

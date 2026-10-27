@@ -1,4 +1,5 @@
-import '../assessment/assessment_models.dart';
+import '../adaptive_assessment/domain/models/assessment_axis.dart';
+import '../adaptive_assessment/domain/models/psychological_resource.dart';
 
 final List<PsychologicalResource> psychologicalResources = [
   PsychologicalResource(
@@ -7,8 +8,8 @@ final List<PsychologicalResource> psychologicalResources = [
     descriptionKey: 'res_breathing_desc',
     contentKey: 'res_breathing_content',
     duration: '5 min',
-    domain: QuestionModule.stress,
-    type: ContentLibraryType.practical,
+    axis: AssessmentAxis.stressAnxiety,
+    type: ResourceCategory.practical,
   ),
   PsychologicalResource(
     id: 'res_reframing_1',
@@ -16,8 +17,8 @@ final List<PsychologicalResource> psychologicalResources = [
     descriptionKey: 'res_reframing_desc',
     contentKey: 'res_reframing_content',
     duration: '10 min',
-    domain: QuestionModule.cognitive,
-    type: ContentLibraryType.psychological,
+    axis: AssessmentAxis.emotions,
+    type: ResourceCategory.psychological,
   ),
   PsychologicalResource(
     id: 'res_sleep_hygiene_1',
@@ -25,8 +26,8 @@ final List<PsychologicalResource> psychologicalResources = [
     descriptionKey: 'res_sleep_hygiene_desc',
     contentKey: 'res_sleep_hygiene_content',
     duration: '15 min',
-    domain: QuestionModule.sleep,
-    type: ContentLibraryType.educational,
+    axis: AssessmentAxis.sleepEnergy,
+    type: ResourceCategory.educational,
   ),
   PsychologicalResource(
     id: 'res_emotional_exp_1',
@@ -34,8 +35,8 @@ final List<PsychologicalResource> psychologicalResources = [
     descriptionKey: 'res_emotional_exp_desc',
     contentKey: 'res_emotional_exp_content',
     duration: '8 min',
-    domain: QuestionModule.emotions,
-    type: ContentLibraryType.psychological,
+    axis: AssessmentAxis.emotions,
+    type: ResourceCategory.psychological,
   ),
   PsychologicalResource(
     id: 'res_social_support_1',
@@ -43,7 +44,29 @@ final List<PsychologicalResource> psychologicalResources = [
     descriptionKey: 'res_social_support_desc',
     contentKey: 'res_social_support_content',
     duration: '10 min',
-    domain: QuestionModule.social,
-    type: ContentLibraryType.practical,
+    axis: AssessmentAxis.socialSupport,
+    type: ResourceCategory.practical,
+  ),
+  PsychologicalResource(
+    id: 'res_anxiety_guide',
+    titleKey: 'Comprendre l\'anxiété',
+    descriptionKey:
+        'Un document complet pour identifier les mécanismes de l\'anxiété.',
+    contentKey:
+        'L\'anxiété est une réaction naturelle au stress. Elle devient problématique quand elle est disproportionnée par rapport à la situation...',
+    duration: '20 min',
+    axis: AssessmentAxis.stressAnxiety,
+    type: ResourceCategory.educational,
+  ),
+  PsychologicalResource(
+    id: 'res_depression_basics',
+    titleKey: 'Sortir de la déprime',
+    descriptionKey:
+        'Guide pratique sur les petits pas pour retrouver de l\'énergie.',
+    contentKey:
+        'La déprime se caractérise par une perte d\'élan. L\'activation comportementale est une méthode efficace...',
+    duration: '15 min',
+    axis: AssessmentAxis.emotions,
+    type: ResourceCategory.psychological,
   ),
 ];

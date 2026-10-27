@@ -1,58 +1,110 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:hive/hive.dart';
 
 part 'health_knowledge_item.g.dart';
 
+@HiveType(typeId: 20)
 enum EvidenceLevel {
-  @JsonValue('TRADITIONAL_SOURCE')
+  @HiveField(0)
   traditionalSource,
-  @JsonValue('RELIGIOUS_SOURCE')
+  @HiveField(1)
   religiousSource,
-  @JsonValue('ACADEMIC_RESEARCH')
+  @HiveField(2)
   academicResearch,
-  @JsonValue('CLINICAL_EVIDENCE')
+  @HiveField(3)
   clinicalEvidence,
-  @JsonValue('REVIEW')
+  @HiveField(4)
   review,
-  @JsonValue('UNCERTAIN')
+  @HiveField(5)
   uncertain,
 }
 
+@HiveType(typeId: 21)
 enum HealthCategory {
+  @HiveField(0)
   nutrition,
+  @HiveField(1)
   lifestyle,
+  @HiveField(2)
   islamicNutrition,
+  @HiveField(3)
   propheticMedicine,
+  @HiveField(4)
   traditionalPlants,
+  @HiveField(5)
   physicalWellbeing,
+  @HiveField(6)
   psychologicalWellbeing,
+  @HiveField(7)
   sleepHabits,
+  @HiveField(8)
   prevention,
+  @HiveField(9)
   scientificResearch,
+  @HiveField(10)
   sources,
 }
 
-@JsonSerializable(explicitToJson: true)
-class HealthKnowledgeItem {
+@HiveType(typeId: 22)
+class HealthKnowledgeItem extends HiveObject {
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String title;
+
+  @HiveField(2)
   final String arabicTitle;
+
+  @HiveField(3)
   final String description;
+
+  @HiveField(4)
   final HealthCategory category;
+
+  @HiveField(5)
   final String? author;
+
+  @HiveField(6)
   final String? source;
+
+  @HiveField(7)
   final int? publicationYear;
+
+  @HiveField(8)
   final String? sourceUrl;
+
+  @HiveField(9)
   final EvidenceLevel evidenceLevel;
+
+  @HiveField(10)
   final String? scientificSummary;
+
+  @HiveField(11)
   final String? traditionalContext;
+
+  @HiveField(12)
   final List<String> benefits;
+
+  @HiveField(13)
   final List<String> limitations;
+
+  @HiveField(14)
   final List<String> warnings;
+
+  @HiveField(15)
   final List<String> references;
+
+  @HiveField(16)
   final String language;
+
+  @HiveField(17)
   final DateTime createdAt;
+
+  @HiveField(18)
   final DateTime updatedAt;
-  final String? sourceStatus; // 'VERIFIED', 'UNVERIFIED'
+
+  @HiveField(19)
+  final String? sourceStatus;
 
   HealthKnowledgeItem({
     required this.id,
@@ -77,50 +129,59 @@ class HealthKnowledgeItem {
     this.sourceStatus = 'UNVERIFIED',
   });
 
-  factory HealthKnowledgeItem.fromJson(Map<String, dynamic> json) => _$HealthKnowledgeItemFromJson(json);
-  Map<String, dynamic> toJson() => _$HealthKnowledgeItemToJson(this);
-
-  HealthKnowledgeItem copyWith({
-    String? title,
-    String? arabicTitle,
-    String? description,
-    HealthCategory? category,
-    String? author,
-    String? source,
-    int? publicationYear,
-    String? sourceUrl,
-    EvidenceLevel? evidenceLevel,
-    String? scientificSummary,
-    String? traditionalContext,
-    List<String>? benefits,
-    List<String>? limitations,
-    List<String>? warnings,
-    List<String>? references,
-    String? language,
-    DateTime? updatedAt,
-    String? sourceStatus,
-  }) {
+  factory HealthKnowledgeItem.fromJson(Map<String, dynamic> json) {
     return HealthKnowledgeItem(
-      id: id,
-      title: title ?? this.title,
-      arabicTitle: arabicTitle ?? this.arabicTitle,
-      description: description ?? this.description,
-      category: category ?? this.category,
-      author: author ?? this.author,
-      source: source ?? this.source,
-      publicationYear: publicationYear ?? this.publicationYear,
-      sourceUrl: sourceUrl ?? this.sourceUrl,
-      evidenceLevel: evidenceLevel ?? this.evidenceLevel,
-      scientificSummary: scientificSummary ?? this.scientificSummary,
-      traditionalContext: traditionalContext ?? this.traditionalContext,
-      benefits: benefits ?? this.benefits,
-      limitations: limitations ?? this.limitations,
-      warnings: warnings ?? this.warnings,
-      references: references ?? this.references,
-      language: language ?? this.language,
-      createdAt: createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      sourceStatus: sourceStatus ?? this.sourceStatus,
+      id: json['id'],
+      title: json['title'],
+      arabicTitle: json['arabicTitle'],
+      description: json['description'],
+      category: HealthCategory.values.firstWhere(
+        (e) => e.name == json['category'],
+        orElse: () => HealthCategory.nutrition,
+      ),
+      author: json['author'],
+      source: json['source'],
+      publicationYear: json['publicationYear'],
+      sourceUrl: json['sourceUrl'],
+      evidenceLevel: EvidenceLevel.values.firstWhere(
+        (e) => e.name == json['evidenceLevel'],
+        orElse: () => EvidenceLevel.uncertain,
+      ),
+      scientificSummary: json['scientificSummary'],
+      traditionalContext: json['traditionalContext'],
+      benefits: List<String>.from(json['benefits'] ?? []),
+      limitations: List<String>.from(json['limitations'] ?? []),
+      warnings: List<String>.from(json['warnings'] ?? []),
+      references: List<String>.from(json['references'] ?? []),
+      language: json['language'] ?? 'fr',
+      createdAt: DateTime.parse(json['createdAt']),
+      updatedAt: DateTime.parse(json['updatedAt']),
+      sourceStatus: json['sourceStatus'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'arabicTitle': arabicTitle,
+      'description': description,
+      'category': category.name,
+      'author': author,
+      'source': source,
+      'publicationYear': publicationYear,
+      'sourceUrl': sourceUrl,
+      'evidenceLevel': evidenceLevel.name,
+      'scientificSummary': scientificSummary,
+      'traditionalContext': traditionalContext,
+      'benefits': benefits,
+      'limitations': limitations,
+      'warnings': warnings,
+      'references': references,
+      'language': language,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+      'sourceStatus': sourceStatus,
+    };
   }
 }

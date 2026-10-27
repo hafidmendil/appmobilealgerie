@@ -1,33 +1,20 @@
 import 'dart:async';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/user_model.dart';
 import '../auth/user_role.dart';
 import 'auth_repository.dart';
-import 'supabase_auth_service.dart';
 import 'auth_repository_impl.dart';
-import 'logger_service.dart';
 
+/// Now renamed to LocalAuthService but keeping class name for compatibility if used by providers
 class HybridAuthService implements AuthRepository {
-  final SupabaseAuthService _supabaseAuth = SupabaseAuthService();
   final HiveAuthRepository _hiveAuth;
   final _controller = StreamController<UserModel?>.broadcast();
-  
+
   UserModel? _currentUser;
 
   HybridAuthService(this._hiveAuth) {
-    // Merge both streams
-    _supabaseAuth.authStateChanges.listen((user) {
-      if (user != null) {
-        _currentUser = user;
-        _controller.add(user);
-      }
-    });
-    
     _hiveAuth.authStateChanges.listen((user) {
-      if (user != null) {
-        _currentUser = user;
-        _controller.add(user);
-      }
+      _currentUser = user;
+      _controller.add(user);
     });
   }
 
@@ -36,21 +23,23 @@ class HybridAuthService implements AuthRepository {
 
   @override
   Future<UserModel?> getCurrentUser() async {
-    if (_currentUser != null) return _currentUser;
-    return await _supabaseAuth.getCurrentUser() ?? await _hiveAuth.getCurrentUser();
+    return _currentUser ?? await _hiveAuth.getCurrentUser();
   }
 
   @override
-  Future<UserModel> login(String email, String password) async {
-    try {
-      // 1. Try Supabase first
-      logger.i('Trying Supabase Login for $email');
-      return await _supabaseAuth.login(email, password);
-    } catch (e) {
-      logger.w('Supabase Login failed, falling back to Hive: $e');
-      // 2. Fallback to Hive for seeded accounts
-      return await _hiveAuth.login(email, password);
-    }
+  Future<UserModel> login(
+    String email,
+    String password, {
+    String? secondFactorCode,
+  }) async {
+    final user = await _hiveAuth.login(
+      email,
+      password,
+      secondFactorCode: secondFactorCode,
+    );
+    _currentUser = user;
+    _controller.add(user);
+    return user;
   }
 
   @override
@@ -59,57 +48,106 @@ class HybridAuthService implements AuthRepository {
     required String password,
     required UserRole role,
   }) async {
-    try {
-      // 1. Try real Supabase registration
-      return await _supabaseAuth.register(email: email, password: password, role: role);
-    } catch (e) {
-      logger.e('Supabase Registration failed: $e');
-      // 2. If Supabase fails (e.g. missing tables), fallback to local registration for testing
-      return await _hiveAuth.register(email: email, password: password, role: role);
-    }
+    final user = await _hiveAuth.register(
+      email: email,
+      password: password,
+      role: role,
+    );
+    _currentUser = user;
+    _controller.add(user);
+    return user;
+  }
+
+  @override
+  Future<UserModel> initializeOfflineAdministrator({
+    required String email,
+    required String password,
+  }) async {
+    final user = await _hiveAuth.initializeOfflineAdministrator(
+      email: email,
+      password: password,
+    );
+    _currentUser = user;
+    _controller.add(user);
+    return user;
   }
 
   @override
   Future<void> logout() async {
     _currentUser = null;
-    await _supabaseAuth.logout();
     await _hiveAuth.logout();
     _controller.add(null);
   }
 
   @override
   Future<List<UserModel>> getAllUsers() async {
-    final remote = await _supabaseAuth.getAllUsers().catchError((_) => <UserModel>[]);
-    final local = await _hiveAuth.getAllUsers();
-    // Unique list by email
-    final seen = <String>{};
-    return [...remote, ...local].where((u) => seen.add(u.email)).toList();
+    return await _hiveAuth.getAllUsers();
   }
 
   @override
   Future<void> updateUserStatus(String userId, String status) async {
-    await _supabaseAuth.updateUserStatus(userId, status).catchError((_) {});
     await _hiveAuth.updateUserStatus(userId, status);
   }
 
   @override
   Future<void> updateUser(UserModel user) async {
-    await _supabaseAuth.updateUser(user).catchError((_) {});
     await _hiveAuth.updateUser(user);
   }
 
   @override
-  Future<void> resetPassword(String email) async {
-    await _supabaseAuth.resetPassword(email).catchError((_) {});
+  Future<void> deleteCurrentUserData() async {
+    await _hiveAuth.deleteCurrentUserData();
+    _currentUser = null;
+    _controller.add(null);
   }
 
   @override
+  Future<void> resetPassword(String email) async {
+    await _hiveAuth.resetPassword(email);
+  }
+
+  @override
+  Future<void> changePassword({
+    required String userId,
+    required String currentPassword,
+    required String newPassword,
+  }) => _hiveAuth.changePassword(
+    userId: userId,
+    currentPassword: currentPassword,
+    newPassword: newPassword,
+  );
+
+  @override
+  Future<void> adminResetPassword({
+    required String adminId,
+    required String userId,
+    required String temporaryPassword,
+  }) => _hiveAuth.adminResetPassword(
+    adminId: adminId,
+    userId: userId,
+    temporaryPassword: temporaryPassword,
+  );
+
+  @override
+  Future<void> setMfaRequirement({
+    required String adminId,
+    required String userId,
+    required bool required,
+    String? enrollmentCode,
+  }) => _hiveAuth.setMfaRequirement(
+    adminId: adminId,
+    userId: userId,
+    required: required,
+    enrollmentCode: enrollmentCode,
+  );
+
+  @override
   Future<void> verifyEmail() async {
-    await _supabaseAuth.verifyEmail();
+    await _hiveAuth.verifyEmail();
   }
 
   @override
   Future<void> migrateGuestData(String userId) async {
-    await _supabaseAuth.migrateGuestData(userId);
+    await _hiveAuth.migrateGuestData(userId);
   }
 }

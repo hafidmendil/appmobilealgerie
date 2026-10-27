@@ -1,3 +1,4 @@
+import '../../../core/localization/l10n_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projetmascara/features/admin/admin_provider.dart';
@@ -8,16 +9,39 @@ class ProfessionalManagementScreen extends ConsumerStatefulWidget {
   const ProfessionalManagementScreen({super.key});
 
   @override
-  ConsumerState<ProfessionalManagementScreen> createState() => _ProfessionalManagementScreenState();
+  ConsumerState<ProfessionalManagementScreen> createState() =>
+      _ProfessionalManagementScreenState();
 }
 
-class _ProfessionalManagementScreenState extends ConsumerState<ProfessionalManagementScreen> {
+class _ProfessionalManagementScreenState
+    extends ConsumerState<ProfessionalManagementScreen> {
   String _filter = 'all';
 
   @override
   Widget build(BuildContext context) {
     final prosAsync = ref.watch(adminProfessionalsProvider);
     final l10n = AppLocalizations.of(context)!;
+
+    // Listen for feedback
+    ref.listen(adminNotifierProvider, (previous, next) {
+      next.when(
+        data: (_) {
+          if (previous is AsyncLoading) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(context.l10n.auto_statut_professionnel_mis_jour),
+              ),
+            );
+          }
+        },
+        error: (e, st) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Erreur: $e"), backgroundColor: Colors.red),
+          );
+        },
+        loading: () {},
+      );
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -59,8 +83,10 @@ class _ProfessionalManagementScreenState extends ConsumerState<ProfessionalManag
       ),
       body: prosAsync.when(
         data: (pros) {
-          final filtered = _filter == 'all' ? pros : pros.where((p) => p.status == _filter).toList();
-          
+          final filtered = _filter == 'all'
+              ? pros
+              : pros.where((p) => p.status == _filter).toList();
+
           if (filtered.isEmpty) {
             return Center(child: Text(l10n.noPendingRequests));
           }
@@ -97,7 +123,7 @@ class _FilterChip extends StatelessWidget {
       label: Text(label),
       selected: selected,
       onSelected: onSelected,
-      selectedColor: Theme.of(context).primaryColor.withOpacity(0.2),
+      selectedColor: Theme.of(context).primaryColor.withAlpha(51),
       checkmarkColor: Theme.of(context).primaryColor,
     );
   }
@@ -111,45 +137,61 @@ class _ProfessionalTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
-        title: Text(professional.email, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text("${l10n.status_label}: ${_getStatusLabel(l10n, professional.status)}"),
-        trailing: professional.status == 'pending' 
-          ? Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.check_circle, color: Colors.green),
-                  onPressed: () => ref.read(adminNotifierProvider.notifier).updateProfessionalStatus(professional.id, 'approved'),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.cancel, color: Colors.red),
-                  onPressed: () => ref.read(adminNotifierProvider.notifier).updateProfessionalStatus(professional.id, 'rejected'),
-                ),
-              ],
-            )
-          : _getStatusIcon(professional.status),
+        title: Text(
+          professional.email,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(
+          "${l10n.status_label}: ${_getStatusLabel(l10n, professional.status)}",
+        ),
+        trailing: professional.status == 'pending'
+            ? Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.check_circle, color: Colors.green),
+                    onPressed: () => ref
+                        .read(adminNotifierProvider.notifier)
+                        .updateProfessionalStatus(professional.id, 'approved'),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.cancel, color: Colors.red),
+                    onPressed: () => ref
+                        .read(adminNotifierProvider.notifier)
+                        .updateProfessionalStatus(professional.id, 'rejected'),
+                  ),
+                ],
+              )
+            : _getStatusIcon(professional.status),
       ),
     );
   }
 
   String _getStatusLabel(AppLocalizations l10n, String status) {
     switch (status) {
-      case 'approved': return l10n.statusApproved;
-      case 'pending': return l10n.statusPending;
-      case 'rejected': return l10n.statusRejected;
-      default: return status;
+      case 'approved':
+        return l10n.statusApproved;
+      case 'pending':
+        return l10n.statusPending;
+      case 'rejected':
+        return l10n.statusRejected;
+      default:
+        return status;
     }
   }
 
   Widget _getStatusIcon(String status) {
     switch (status) {
-      case 'approved': return const Icon(Icons.verified, color: Colors.blue);
-      case 'rejected': return const Icon(Icons.block, color: Colors.red);
-      default: return const Icon(Icons.info_outline);
+      case 'approved':
+        return const Icon(Icons.verified, color: Colors.blue);
+      case 'rejected':
+        return const Icon(Icons.block, color: Colors.red);
+      default:
+        return const Icon(Icons.info_outline);
     }
   }
 }

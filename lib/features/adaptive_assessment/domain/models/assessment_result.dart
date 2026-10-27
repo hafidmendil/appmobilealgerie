@@ -1,10 +1,11 @@
 import 'assessment_axis.dart';
 
 enum OrientationLevel {
-  level1, // Soutien préventif
-  level2, // Auto-accompagnement renforcé
-  level3, // Il peut être utile de parler à un professionnel
-  level4  // Besoin d'aide humaine rapide
+  level0, // Stable - Bien-être général
+  level1, // Soutien préventif / Vigilance légère
+  level2, // Auto-accompagnement renforcé / Consultation conseillée
+  level3, // Besoin de support élevé / Contact professionnel recommandé
+  level4, // Besoin de support immédiat / Aide urgente requise
 }
 
 class AssessmentResult {

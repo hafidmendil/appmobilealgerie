@@ -22,14 +22,8 @@ class PurposeScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const SizedBox(height: 24),
-              _PurposeItem(
-                icon: Icons.insights,
-                text: l10n.purposeItem1,
-              ),
-              _PurposeItem(
-                icon: Icons.explore,
-                text: l10n.purposeItem2,
-              ),
+              _PurposeItem(icon: Icons.insights, text: l10n.purposeItem1),
+              _PurposeItem(icon: Icons.explore, text: l10n.purposeItem2),
               _PurposeItem(
                 icon: Icons.warning_amber_rounded,
                 text: l10n.purposeItem3,
@@ -39,7 +33,9 @@ class PurposeScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const PrivacyInfoScreen()),
+                    MaterialPageRoute(
+                      builder: (_) => const PrivacyInfoScreen(),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(

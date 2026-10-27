@@ -1,0 +1,202 @@
+HIKEM PRESENTES DANS LA BDD (25)
+=====================================
+
+1. hik_1
+Auteur arabe : Sagesse traditionnelle
+Auteur francais : Sagesse traditionnelle
+Arabe : مَا لاَ يُدْرَكُ كُلُّهُ لاَ يُتْرَكُ جُلُّهُ
+Francais : Ce qui ne peut être réalisé entièrement ne doit pas conduire à abandonner ce qui peut encore l’être.
+Axes : functioning, behavioral
+Etats : overload, lackOfMotivation
+
+2. hik_2
+Auteur arabe : Proverbe traditionnel
+Auteur francais : Proverbe traditionnel
+Arabe : الصَّبْرُ مِفْتَاحُ الْفَرَجِ
+Francais : La patience est la clé du soulagement.
+Axes : stress
+Etats : stress, academicDifficulty
+
+3. hik_3
+Auteur arabe : Proverbe populaire
+Auteur francais : Proverbe populaire
+Arabe : الْوَقْتُ كَالسَّيْفِ إِنْ لَمْ تَقْطَعْهُ قَطَعَكَ
+Francais : Le temps est comme un sabre : si tu ne l’utilises pas à temps, il se retournera contre toi.
+Axes : behavioral
+Etats : academicDifficulty, overload
+
+4. hik_4
+Auteur arabe : Proverbe arabe
+Auteur francais : Proverbe arabe
+Arabe : مَن جَدَّ وَجَدَ وَمَن زَرَعَ حَصَدَ
+Francais : Qui s’efforce finit par trouver, et qui sème finit par récolter.
+Axes : productivity, behavioral
+Etats : lackOfMotivation
+
+5. hik_5
+Auteur arabe : Sagesse traditionnelle
+Auteur francais : Sagesse traditionnelle
+Arabe : الْعِلْمُ فِي الصِّغَرِ كَالنَّقْشِ عَلَى الْحَجَرِ
+Francais : L’apprentissage dans la jeunesse est comme une gravure dans la pierre.
+Axes : cognitive, productivity
+Etats : academicDifficulty
+
+6. hik_6
+Auteur arabe : Proverbe populaire
+Auteur francais : Proverbe populaire
+Arabe : لِسَانُكَ حِصَانُكَ، إِنْ صُنْتَهُ صَانَكَ وَإِنْ خُنْتَهُ خَانَكَ
+Francais : Ta langue est comme ton cheval : si tu la maîtrises, elle te protège ; si tu la laisses te dominer, elle peut te nuire.
+Axes : social, relationship
+Etats : relationalConflict
+
+7. hik_7
+Auteur arabe : Proverbe
+Auteur francais : Proverbe
+Arabe : لَا تُؤَجِّلْ عَمَلَ الْيَوْمِ إِلَى الْغَدِ
+Francais : Ne remets pas à demain ce que tu peux faire aujourd’hui.
+Axes : behavioral, productivity
+Etats : overload
+
+8. hik_8
+Auteur arabe : Proverbe populaire
+Auteur francais : Proverbe populaire
+Arabe : الْقَنَاعَةُ كَنْزٌ لَا يَفْنَى
+Francais : Le contentement est un trésor qui ne s’épuise pas.
+Axes : emotions, selfEsteem
+Etats : lackOfMotivation
+
+9. hik_9
+Auteur arabe : Proverbe traditionnel
+Auteur francais : Proverbe traditionnel
+Arabe : فِي التَّأَنِّي السَّلَامَةُ وَفِي الْعَجَلَةِ النَّدَامَةُ
+Francais : Dans la réflexion et la modération réside la sécurité ; dans la précipitation, le regret.
+Axes : stressAnxiety, cognitive
+Etats : stress
+
+10. hik_10
+Auteur arabe : Sagesse populaire
+Auteur francais : Sagesse populaire
+Arabe : خَيْرُ الْكَلَامِ مَا قَلَّ وَدَلَّ
+Francais : La meilleure parole est celle qui est concise et porteuse de sens.
+Axes : social, behavioral
+Etats : relationalConflict
+
+11. hik_11
+Auteur arabe : Proverbe
+Auteur francais : Proverbe
+Arabe : الصَّدِيقُ وَقْتَ الضِّيقِ
+Francais : C’est dans l’épreuve que l’on reconnaît ses vrais amis.
+Axes : relationship, social
+Etats : isolation
+
+12. hik_12
+Auteur arabe : Proverbe populaire
+Auteur francais : Proverbe populaire
+Arabe : مَنْ حَفَرَ حُفْرَةً لِأَخِيهِ وَقَعَ فِيهَا
+Francais : Celui qui creuse une fosse pour son prochain risque d’y tomber lui-même.
+Axes : social, relationship
+Etats : relationalConflict
+
+13. hik_13
+Auteur arabe : Formule issue de la tradition latine
+Auteur francais : Formule issue de la tradition latine
+Arabe : الْعَقْلُ السَّلِيمُ فِي الْجِسْمِ السَّلِيمِ
+Francais : Un esprit sain dans un corps sain.
+Axes : lifestyle, health
+Etats : stress
+
+14. hik_14
+Auteur arabe : Prophète Muhammad ﷺ
+Auteur francais : Prophète Muhammad ﷺ
+Arabe : بَشِّرُوا وَلَا تُنَفِّرُوا، وَيَسِّرُوا وَلَا تُعَسِّرُوا
+Francais : Annoncez de bonnes nouvelles et ne rebutez pas les gens ; facilitez les choses et ne les rendez pas difficiles.
+Axes : emotions, social
+Etats : stress
+
+15. hik_15
+Auteur arabe : Proverbe populaire
+Auteur francais : Proverbe populaire
+Arabe : إِذَا كَانَ الْكَلَامُ مِنْ فِضَّةٍ فَالسُّكُوتُ مِنْ ذَهَبٍ
+Francais : Si la parole est d’argent, le silence est d’or.
+Axes : behavioral, social
+Etats : relationalConflict
+
+16. hik_16
+Auteur arabe : Sagesse populaire
+Auteur francais : Sagesse populaire
+Arabe : تَفَاءَلُوا بِالْخَيْرِ تَجِدُوهُ
+Francais : Gardez espoir dans le bien et cherchez les possibilités positives.
+Axes : spiritual, emotions
+Etats : sad, lackOfMotivation
+
+17. hik_17
+Auteur arabe : Prophète Muhammad ﷺ
+Auteur francais : Prophète Muhammad ﷺ
+Arabe : الْعَجَلَةُ مِنَ الشَّيْطَانِ وَالتَّأَنِّي مِنَ الرَّحْمَنِ
+Francais : La précipitation vient du diable, tandis que la retenue vient du Tout-Miséricordieux.
+Axes : stressAnxiety, cognitive
+Etats : stress, overload
+
+18. hik_18
+Auteur arabe : Proverbe
+Auteur francais : Proverbe
+Arabe : مَنْ صَبَرَ ظَفِرَ
+Francais : Celui qui persévère finit par réussir.
+Axes : stressAnxiety, productivity
+Etats : academicDifficulty, professionalDifficulty
+
+19. hik_19
+Auteur arabe : Expression traditionnelle
+Auteur francais : Expression traditionnelle
+Arabe : مَا ضَاقَتْ إِلَّا فُرِّجَتْ
+Francais : Même lorsque la situation se resserre, un soulagement peut finir par apparaître.
+Axes : stressAnxiety, emotions
+Etats : stress, sad
+
+20. hik_20
+Auteur arabe : Sagesse populaire
+Auteur francais : Sagesse populaire
+Arabe : اعْمَلْ لِدُنْيَاكَ كَأَنَّكَ تَعِيشُ أَبَدًا، وَاعْمَلْ لِآخِرَتِكَ كَأَنَّكَ تَمُوتُ غَدًا
+Francais : Agis pour ta vie ici-bas comme si tu devais vivre longtemps, et œuvre pour ton au-delà comme si tu devais mourir demain.
+Axes : lifestyle, spiritual
+Etats : seekingMeaning, overload
+
+21. hik_21
+Auteur arabe : Formule proverbiale
+Auteur francais : Formule proverbiale
+Arabe : الْحِلْمُ عِنْدَ الْغَضَبِ
+Francais : La véritable maîtrise de soi se manifeste dans la colère.
+Axes : angerRegulation, emotionalManagement
+Etats : relationalConflict, familyConflict
+
+22. hik_22
+Auteur arabe : Proverbe arabe
+Auteur francais : Proverbe arabe
+Arabe : دَوَامُ الْحَالِ مِنَ الْمُحَالِ
+Francais : Aucun état ne demeure éternellement inchangé.
+Axes : emotions, cognitive
+Etats : sad, stress
+
+23. hik_23
+Auteur arabe : Proverbe populaire
+Auteur francais : Proverbe populaire
+Arabe : مَنْ سَارَ عَلَى الدَّرْبِ وَصَلَ
+Francais : Celui qui avance avec constance sur son chemin finit par atteindre son but.
+Axes : behavioral, productivity
+Etats : lackOfMotivation, academicDifficulty
+
+24. hik_24
+Auteur arabe : Expression populaire
+Auteur francais : Expression populaire
+Arabe : الصِّحَّةُ تَاجٌ عَلَى رُؤُوسِ الْأَصِحَّاءِ
+Francais : La santé est un trésor précieux dont on mesure souvent la valeur lorsqu’elle est préservée.
+Axes : health, lifestyle
+Etats : medicalCondition, stress
+
+25. hik_25
+Auteur arabe : Proverbe dialectal populaire
+Auteur francais : Proverbe populaire
+Arabe : الْبَابُ اللِّي يِجِي مِنْهُ الرِّيحُ سُدَّهُ وَاسْتَرِيحْ
+Francais : Ferme la porte par laquelle entre le vent, et tu trouveras du repos.
+Axes : environmental, social
+Etats : relationalProblem, relationalConflict

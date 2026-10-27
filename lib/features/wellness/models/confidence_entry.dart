@@ -2,20 +2,20 @@ import 'package:hive/hive.dart';
 
 part 'confidence_entry.g.dart';
 
-@HiveType(typeId: 4)
+@HiveType(typeId: 9)
 class ConfidenceEntry extends HiveObject {
   @HiveField(0)
   final String id;
-  
+
   @HiveField(1)
   final DateTime date;
-  
+
   @HiveField(2)
   final String strength;
-  
+
   @HiveField(3)
   final String success;
-  
+
   @HiveField(4)
   final String goal;
 

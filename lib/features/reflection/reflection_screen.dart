@@ -1,3 +1,4 @@
+import '../../core/localization/l10n_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
@@ -16,23 +17,23 @@ class ReflectionScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Mes Réflexions"),
-      ),
+      appBar: AppBar(title: Text(context.l10n.auto_mes_rflexions)),
       body: ListView(
         padding: const EdgeInsets.all(AppSpacing.lg),
         children: [
           _ReflectionCard(
             date: "13 Août 2026",
             question: "Qu'est-ce qui vous apporte actuellement du réconfort ?",
-            answer: "La lecture et le calme du matin me permettent de me recentrer.",
+            answer:
+                "La lecture et le calme du matin me permettent de me recentrer.",
             icon: LucideIcons.sun,
           ),
           const SizedBox(height: AppSpacing.md),
           _ReflectionCard(
             date: "12 Août 2026",
             question: "Quelle petite chose pourriez-vous faire aujourd'hui ?",
-            answer: "Prendre le temps d'appeler un ami pour prendre des nouvelles.",
+            answer:
+                "Prendre le temps d'appeler un ami pour prendre des nouvelles.",
             icon: LucideIcons.phone,
           ),
         ],
@@ -64,7 +65,12 @@ class _ReflectionCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(date, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.textMuted)),
+              Text(
+                date,
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
+              ),
               Icon(icon, size: 16, color: AppColors.oliveGreen),
             ],
           ),
@@ -76,7 +82,10 @@ class _ReflectionCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.md),
           Text(
             answer,
-            style: const TextStyle(fontStyle: FontStyle.italic, color: AppColors.textSecondary),
+            style: const TextStyle(
+              fontStyle: FontStyle.italic,
+              color: AppColors.textSecondary,
+            ),
           ),
         ],
       ),

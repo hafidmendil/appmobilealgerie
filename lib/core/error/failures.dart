@@ -8,7 +8,15 @@ class ServerFailure extends Failure {
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure() : super("Connexion internet perdue. Veuillez vérifier votre réseau.");
+  const NetworkFailure()
+    : super("Connexion internet perdue. Veuillez vérifier votre réseau.");
+}
+
+class OfflineModeFailure extends Failure {
+  const OfflineModeFailure()
+    : super(
+        "Cette version fonctionne hors ligne et ne transmet aucune donnée.",
+      );
 }
 
 class AuthFailure extends Failure {

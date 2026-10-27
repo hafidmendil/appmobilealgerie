@@ -1,13 +1,6 @@
 import 'assessment_axis.dart';
 
-enum ExplorationStatus {
-  unexplored,
-  opened,
-  exploring,
-  held,
-  closed,
-  reopened
-}
+enum ExplorationStatus { unexplored, opened, exploring, held, closed, reopened }
 
 class DomainState {
   final AssessmentAxis axis;
@@ -42,4 +35,19 @@ class DomainState {
       questionsAsked: questionsAsked ?? this.questionsAsked,
     );
   }
+}
+
+enum DeclaredState {
+  overload,
+  lackOfMotivation,
+  stress,
+  academicDifficulty,
+  relationalConflict,
+  relationalProblem,
+  familyConflict,
+  isolation,
+  sad,
+  seekingMeaning,
+  professionalDifficulty,
+  medicalCondition,
 }

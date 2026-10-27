@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../models/wilaya_model.dart';
+import '../../../core/models/wilaya_model.dart';
+import '../../../core/localization/l10n_extension.dart';
 
 class WilayaSelector extends StatefulWidget {
-  final List<WilayaModel> wilayas;
-  final WilayaModel? initialSelection;
-  final Function(WilayaModel) onSelected;
+  final List<Wilaya> wilayas;
+  final Wilaya? initialSelection;
+  final Function(Wilaya) onSelected;
 
   const WilayaSelector({
     super.key,
@@ -18,7 +19,7 @@ class WilayaSelector extends StatefulWidget {
 }
 
 class _WilayaSelectorState extends State<WilayaSelector> {
-  late List<WilayaModel> _filteredWilayas;
+  late List<Wilaya> _filteredWilayas;
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -55,7 +56,7 @@ class _WilayaSelectorState extends State<WilayaSelector> {
           TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              hintText: 'Rechercher une wilaya...',
+              hintText: context.l10n.searchWilayaHint,
               prefixIcon: const Icon(Icons.search),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -70,12 +71,16 @@ class _WilayaSelectorState extends State<WilayaSelector> {
                 final wilaya = _filteredWilayas[index];
                 final isSelected = widget.initialSelection?.id == wilaya.id;
                 return ListTile(
-                  title: Text(wilaya.nameFr),
-                  subtitle: Text(wilaya.nameAr, textDirection: TextDirection.rtl),
-                  leading: CircleAvatar(
-                    child: Text(wilaya.code),
+                  title: Text(
+                    context.isRTL ? wilaya.nameAr : wilaya.nameFr,
+                    textDirection: context.isRTL
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
                   ),
-                  trailing: isSelected ? const Icon(Icons.check, color: Colors.green) : null,
+                  leading: CircleAvatar(child: Text(wilaya.code)),
+                  trailing: isSelected
+                      ? const Icon(Icons.check, color: Colors.green)
+                      : null,
                   onTap: () => widget.onSelected(wilaya),
                 );
               },

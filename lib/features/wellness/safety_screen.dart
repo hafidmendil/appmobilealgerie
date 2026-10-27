@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
+import '../../generated/l10n/app_localizations.dart';
 import '../../core/theme/tokens/app_colors.dart';
 import '../../core/theme/tokens/app_spacing.dart';
 import '../../core/theme/tokens/app_radii.dart';
@@ -12,11 +15,12 @@ class SafetyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Ta sécurité compte"),
+        title: Text(l10n.priority_safety_alert),
         backgroundColor: Colors.white,
         foregroundColor: AppColors.danger,
       ),
@@ -25,10 +29,14 @@ class SafetyScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(LucideIcons.shield_alert, size: 80, color: AppColors.danger),
+            const Icon(
+              LucideIcons.shield_alert,
+              size: 80,
+              color: AppColors.danger,
+            ),
             const SizedBox(height: AppSpacing.xl),
             Text(
-              "Tu n'es pas seul(e).",
+              l10n.summary_urgent_help,
               textAlign: TextAlign.center,
               style: theme.textTheme.headlineMedium?.copyWith(
                 color: AppColors.danger,
@@ -37,41 +45,54 @@ class SafetyScreen extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.md),
             Text(
-              "Si tu te sens en danger immédiat ou si tu as besoin d'une aide urgente, utilise les ressources ci-dessous.",
+              l10n.q_safety_immediate_harm,
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyLarge,
             ),
             const SizedBox(height: AppSpacing.xxl),
-            
+
             _SafetyActionCard(
-              title: "Appeler les Urgences",
+              title: l10n.res_emergency_name,
               icon: LucideIcons.phone_call,
               color: AppColors.danger,
-              onTap: () {},
+              onTap: () async {
+                final phone =
+                    '112'; // numéro d'urgence générique — adapter selon pays
+                final uri = Uri(scheme: 'tel', path: phone);
+                if (!await launchUrl(uri)) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(l10n.error_occurred)));
+                }
+              },
             ),
-            
+
             const SizedBox(height: AppSpacing.md),
-            
+
             _SafetyActionCard(
-              title: "Contacter une personne de confiance",
+              title: l10n.trustedContact,
               icon: LucideIcons.user_plus,
               color: AppColors.oliveGreen,
-              onTap: () {},
+              onTap: () async {
+                // Open share sheet to share a prefilled message / number
+                final msg = l10n.trustedContactMessage;
+                await Share.share(msg);
+              },
             ),
-            
+
             const SizedBox(height: AppSpacing.md),
-            
+
             _SafetyActionCard(
-              title: "Trouver de l'aide à proximité",
+              title: l10n.resources,
               icon: LucideIcons.map_pin,
               color: AppColors.info,
               onTap: () => context.push('/resources'),
             ),
-            
+
             const SizedBox(height: AppSpacing.xxl),
-            
+
             SindSecondaryButton(
-              label: "Retour au parcours",
+              label: l10n.back_to_home,
               onPressed: () => context.pop(),
             ),
           ],
@@ -102,8 +123,8 @@ class _SafetyActionCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.lg),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.05),
-          border: Border.all(color: color.withOpacity(0.2), width: 2),
+          color: color.withAlpha(12),
+          border: Border.all(color: color.withAlpha(51), width: 2),
           borderRadius: AppRadii.largeRadius,
         ),
         child: Row(
@@ -113,7 +134,10 @@ class _SafetyActionCard extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
             ),
             Icon(LucideIcons.chevron_right, color: color, size: 20),
